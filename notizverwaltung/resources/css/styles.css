@@ -1,0 +1,170 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Roboto', sans-serif;
+    /*background: url('http://subtlepatterns.com/patterns/tweed.png');*/
+    background-color: rgba(200, 200, 200, 0.7);
+}
+
+html:before {
+    content: "";
+    background: url(../images/smiley_sticky_notes.jpg) repeat;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.1;
+}
+
+html, body {
+    height: 98%;
+    margin: 0;
+    padding: 0;
+}
+
+#main-content {
+    flex-direction: column;
+}
+
+#dashboard {
+    padding: 10px;
+}
+
+#dashboard-actions {
+    display: flex;
+    flex-direction: column;
+    /*padding: 10px 0 10px 0;*/
+}
+
+#main-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 0 10px 0;
+}
+
+#filters {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 0 10px 0;
+}
+
+#filterset_1 {
+    display: flex;
+    flex: 3;
+    padding: 0 20px 0 0;
+}
+
+#filterset_2 {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    padding: 0 0 0 20px;
+}
+
+#filterset_2 button {
+    flex: 1;
+}
+
+/*Note entries...*/
+#entry-container {
+}
+
+.note-entry {
+    background-color: green;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.note-entry > button {
+    align-self: center;
+}
+
+.note-status {
+    background-color: yellow;
+
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+}
+
+.checkbox {
+    display: flex;
+    flex-direction: row;
+}
+
+.note-overview {
+    display: flex;
+    flex-direction: column;
+
+    flex: 6;
+}
+
+.note-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.toggle label{
+    display: flex;
+    flex: 1;
+    justify-content: center;
+
+    font-size: 14px;
+    background-image: linear-gradient(
+            to top,
+            lightgray,
+            lightgray 6px,
+            gray 6px,
+            #e6e6e6 7px,
+            #fff
+    );
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+    padding: 6px 0 12px 0;
+
+    border: 1px solid;
+    border-width: thin thin thin thin;
+    border-color: darkgray darkgray darkgray darkgray;
+}
+
+.toggle {
+    display: flex;
+    flex: 1;
+}
+
+.toggle input {
+    display: none;
+}
+
+.toggle + .toggle label {
+    border-left-width: 0;
+}
+
+.toggle input:checked + label {
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
+    background-image: linear-gradient(
+            to top,
+            lawngreen,
+            lawngreen 6px,
+            gray 6px,
+            #e6e6e6 7px,
+            white
+    );
+}
+
+.toggle label:hover {
+    background-image: linear-gradient(
+            to top,
+            greenyellow,
+            greenyellow 6px,
+            gray 6px,
+            #d6d6d6 7px,
+            white
+    );
+}
