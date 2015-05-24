@@ -3,41 +3,49 @@
 }
 
 html {
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", monospace;
     /*background: url('http://subtlepatterns.com/patterns/tweed.png');*/
     background-color: rgba(200, 200, 200, 0.7);
 }
 
 html:before {
-    content: "";
-    background: url(../images/smiley_sticky_notes.jpg) repeat;
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    opacity: 0.1;
+    /*content: "";*/
+    /*background: url(../images/smiley_sticky_notes.jpg) repeat;*/
+    /*position: absolute;*/
+    /*z-index: -1;*/
+    /*top: 0;*/
+    /*bottom: 0;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*opacity: 0.1;*/
 }
 
 html, body {
     height: 98%;
     margin: 0;
     padding: 0;
-    font-size: 1em;
 }
 
-/*.fa {*/
-    /*color: black;*/
-    /*text-shadow: 2px 2px 1px #ccc;*/
-/*}*/
-
-button {
-    font-size: 1em;
+#main-header {
+    display: flex;
+    flex-direction: column;
+    /*justify-content: space-between;*/
+    height: 100px;
 }
 
-.button-skin {
-    font-size: 1em;
+#main-header {
+    /*background: url("http://dailygenius.com/wp-content/uploads/2014/06/postitwall.jpg") no-repeat;*/
+    /*background-size: cover;*/
+    background-color: lightblue;
+}
+
+#main-header h1 {
+    align-self: flex-end;
+    align-self: center;
+}
+
+#theme-switch {
+    align-self: flex-end;
 }
 
 #main-content {
@@ -45,60 +53,48 @@ button {
 }
 
 #dashboard {
-    padding: 10px;
+    /*padding: 1em;*/
 }
 
-#dashboard > .note-toolbar {
+#toolbar-area {
     display: flex;
-    justify-content: flex-end;
-}
-
-#theme-switch {
-    display: flex;
-    align-self: flex-end;
-    align-items: flex-end;
-    align-content: flex-end;
-    justify-content: flex-end;
-}
-
-/*Note entries...*/
-#note-container {
-    display: flex;
-    background-color: beige;
-    flex-direction: column;
-}
-
-#actions {
-    display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    background-color: lightgray;
-    padding: 1em 0 1em 0;
+    background: linear-gradient(to bottom right, white, dimgray);
+    padding: 1em;
+    /*height: 20px;*/
 }
 
 #filters {
-    display: flex;
-    flex: 0 0 auto;
-    height: 50px;
-    /*background-color: blue;*/
-}
-
-#filters .toolbar a {
-    min-width: 160px;
+    /*font-family: 'Roboto', sans-serif;*/
 }
 
 #other-actions {
     display: flex;
     flex: 0 0 auto;
     justify-content: space-between;
+
+    padding: 0;
+    margin: 0;
+}
+
+#other-actions .toolbar {
+    background: none;
+    background-color: blue;
 }
 
 #other-actions .button-skin {
     margin: 0 0 0 4px;
 }
 
+/*Note entries...*/
+#note-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .notes {
-    list-style: none;
-    padding-left: 0;
+    padding: 0;
     margin: 0;
 }
 
@@ -107,17 +103,22 @@ button {
     flex-direction: row;
 
     list-style: none;
-    padding: 1em 0;
+    padding: 1em 1em;
 
-    background-color: white;
+    /*background-color: floralwhite;*/
+    background: linear-gradient(to bottom right, floralwhite, whitesmoke);
 }
 
-/*li.nth-child(odd) {background:blue}*/
-/*li.nth-child(odd) li.nth-child(even) {background:blue}*/
-/*li.nth-child(even) li.nth-child(odd) {background:blue}*/
-
 .note-list-item:nth-child(odd) {
-    background-color: beige;
+    background: linear-gradient(to bottom right, antiquewhite, whitesmoke);
+}
+
+.note-table {
+    width: 100%;
+    /*border-spacing: 5px;*/
+}
+
+.note-due-by {
 }
 
 .note-status {
@@ -126,26 +127,27 @@ button {
     flex: 2;
 
     justify-content: flex-start;
-    background-color: blue;
 }
 
-.note-overview {
-    display: flex;
-    flex-direction: column;
+.note-status .checkbox {
+    align-self: center;
+}
 
-    flex: 6;
+.note-due-by,
+.note-header {
+    /*font-size: 1.2em;*/
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
 }
 
 .note-header {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    padding: 0 0 1em 0;
 }
 
 .note-title {
     flex: 6;
-    /*padding: 0 0.5em;*/
     margin: 0;
 }
 
@@ -156,20 +158,23 @@ button {
     justify-content: flex-end;
     margin: 0 0.5em 0 0;
     align-items: center;
+    color: gold;
+    text-shadow: 1px 1px 0 black;
 }
 
-.note-crud {
-    display: flex;
-    flex-direction: row;
-    flex: 0 0 auto;
+.toolbar.note-crud {
     justify-content: flex-end;
-}
-
-.note-crud {
-    height: 20px;
+    font-size: 0.8em;
 }
 
 .note-description {
+    width: 100%;
+    height: 100%;
+    border: none;
+    resize: vertical;
+
+    /*hack to workaround cell fill issues*/
+    margin-bottom: -4px;
 }
 
 .checkbox {
