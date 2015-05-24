@@ -1,0 +1,68 @@
+/*bloody magic for toggle button-groups... :(*/
+.toggle {
+    /*display: none;*/
+    position: absolute;
+    top: -999px;
+    left: -999px;
+}
+
+.toggle + label {
+    z-index: 1;
+    display: flex;
+    /*flex: 1;*/
+    justify-content: center;
+
+    background-image: linear-gradient(
+            to top,
+            lightgray,
+            lightgray 6px,
+            gray 6px,
+            #e6e6e6 7px,
+            white
+    );
+    /*padding: 6px 0 12px 0;*/
+}
+
+.toggle:not(:focus) + label ~ label {
+    /*border-left-width: 0;*/
+}
+
+.toggle:checked + label {
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+    background-image: linear-gradient(
+            to top,
+            lawngreen,
+            lawngreen 6px,
+            gray 6px,
+            #e6e6e6 7px,
+            white
+    );
+}
+
+.toggle + label:hover {
+    background-image: linear-gradient(
+            to top,
+            greenyellow,
+            greenyellow 6px,
+            gray 6px,
+            #d6d6d6 7px,
+            white
+    );
+}
+
+.toggle:focus + label {
+    border-width: thin thin thin thin;
+    border-color: cornflowerblue;
+}
+
+.toggle + label:active {
+    border-color: cornflowerblue;
+    background-image: linear-gradient(
+            to top,
+            greenyellow,
+            greenyellow 6px,
+            gray 6px,
+            white 7px,
+            #e6e6e6
+    );
+}

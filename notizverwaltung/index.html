@@ -11,6 +11,13 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic'
           rel='stylesheet' type='text/css'>
     <link href="resources/css/styles.css" rel="stylesheet">
+    <link href="resources/css/buttons.css" rel="stylesheet">
+    <link href="resources/css/radios.css" rel="stylesheet">
+    <link href="resources/css/toolbar.css" rel="stylesheet">
+    <link href="resources/css/icons.css" rel="stylesheet">
+    <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">-->
+    <link rel="stylesheet" href="resources/font-awesome-4.3.0/css/font-awesome.min.css">
+
 </head>
 
 <body>
@@ -19,89 +26,130 @@
     <h1>Notes Management</h1>
 </header>
 
+
 <div id="main-content">
     <div id="dashboard">
         <header>
             <h1>Dashboard</h1>
         </header>
 
-        <section id="dashboard-actions">
-            <div id="main-actions">
-                <button>Create new Note</button>
-                <select id="styleswitch">
-                    <option> Default
-                    <option> Black & White
-                </select>
-            </div>
-
-            <div id="filters">
-                <div id="filterset_1">
-                    <div class="toggle">
-                        <input id="radio1" class="toggle" name="toggle" value="all" checked="" type="radio">
-                        <label class="btn" for="radio1">By Due Date</label>
-                    </div>
-                    <div class="toggle">
-                        <input id="radio2" class="toggle" name="toggle" value="false" type="radio">
-                        <label class="btn" for="radio2">By Creation Date</label>
-                    </div>
-                    <div class="toggle">
-                        <input id="radio3" class="toggle" name="toggle" value="true" type="radio">
-                        <label class="btn" for="radio3">By Importance</label>
-                    </div>
-                </div>
-                <div id="filterset_2">
-                    <button>Show finished</button>
-                </div>
-            </div>
+        <section class="note-toolbar">
+            <select id="theme-switch">
+                <option> Default
+                <option> Black & White
+            </select>
         </section>
 
+
         <!--Notes in here will be populated by js/json-->
-        <section id="entry-container">
-            <p>
+        <section id="note-container">
 
-            <div class="note-entry">
-                <div class="note-status">
-                    <label class="note-dueBy">Due on Wednesday</label>
+            <div id="actions">
+                <div id="filters">
+                    <ul class="toolbar">
+                        <li><a class="button-skin" href="#"><i class="fa fa-clock-o"></i>&nbsp;By Due Date</a></li>
+                        <li><a class="button-skin" href="#"><i class="fa fa-calendar"></i>&nbsp;By Creation Date</a>
+                        </li>
+                        <li><a class="button-skin" href="#"><i class="fa fa-star-o"></i>&nbsp;By Importance</a></li>
+                    </ul>
+                </div>
 
-                    <div class="checkbox">
-                        <input class="finished-checkbox" id="finishedCheckBox1" type=checkbox name="finished"
-                               value="finito"
-                               checked>
-                        <label id="finishedCheckBoxLabel1" for="finishedCheckBox1">Finished (today)</label>
-                    </div>
+                <!--<div class="separator"></div>-->
+
+                <div id="other-actions">
+                    <a class="button-skin" href="#"><i class="fa fa-check-square-o "></i>&nbsp;Show Finished</a>
+                    <a class="button-skin" href="#"><i class="fa fa-plus"></i>&nbsp;Add Node</a>
                 </div>
-                <div class="note-overview">
-                    <div class="note-header">
-                        <label class="note-title">CAS FEE Selbststudium / Projekt Aufgabe erledigen</label>
-                        <label class="note-importance">&star;&star;</label>
-                    </div>
-                    <textarea class="note-description">HTML für die Note App erstellen</textarea>
-                </div>
-                <button>Edit</button>
             </div>
-            </p>
-            <p>
 
-            <div class="note-entry">
-                <div class="note-status">
-                    <label class="note-dueBy">Today</label>
+            <!--<div class="note-toolbar">-->
+            <!--<div id="filters">-->
+            <!--<input id="radio1" class="toggle" name="toggle" value="all" checked="" type="radio">-->
+            <!--<label class="button-skin" for="radio1">By Due Date</label>-->
+            <!--<input id="radio2" class="toggle" name="toggle" value="false" type="radio">-->
+            <!--<label class="button-skin" for="radio2">By Creation Date</label>-->
+            <!--<input id="radio3" class="toggle" name="toggle" value="true" type="radio">-->
+            <!--<label class="button-skin" for="radio3">By Importance</label>-->
+            <!--</div>-->
 
-                    <div class="checkbox">
-                        <input id="finishedCheckBox2" type=checkbox name="finished" value="finito">
-                        <label id="finishedCheckBoxLabel2" for="finishedCheckBox2">Finished</label>
+            <ul class="notes">
+                <li class="note-list-item">
+                    <div class="note-status">
+                        <label class="note-dueBy">Due on Wednesday</label>
+
+                        <div class="checkbox">
+                            <input class="finished-checkbox" id="finishedCheckBox1" type=checkbox name="finished"
+                                   value="finito"
+                                   checked>
+                            <label id="finishedCheckBoxLabel1" for="finishedCheckBox1">Finished (today)</label>
+                        </div>
                     </div>
-                </div>
-                <div class="note-overview">
-                    <div class="note-header">
-                        <label class="note-title">Note Title</label>
-                        <label class="note-importance">&star;</label>
-                    </div>
-                    <textarea class="note-description">Note Description</textarea>
-                </div>
-                <button>Edit</button>
-            </div>
-            </p>
+                    <div class="note-overview">
+                        <div class="note-header">
+                            <label class="note-title">CAS FEE Selbststudium / Projekt Aufgabe erledigen</label>
+                            <label class="note-importance">&#xf006;&#xf006;&#xf006;</label>
 
+                            <ul class="toolbar note-crud">
+                                <li><a class="button-skin" href="#"><i class="fa fa-pencil"></i>&nbsp;Edit</a>
+                                </li>
+                                <li><a class="button-skin danger" href="#"><i class="fa fa-trash-o"></i>&nbsp;Delete</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <textarea readonly class="note-description">HTML für die Note App erstellen</textarea>
+                    </div>
+                </li>
+
+                <li class="note-list-item">
+                    <div class="note-status">
+                        <h3 class="note-dueBy">Today</h3>
+
+                        <div class="checkbox">
+                            <input id="finishedCheckBox2" type=checkbox name="finished" value="finito">
+                            <label id="finishedCheckBoxLabel2" for="finishedCheckBox2">Finished</label>
+                        </div>
+                    </div>
+                    <div class="note-overview">
+                        <div class="note-header">
+                            <h3 class="note-title">Note Title</h3>
+                            <label class="note-importance">&#xf006;</label>
+
+                            <ul class="toolbar note-crud">
+                                <li><a class="button-skin" href="#"><i class="fa fa-pencil"></i>&nbsp;Edit</a>
+                                </li>
+                                <li><a class="button-skin danger" href="#"><i class="fa fa-trash-o"></i>&nbsp;Delete</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <textarea readonly class="note-description">Note Description</textarea>
+                    </div>
+                </li>
+
+                <li class="note-list-item">
+                    <div class="note-status">
+                        <h3 class="note-dueBy">Today</h3>
+
+                        <div class="checkbox">
+                            <input id="finishedCheckBox3" type=checkbox name="finished" value="finito">
+                            <label id="finishedCheckBoxLabel3" for="finishedCheckBox3">Finished</label>
+                        </div>
+                    </div>
+                    <div class="note-overview">
+                        <div class="note-header">
+                            <h3 class="note-title">Note Title</h3>
+                            <label class="note-importance">&#xf006;</label>
+
+                            <ul class="toolbar note-crud">
+                                <li><a class="button-skin" href="#"><i class="fa fa-pencil"></i>&nbsp;Edit</a>
+                                </li>
+                                <li><a class="button-skin danger" href="#"><i class="fa fa-trash-o"></i>&nbsp;Delete</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <textarea readonly class="note-description">Note Description</textarea>
+                    </div>
+                </li>
+            </ul>
         </section>
     </div>
 

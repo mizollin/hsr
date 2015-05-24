@@ -24,6 +24,20 @@ html, body {
     height: 98%;
     margin: 0;
     padding: 0;
+    font-size: 1em;
+}
+
+/*.fa {*/
+    /*color: black;*/
+    /*text-shadow: 2px 2px 1px #ccc;*/
+/*}*/
+
+button {
+    font-size: 1em;
+}
+
+.button-skin {
+    font-size: 1em;
 }
 
 #main-content {
@@ -34,68 +48,85 @@ html, body {
     padding: 10px;
 }
 
-#dashboard-actions {
+#dashboard > .note-toolbar {
     display: flex;
-    flex-direction: column;
-    /*padding: 10px 0 10px 0;*/
+    justify-content: flex-end;
 }
 
-#main-actions {
+#theme-switch {
     display: flex;
-    flex-direction: row;
+    align-self: flex-end;
+    align-items: flex-end;
+    align-content: flex-end;
+    justify-content: flex-end;
+}
+
+/*Note entries...*/
+#note-container {
+    display: flex;
+    background-color: beige;
+    flex-direction: column;
+}
+
+#actions {
+    display: flex;
     justify-content: space-between;
-    padding: 10px 0 10px 0;
+    background-color: lightgray;
+    padding: 1em 0 1em 0;
 }
 
 #filters {
     display: flex;
-    flex-direction: row;
-    padding: 10px 0 10px 0;
+    flex: 0 0 auto;
+    height: 50px;
+    /*background-color: blue;*/
 }
 
-#filterset_1 {
+#filters .toolbar a {
+    min-width: 160px;
+}
+
+#other-actions {
     display: flex;
-    flex: 3;
-    padding: 0 20px 0 0;
+    flex: 0 0 auto;
+    justify-content: space-between;
 }
 
-#filterset_2 {
-    display: flex;
-    flex: 1;
-    justify-content: flex-end;
-    padding: 0 0 0 20px;
+#other-actions .button-skin {
+    margin: 0 0 0 4px;
 }
 
-#filterset_2 button {
-    flex: 1;
+.notes {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
 }
 
-/*Note entries...*/
-#entry-container {
-}
-
-.note-entry {
-    background-color: green;
-
+.note-list-item {
     display: flex;
     flex-direction: row;
+
+    list-style: none;
+    padding: 1em 0;
+
+    background-color: white;
 }
 
-.note-entry > button {
-    align-self: center;
+/*li.nth-child(odd) {background:blue}*/
+/*li.nth-child(odd) li.nth-child(even) {background:blue}*/
+/*li.nth-child(even) li.nth-child(odd) {background:blue}*/
+
+.note-list-item:nth-child(odd) {
+    background-color: beige;
 }
 
 .note-status {
-    background-color: yellow;
-
     display: flex;
     flex-direction: column;
     flex: 2;
-}
 
-.checkbox {
-    display: flex;
-    flex-direction: row;
+    justify-content: flex-start;
+    background-color: blue;
 }
 
 .note-overview {
@@ -109,62 +140,39 @@ html, body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding: 0 0 1em 0;
 }
 
-.toggle label{
+.note-title {
+    flex: 6;
+    /*padding: 0 0.5em;*/
+    margin: 0;
+}
+
+.note-importance {
+    font-family: "FontAwesome";
     display: flex;
-    flex: 1;
-    justify-content: center;
-
-    font-size: 14px;
-    background-image: linear-gradient(
-            to top,
-            lightgray,
-            lightgray 6px,
-            gray 6px,
-            #e6e6e6 7px,
-            #fff
-    );
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
-    padding: 6px 0 12px 0;
-
-    border: 1px solid;
-    border-width: thin thin thin thin;
-    border-color: darkgray darkgray darkgray darkgray;
+    flex: 0 0 auto;
+    justify-content: flex-end;
+    margin: 0 0.5em 0 0;
+    align-items: center;
 }
 
-.toggle {
+.note-crud {
     display: flex;
-    flex: 1;
+    flex-direction: row;
+    flex: 0 0 auto;
+    justify-content: flex-end;
 }
 
-.toggle input {
-    display: none;
+.note-crud {
+    height: 20px;
 }
 
-.toggle + .toggle label {
-    border-left-width: 0;
+.note-description {
 }
 
-.toggle input:checked + label {
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.05);
-    background-image: linear-gradient(
-            to top,
-            lawngreen,
-            lawngreen 6px,
-            gray 6px,
-            #e6e6e6 7px,
-            white
-    );
-}
-
-.toggle label:hover {
-    background-image: linear-gradient(
-            to top,
-            greenyellow,
-            greenyellow 6px,
-            gray 6px,
-            #d6d6d6 7px,
-            white
-    );
+.checkbox {
+    display: flex;
+    flex-direction: row;
 }

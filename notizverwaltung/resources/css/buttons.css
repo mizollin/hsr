@@ -1,0 +1,49 @@
+/*we have our own button skins, otherwise we cannot do align toggle-buttons */
+/*styles with the button style...and for sure not cross-browser...*/
+.button-skin {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    align-items: center;
+
+    padding: 0.3em;
+
+    color: #40648a;
+    background: linear-gradient(to bottom, whitesmoke, lightblue);
+
+    border: 1px solid rgba(79, 123, 170, .4);
+
+    border-radius: 4px;
+
+    text-decoration: none;
+    text-shadow: 0 1px 0 white;
+}
+
+.button-skin:hover {
+    background: linear-gradient(to bottom, whitesmoke, cornflowerblue);
+    color: white;
+    text-shadow: 0 1px 0 black;
+}
+
+.button-skin:active {
+    background: linear-gradient(to bottom, lightblue, cornflowerblue);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .3) inset;
+    text-shadow: 0 -1px 0 black;
+}
+
+/*danger style for buttons...*/
+.button-skin.danger {
+    background: linear-gradient(to bottom, whitesmoke, coral);
+}
+
+.button-skin.danger:hover {
+    background: linear-gradient(to bottom, whitesmoke, red);
+    color: white;
+    text-shadow: 0 1px 0 black;
+}
+
+.button-skin.danger:active {
+    background: linear-gradient(to bottom, coral, red);
+    color: white;
+    text-shadow: 0 -1px 0 black;
+}
