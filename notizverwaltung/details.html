@@ -57,19 +57,12 @@
                             <label class="field">Importance</label>
                         </td>
                         <td>
-                            <div class="note-details-rating">
-                                <input type="radio" id="rating-5" name="rating" value="5"/><label
-                                    for="rating-5">5</label>
-                                <input type="radio" id="rating-4" name="rating" value="4" checked="checked"/><label
-                                    for="rating-4">4</label>
-                                <input type="radio" id="rating-3" name="rating" value="3"/><label
-                                    for="rating-3">3</label>
-                                <input type="radio" id="rating-2" name="rating" value="2"/><label
-                                    for="rating-2">2</label>
-                                <input type="radio" id="rating-1" name="rating" value="1"/><label
-                                    for="rating-1">1</label>
-                                <input type="radio" id="rating-0" name="rating" value="0" class="star-cb-clear"/><label
-                                    for="rating-0">0</label>
+                            <div class="note-details-importance">
+                                <input type="radio" id="star5" name="note-details-importance" value="5" /><label for="star5" title="Rocks!">5 stars</label>
+                                <input type="radio" id="star4" name="note-details-importance" value="4" /><label for="star4" title="Pretty good">4 stars</label>
+                                <input type="radio" id="star3" name="note-details-importance" value="3" /><label for="star3" title="Meh">3 stars</label>
+                                <input type="radio" id="star2" name="note-details-importance" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
+                                <input type="radio" id="star1" name="note-details-importance" value="1" /><label for="star1" title="Sucks big time">1 star</label>
                             </div>
                         </td>
                     </tr>
@@ -86,8 +79,8 @@
             </fieldset>
 
             <div id="note-details-form-actions">
-                <button class="button-skin">Save</button>
-                <button class="button-skin">Cancel</button>
+                <button class="button-skin" onclick="return save()">Save</button>
+                <button class="button-skin" onclick="return cancel()">Cancel</button>
             </div>
         </form>
     </div>
@@ -96,5 +89,9 @@
 <footer id="app-footer">
     <h2>The FOOTER</h2>
 </footer>
+
+<!--load script here...-->
+<script src="resources/js/details.js"></script>
+
 </body>
 </html>

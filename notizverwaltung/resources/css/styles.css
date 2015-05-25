@@ -63,7 +63,7 @@ body {
     line-height: 60px;
     position: absolute;
     left: 50%;
-    transform: translate(-50%,0);
+    transform: translate(-50%, 0);
     white-space: nowrap;
 }
 
@@ -82,12 +82,12 @@ body {
 
     flex: 0 0 auto;
 }
+
 #app-footer h2 {
     margin: 0;
     padding: 0;
     align-self: flex-end;
 }
-
 
 #dashboard {
     /*padding: 1em;*/
@@ -130,7 +130,7 @@ body {
     flex-direction: column;
 }
 
-.notes {
+#notes {
     padding: 0;
     margin: 0;
 }
@@ -153,6 +153,11 @@ body {
 .note-table {
     width: 100%;
     /*border-spacing: 5px;*/
+    /*table-layout: fixed;*/
+}
+
+.note-table td:nth-child(1) {
+    width: 20%;
 }
 
 .note-due-by {
@@ -219,8 +224,6 @@ body {
     flex-direction: row;
 }
 
-
-
 /*Note Details CSS*/
 #note-details {
     display: flex;
@@ -255,7 +258,7 @@ body {
     align-self: center;
 }
 
-#note-details-table td:nth-child(1)  {
+#note-details-table td:nth-child(1) {
     vertical-align: baseline;
 }
 
@@ -271,7 +274,7 @@ body {
     resize: vertical;
 }
 
-#note-details-rating {
+#note-details-importance {
 }
 
 #note-details-due-by {
@@ -287,5 +290,67 @@ body {
 #note-details-form-actions .button-skin {
     margin: 0 0 0 4px;
     min-width: 100px;
+}
+
+
+
+/*special "rating" handling  */
+/*see http://lea.verou.me/2011/08/accessible-star-rating-widget-with-pure-css/*/
+.note-details-importance {
+    float: left;
+}
+
+/* :not(:checked) is a filter, so that browsers that don’t support :checked don’t
+   follow these rules. Every browser that supports :checked also supports :not(), so
+   it doesn’t make the test unnecessarily selective */
+.note-details-importance:not(:checked) > input {
+    position: absolute;
+    top: -9999px;
+    clip: rect(0, 0, 0, 0);
+}
+
+.note-details-importance:not(:checked) > label {
+    float: right;
+    width: 1em;
+    padding: 0 1px;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 2em;
+    line-height: 1.2;
+    color: #ddd;
+    text-shadow: 1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0, 0, 0, .5);
+}
+
+.note-details-importance:not(:checked) > label:before {
+    font-family: "FontAwesome";
+    /*content: '★ ';*/
+    content: "\f005 ";
+}
+
+.note-details-importance > input:checked ~ label {
+    color: #f70;
+    text-shadow: 1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0, 0, 0, .5);
+}
+
+.note-details-importance:not(:checked) > label:hover,
+.note-details-importance:not(:checked) > label:hover ~ label {
+    color: gold;
+    text-shadow: 1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0, 0, 0, .5);
+}
+
+.note-details-importance > input:checked + label:hover,
+.note-details-importance > input:checked + label:hover ~ label,
+.note-details-importance > input:checked ~ label:hover,
+.note-details-importance > input:checked ~ label:hover ~ label,
+.note-details-importance > label:hover ~ input:checked ~ label {
+    color: #ea0;
+    text-shadow: 1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0, 0, 0, .5);
+}
+
+.note-details-importance > label:active {
+    position: relative;
+    top: 2px;
+    left: 2px;
 }
 
