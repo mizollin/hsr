@@ -22,187 +22,159 @@
 
 <body>
 
-<!--<header>-->
-<!--<h1>Notes Management</h1>-->
-<!--</header>-->
+<header id="app-header">
+    <h1>Notes Application</h1>
+    <select id="theme-switch">
+        <option> Default
+        <option> Black & White
+    </select>
+</header>
 
-<div id="main-content">
-    <div id="dashboard">
-        <header id="main-header">
-            <h1>Dashboard</h1>
-            <select id="theme-switch">
-                <option> Default
-                <option> Black & White
-            </select>
-        </header>
+<div id="wrapper">
+    <section id="toolbar-area">
+        <ul id="filters" class="toolbar">
+            <li><a class="button-skin" href="#"><i class="fa fa-clock-o"></i>&nbsp;By Due Date</a></li>
+            <li><a class="button-skin" href="#"><i class="fa fa-calendar"></i>&nbsp;By Creation Date</a>
+            </li>
+            <li><a class="button-skin" href="#"><i class="fa fa-star"></i>&nbsp;By Importance</a></li>
+        </ul>
 
-        <section id="toolbar-area">
-            <ul id="filters" class="toolbar">
-                <li><a class="button-skin" href="#"><i class="fa fa-clock-o"></i>&nbsp;By Due Date</a></li>
-                <li><a class="button-skin" href="#"><i class="fa fa-calendar"></i>&nbsp;By Creation Date</a>
-                </li>
-                <li><a class="button-skin" href="#"><i class="fa fa-star"></i>&nbsp;By Importance</a></li>
-            </ul>
-
-            <div id="other-actions">
-                <a class="button-skin" href="#"><i class="fa fa-check-square-o "></i>&nbsp;Show Finished</a>
-                <a class="button-skin" href="#"><i class="fa fa-plus"></i>&nbsp;Add Node</a>
-            </div>
-        </section>
-
-        <!--<div class="note-toolbar">-->
-        <!--<div id="filters">-->
-        <!--<input id="radio1" class="toggle" name="toggle" value="all" checked="" type="radio">-->
-        <!--<label class="button-skin" for="radio1">By Due Date</label>-->
-        <!--<input id="radio2" class="toggle" name="toggle" value="false" type="radio">-->
-        <!--<label class="button-skin" for="radio2">By Creation Date</label>-->
-        <!--<input id="radio3" class="toggle" name="toggle" value="true" type="radio">-->
-        <!--<label class="button-skin" for="radio3">By Importance</label>-->
-        <!--</div>-->
-
-        <!--Notes in here will be populated by js/json-->
-        <section id="note-container">
-            <ul class="notes">
-                <li class="note-list-item">
-                    <table class="note-table">
-                        <tr>
-                            <td><h3 class="note-due-by">Due on Wednesday</h3></td>
-                            <td>
-                                <div class="note-header">
-                                    <h3 class="note-title">CAS FEE Selbststudium / Projekt Aufgabe erledigen</h3>
-                                    <label class="note-importance">&#xf005;&#xf005;&#xf005;</label>
-                                </div>
-                            </td>
-                            <td>
-                                <ul class="toolbar note-crud">
-                                    <li><a class="button-skin" href="#"><i class="fa fa-pencil"></i>&nbsp;Edit</a>
-                                    </li>
-                                    <li><a class="button-skin danger" href="#"><i class="fa fa-trash-o"></i>&nbsp;Delete</a>
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label class="checkbox"><input type="checkbox" checked/> Finished (today)</label></td>
-                            <td colspan="2"><textarea readonly
-                                                      class="note-description">HTML für die Note App erstellen</textarea>
-                            </td>
-                        </tr>
-                    </table>
-                </li>
-
-                <li class="note-list-item">
-                    <table class="note-table">
-                        <tr>
-                            <td><h3 class="note-due-by">Due on Wednesday</h3></td>
-                            <td>
-                                <div class="note-header">
-                                    <h3 class="note-title">CAS FEE Selbststudium / Projekt Aufgabe erledigen</h3>
-                                    <label class="note-importance">&#xf005;&#xf005;&#xf005;</label>
-                                </div>
-                            </td>
-                            <td>
-                                <ul class="toolbar note-crud">
-                                    <li><a class="button-skin" href="#"><i class="fa fa-pencil"></i>&nbsp;Edit</a>
-                                    </li>
-                                    <li><a class="button-skin danger" href="#"><i class="fa fa-trash-o"></i>&nbsp;Delete</a>
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label class="checkbox"><input type="checkbox" checked/> Finished (today)</label></td>
-                            <td colspan="2"><textarea readonly
-                                                      class="note-description">HTML für die Note App erstellen</textarea>
-                            </td>
-                        </tr>
-                    </table>
-                </li>
-
-                <li class="note-list-item">
-                    <table class="note-table">
-                        <tr>
-                            <td><h3 class="note-due-by">Due on Wednesday</h3></td>
-                            <td>
-                                <div class="note-header">
-                                    <h3 class="note-title">CAS FEE Selbststudium / Projekt Aufgabe erledigen</h3>
-                                    <label class="note-importance">&#xf005;&#xf005;&#xf005;</label>
-                                </div>
-                            </td>
-                            <td>
-                                <ul class="toolbar note-crud">
-                                    <li><a class="button-skin" href="#"><i class="fa fa-pencil"></i>&nbsp;Edit</a>
-                                    </li>
-                                    <li><a class="button-skin danger" href="#"><i class="fa fa-trash-o"></i>&nbsp;Delete</a>
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label class="checkbox"><input type="checkbox" checked/> Finished (today)</label></td>
-                            <td colspan="2"><textarea readonly
-                                                      class="note-description">HTML für die Note App erstellen</textarea>
-                            </td>
-                        </tr>
-                    </table>
-                </li>
-            </ul>
-        </section>
-    </div>
-
-    <div id="single-note">
-        <header>
-            <h1>Note Details</h1>
-        </header>
-        <form>
-            <fieldset>
-                <legend>Details</legend>
-                <p>
-                    <label class="field" for="title">Title</label>
-                    <input id="title" type="text" name="Title">
-                </p>
-
-                <p>
-                    <label class="field" for="description">Description</label>
-                    <textarea id="description"></textarea>
-                </p>
-
-                <div class="rating">
-                    <input type="radio" id="rating-5" name="rating" value="5"/><label for="rating-5">5</label>
-                    <input type="radio" id="rating-4" name="rating" value="4" checked="checked"/><label
-                        for="rating-4">4</label>
-                    <input type="radio" id="rating-3" name="rating" value="3"/><label for="rating-3">3</label>
-                    <input type="radio" id="rating-2" name="rating" value="2"/><label for="rating-2">2</label>
-                    <input type="radio" id="rating-1" name="rating" value="1"/><label for="rating-1">1</label>
-                    <input type="radio" id="rating-0" name="rating" value="0" class="star-cb-clear"/><label
-                        for="rating-0">0</label>
-                </div>
-
-                <p>
-                    <label class="field" for="date">Due By</label>
-                    <input id="date" type="date" name="dueBy">
-                </p>
-
-            </fieldset>
-        </form>
-
-        <div class="actions">
-            <button>Save</button>
-            <button>Cancel</button>
+        <div id="other-actions">
+            <a class="button-skin" href="#"><i class="fa fa-check-square-o "></i>&nbsp;Show Finished</a>
+            <a class="button-skin" href="#"><i class="fa fa-plus"></i>&nbsp;Add Node</a>
         </div>
-    </div>
+    </section>
 
-    <!--<div class="error page">-->
-    <!--<h3>Sorry, something went wrong :(</h3>-->
+    <!--<div class="note-toolbar">-->
+    <!--<div id="filters">-->
+    <!--<input id="radio1" class="toggle" name="toggle" value="all" checked="" type="radio">-->
+    <!--<label class="button-skin" for="radio1">By Due Date</label>-->
+    <!--<input id="radio2" class="toggle" name="toggle" value="false" type="radio">-->
+    <!--<label class="button-skin" for="radio2">By Creation Date</label>-->
+    <!--<input id="radio3" class="toggle" name="toggle" value="true" type="radio">-->
+    <!--<label class="button-skin" for="radio3">By Importance</label>-->
     <!--</div>-->
+
+    <!--Notes in here will be populated by js/json-->
+    <section id="note-container">
+        <ul class="notes">
+            <li class="note-list-item">
+                <table class="note-table">
+                    <tr>
+                        <td><h3 class="note-due-by">Due on Wednesday</h3></td>
+                        <td>
+                            <div class="note-header">
+                                <h3 class="note-title">CAS FEE Selbststudium / Projekt Aufgabe erledigen</h3>
+                                <label class="note-importance">&#xf005;&#xf005;&#xf005;</label>
+                            </div>
+                        </td>
+                        <td>
+                            <ul class="toolbar note-crud">
+                                <li><a class="button-skin" href="#"><i class="fa fa-pencil"></i>&nbsp;Edit</a>
+                                </li>
+                                <li><a class="button-skin danger" href="#"><i class="fa fa-trash-o"></i>&nbsp;Delete</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="checkbox"><input type="checkbox" checked/> Finished (today)</label></td>
+                        <td colspan="2"><textarea readonly
+                                                  class="note-description">HTML für die Note App erstellen</textarea>
+                        </td>
+                    </tr>
+                </table>
+            </li>
+
+            <li class="note-list-item">
+                <table class="note-table">
+                    <tr>
+                        <td><h3 class="note-due-by">Due on Wednesday</h3></td>
+                        <td>
+                            <div class="note-header">
+                                <h3 class="note-title">CAS FEE Selbststudium / Projekt Aufgabe erledigen</h3>
+                                <label class="note-importance">&#xf005;&#xf005;&#xf005;</label>
+                            </div>
+                        </td>
+                        <td>
+                            <ul class="toolbar note-crud">
+                                <li><a class="button-skin" href="#"><i class="fa fa-pencil"></i>&nbsp;Edit</a>
+                                </li>
+                                <li><a class="button-skin danger" href="#"><i class="fa fa-trash-o"></i>&nbsp;Delete</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="checkbox"><input type="checkbox" checked/> Finished (today)</label></td>
+                        <td colspan="2"><textarea readonly
+                                                  class="note-description">HTML für die Note App erstellen</textarea>
+                        </td>
+                    </tr>
+                </table>
+            </li>
+
+            <li class="note-list-item">
+                <table class="note-table">
+                    <tr>
+                        <td><h3 class="note-due-by">Due on Wednesday</h3></td>
+                        <td>
+                            <div class="note-header">
+                                <h3 class="note-title">CAS FEE Selbststudium / Projekt Aufgabe erledigen</h3>
+                                <label class="note-importance">&#xf005;&#xf005;&#xf005;</label>
+                            </div>
+                        </td>
+                        <td>
+                            <ul class="toolbar note-crud">
+                                <li><a class="button-skin" href="#"><i class="fa fa-pencil"></i>&nbsp;Edit</a>
+                                </li>
+                                <li><a class="button-skin danger" href="#"><i class="fa fa-trash-o"></i>&nbsp;Delete</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="checkbox"><input type="checkbox" checked/> Finished (today)</label></td>
+                        <td colspan="2"><textarea readonly
+                                                  class="note-description">HTML für die Note App erstellen</textarea>
+                        </td>
+                    </tr>
+                </table>
+            </li>
+
+            <li class="note-list-item">
+                <table class="note-table">
+                    <tr>
+                        <td><h3 class="note-due-by">Due on Wednesday</h3></td>
+                        <td>
+                            <div class="note-header">
+                                <h3 class="note-title">CAS FEE Selbststudium / Projekt Aufgabe erledigen</h3>
+                                <label class="note-importance">&#xf005;&#xf005;&#xf005;</label>
+                            </div>
+                        </td>
+                        <td>
+                            <ul class="toolbar note-crud">
+                                <li><a class="button-skin" href="#"><i class="fa fa-pencil"></i>&nbsp;Edit</a>
+                                </li>
+                                <li><a class="button-skin danger" href="#"><i class="fa fa-trash-o"></i>&nbsp;Delete</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="checkbox"><input type="checkbox" checked/> Finished (today)</label></td>
+                        <td colspan="2"><textarea readonly
+                                                  class="note-description">HTML für die Note App erstellen</textarea>
+                        </td>
+                    </tr>
+                </table>
+            </li>
+        </ul>
+    </section>
 </div>
 
-<footer>
+<footer id="app-footer">
     <h2>The FOOTER</h2>
 </footer>
-
-<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
-<!--<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>-->
-<!--<script src="assets/js/script.js"></script>-->
 </body>
 </html>

@@ -21,36 +21,73 @@ html:before {
 }
 
 html, body {
-    height: 98%;
+    height: 100%;
     margin: 0;
     padding: 0;
 }
 
-#main-header {
+body {
     display: flex;
     flex-direction: column;
-    /*justify-content: space-between;*/
-    height: 100px;
+    justify-content: space-between;
 }
 
-#main-header {
-    /*background: url("http://dailygenius.com/wp-content/uploads/2014/06/postitwall.jpg") no-repeat;*/
-    /*background-size: cover;*/
-    background-color: lightblue;
+#app-header {
+    display: flex;
+    flex-direction: row-reverse;
+    height: 60px;
+
+    flex: 0 0 auto;
 }
 
-#main-header h1 {
-    align-self: flex-end;
-    align-self: center;
+#wrapper {
+    flex: 1 0 auto;
+    flex-direction: column;
+}
+
+#app-header:before {
+    content: "";
+    position: absolute;
+    background: url("http://dailygenius.com/wp-content/uploads/2014/06/postitwall.jpg") no-repeat;
+    background-size: cover;
+    height: 60px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+#app-header h1 {
+    margin: 0;
+    line-height: 60px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,0);
+    white-space: nowrap;
 }
 
 #theme-switch {
     align-self: flex-end;
 }
 
-#main-content {
-    flex-direction: column;
+#app-footer {
+    display: flex;
+    background: linear-gradient(to bottom, dimgray, black);
+    color: whitesmoke;
+    margin: 0;
+    padding: 0;
+    height: 60px;
+    justify-content: center;
+
+    flex: 0 0 auto;
 }
+#app-footer h2 {
+    margin: 0;
+    padding: 0;
+    align-self: flex-end;
+}
+
 
 #dashboard {
     /*padding: 1em;*/
@@ -60,7 +97,7 @@ html, body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background: linear-gradient(to bottom right, white, dimgray);
+    background: linear-gradient(to bottom, black, gray);
     padding: 1em;
     /*height: 20px;*/
 }
@@ -181,3 +218,74 @@ html, body {
     display: flex;
     flex-direction: row;
 }
+
+
+
+/*Note Details CSS*/
+#note-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 1em;
+}
+
+#note-details > * {
+    margin: 1em 0;
+}
+
+#note-details-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: flex-start;
+    width: 70%;
+
+    border-width: 0 0 thin 0;
+    border-color: black;
+    /*border-bottom: solid;*/
+}
+
+#note-details-form fieldset {
+    border-width: 0 0 thin 0;
+    /*border-color: black;*/
+}
+
+#note-details-table {
+    width: 100%;
+    align-self: center;
+}
+
+#note-details-table td:nth-child(1)  {
+    vertical-align: baseline;
+}
+
+#note-details-title {
+    width: 100%;
+}
+
+#note-details-description {
+    width: 100%;
+    height: 100%;
+    margin: 0 0 -4px 0;
+    padding: 0;
+    resize: vertical;
+}
+
+#note-details-rating {
+}
+
+#note-details-due-by {
+}
+
+#note-details-form-actions {
+    display: flex;
+    flex-direction: row;
+    align-self: flex-end;
+    margin-top: 4px;
+}
+
+#note-details-form-actions .button-skin {
+    margin: 0 0 0 4px;
+    min-width: 100px;
+}
+
