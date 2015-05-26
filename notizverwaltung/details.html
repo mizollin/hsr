@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="skin">
 
 <head lang="en">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,26 +10,26 @@
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic'
           rel='stylesheet' type='text/css'>
-    <link href="resources/css/styles.css" rel="stylesheet">
-    <link href="resources/css/buttons.css" rel="stylesheet">
-    <link href="resources/css/radios.css" rel="stylesheet">
-    <link href="resources/css/toolbar.css" rel="stylesheet">
-    <link href="resources/css/icons.css" rel="stylesheet">
-    <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">-->
     <link rel="stylesheet" href="resources/font-awesome-4.3.0/css/font-awesome.min.css">
-</head>
+    <link href="resources/css/styles.css" rel="stylesheet">
+    <link id="theme" href="resources/css/default-theme.css" rel="stylesheet">
 
+    <script src="resources/js/storage.js"></script>
+</head>
 
 <body>
 
-
 <header id="app-header">
     <h1>Notes Application</h1>
-    <select id="theme-switch">
-        <option> Default
-        <option> Black & White
-    </select>
+    <label id="theme-switch-label">
+        <select id="theme-switch-cb" onchange="updateTheme()">
+            <option selected>Default
+            <option>Black & White
+        </select>
+    </label>
 </header>
+
+<script src="resources/js/theme.js"></script>
 
 <div id="wrapper">
     <div id="note-details">
@@ -49,7 +49,7 @@
                             <label class="field" for="note-details-description">Description</label>
                         </td>
                         <td>
-                            <textarea id="note-details-description" rows="6"></textarea>
+                            <textarea id="note-details-description" rows="20"></textarea>
                         </td>
                     </tr>
                     <tr>
@@ -57,12 +57,12 @@
                             <label class="field">Importance</label>
                         </td>
                         <td>
-                            <div class="note-details-importance">
-                                <input type="radio" id="star5" name="note-details-importance" value="5" /><label for="star5" title="Rocks!">5 stars</label>
-                                <input type="radio" id="star4" name="note-details-importance" value="4" /><label for="star4" title="Pretty good">4 stars</label>
-                                <input type="radio" id="star3" name="note-details-importance" value="3" /><label for="star3" title="Meh">3 stars</label>
-                                <input type="radio" id="star2" name="note-details-importance" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
-                                <input type="radio" id="star1" name="note-details-importance" value="1" /><label for="star1" title="Sucks big time">1 star</label>
+                            <div id="note-details-importance">
+                                <input type="radio" id="star5" name="note-details-importance" value="5" /><label for="star5" title="Rocks!"></label>
+                                <input type="radio" id="star4" name="note-details-importance" value="4" /><label for="star4" title="Pretty good"></label>
+                                <input type="radio" id="star3" name="note-details-importance" value="3" /><label for="star3" title="Meh"></label>
+                                <input type="radio" id="star2" name="note-details-importance" value="2" /><label for="star2" title="Kinda bad"></label>
+                                <input type="radio" id="star1" name="note-details-importance" value="1" /><label for="star1" title="Sucks big time"></label>
                             </div>
                         </td>
                     </tr>
@@ -79,8 +79,8 @@
             </fieldset>
 
             <div id="note-details-form-actions">
-                <button class="button-skin" onclick="return save()">Save</button>
-                <button class="button-skin" onclick="return cancel()">Cancel</button>
+                <a class="btn default" href="#" onclick="save()">Save</a>
+                <a class="btn non-default" href="#" onclick="cancel()">Cancel</a>
             </div>
         </form>
     </div>

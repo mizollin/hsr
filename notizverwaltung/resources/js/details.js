@@ -2,27 +2,6 @@
  * Created by Stefano on 25.05.2015.
  */
 
-//make sure we have a local storage key...
-var STORAGE_NAME = "notes";
-console.log("storage name: " + STORAGE_NAME);
-
-console.log("getting storage...");
-var NOTES_STORAGE = getSafeStorage(STORAGE_NAME);
-console.log(NOTES_STORAGE);
-
-function getSafeStorage(storageName) {
-    console.log("getSafeStorage() called with name: " + storageName);
-
-    var notesStorage = JSON.parse(localStorage.getItem(storageName));
-    if (!notesStorage) {
-        console.log("no storage with name '" + storageName + "' found...creating a new one (empty)");
-        localStorage.setItem(storageName, JSON.stringify([]));
-        notesStorage = localStorage.getItem(storageName);
-    }
-
-    return notesStorage;
-}
-
 // functions...
 function save() {
     console.log("save() called");
@@ -32,7 +11,7 @@ function save() {
     console.log(newNote);
 
     console.log("pushing note to storage...");
-    pushNoteToStorage(newNote);
+    storeNote(newNote);
 
     console.log("changing window location...");
     window.location = "overview.html";
@@ -50,15 +29,9 @@ function createNewNoteObjectFromInput() {
     var importanceRadios = document.getElementsByName("note-details-importance");
     var importance = getCheckedRadioValue(importanceRadios);
 
-    return {title: title, description: description, importance: importance, dueBy: dueBy, finished: false};
-}
+    var uuid = createUUID();
 
-function pushNoteToStorage(note) {
-    console.log("pushNoteToStorage() called");
-    console.log(note);
-
-    NOTES_STORAGE.push(note);
-    localStorage.setItem("notes", JSON.stringify(NOTES_STORAGE));
+    return {uuid: uuid, title: title, description: description, importance: importance, dueBy: dueBy, finished: false};
 }
 
 function getCheckedRadioValue(radios) {

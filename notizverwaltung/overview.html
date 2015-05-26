@@ -10,66 +10,64 @@
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic'
           rel='stylesheet' type='text/css'>
-    <link href="resources/css/styles.css" rel="stylesheet">
-    <link href="resources/css/buttons.css" rel="stylesheet">
-    <link href="resources/css/radios.css" rel="stylesheet">
-    <link href="resources/css/toolbar.css" rel="stylesheet">
-    <link href="resources/css/icons.css" rel="stylesheet">
-    <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">-->
     <link rel="stylesheet" href="resources/font-awesome-4.3.0/css/font-awesome.min.css">
+    <link href="resources/css/styles.css" rel="stylesheet">
+    <link id="theme" href="resources/css/default-theme.css" rel="stylesheet">
 
+    <!--load this script here since it is used as configuration only stuff (i.e. local storage handling, it does not do anything with DOM trees). It mus also be loaded as the first script
+    since other scripts might make use of the functions defined in that script-->
+    <script src="resources/js/storage.js"></script>
 </head>
 
 <body>
 
 <header id="app-header">
     <h1>Notes Application</h1>
-    <select id="theme-switch">
-        <option> Default
-        <option> Black & White
-    </select>
+    <label id="theme-switch-label">
+        <select id="theme-switch-cb" onchange="updateTheme()">
+            <option selected>Default
+            <option>Black & White
+        </select>
+    </label>
 </header>
+
+<!--need to load this script at this specific point since the script might change the theme by replacing the current theme-css und sets the theme-cb to the stored theme...if any
+ we must do this here, otherwise this page will first load with the default theme and then switch to the stored theme. if we would load this script at the end of the body-block,
+ the page will flicker because it will first render with the "default" theme which then is replaced by a potentially different theme, which will then force re-rendering of the page-->
+<script src="resources/js/theme.js"></script>
 
 <div id="wrapper">
     <section id="toolbar-area">
-        <ul id="filters" class="toolbar">
-            <li><a class="button-skin" href="#"><i class="fa fa-clock-o"></i>&nbsp;By Due Date</a></li>
-            <li><a class="button-skin" href="#"><i class="fa fa-calendar"></i>&nbsp;By Creation Date</a>
+        <ul id="filters" class="toolbar skin">
+            <li><a class="btn" href="#"><i class="fa fa-clock-o"></i>&nbsp;By Due Date</a></li>
+            <li><a class="btn" href="#"><i class="fa fa-calendar"></i>&nbsp;By Creation Date</a>
             </li>
-            <li><a class="button-skin" href="#"><i class="fa fa-star"></i>&nbsp;By Importance</a></li>
+            <li><a class="btn" href="#"><i class="fa fa-star"></i>&nbsp;By Importance</a></li>
         </ul>
 
-        <div id="other-actions">
-            <a class="button-skin" href="#"><i class="fa fa-check-square-o "></i>&nbsp;Show Finished</a>
-            <a class="button-skin" href="#" onclick="addNewNote()"><i class="fa fa-plus"></i>&nbsp;Add Node</a>
+        <div id="other-actions" class="skin">
+            <a class="btn" href="#"><i class="fa fa-check-square-o "></i>&nbsp;Show Finished</a>
+            <a class="btn default" href="#" onclick="addNewNote()"><i class="fa fa-plus"></i>&nbsp;Add Node</a>
         </div>
     </section>
-
-    <!--<div class="note-toolbar">-->
-    <!--<div id="filters">-->
-    <!--<input id="radio1" class="toggle" name="toggle" value="all" checked="" type="radio">-->
-    <!--<label class="button-skin" for="radio1">By Due Date</label>-->
-    <!--<input id="radio2" class="toggle" name="toggle" value="false" type="radio">-->
-    <!--<label class="button-skin" for="radio2">By Creation Date</label>-->
-    <!--<input id="radio3" class="toggle" name="toggle" value="true" type="radio">-->
-    <!--<label class="button-skin" for="radio3">By Importance</label>-->
-    <!--</div>-->
 
     <!--Notes in here will be populated by js/json-->
     <section id="note-container">
         <ul id="notes">
-            <!--<li class="note-list-item">-->
+            <!--<li id="3bce4931-6c75-41ab-afe0-2ec108a30860" class="note-list-item">-->
                 <!--<table class="note-table">-->
                     <!--<tr>-->
                         <!--<td><h3 class="note-due-by">Due on Wednesday</h3></td>-->
                         <!--<td>-->
                             <!--<div class="note-header">-->
                                 <!--<h3 class="note-title">CAS FEE Selbststudium / Projekt Aufgabe erledigen</h3>-->
-                                <!--<label class="note-importance">&#xf005;&#xf005;&#xf005;</label>-->
+                                <!--<label class="note-importance">&#xf005;&nbsp;&#xf005;&nbsp;&#xf005;</label>-->
                                 <!--<ul class="toolbar note-crud">-->
-                                    <!--<li><a class="button-skin" href="#"><i class="fa fa-pencil"></i>&nbsp;Edit</a>-->
+                                    <!--<li><a class="btn" href="#"><i class="fa fa-pencil"></i>&nbsp;Edit</a>-->
                                     <!--</li>-->
-                                    <!--<li><a class="button-skin danger" href="#"><i class="fa fa-trash-o"></i>&nbsp;Delete</a>-->
+                                    <!--<li><a class="btn danger" href="#"-->
+                                           <!--onclick="deleteNote('3bce4931-6c75-41ab-afe0-2ec108a30860')"><i-->
+                                            <!--class="fa fa-trash-o"></i>&nbsp;Delete</a>-->
                                     <!--</li>-->
                                 <!--</ul>-->
                             <!--</div>-->

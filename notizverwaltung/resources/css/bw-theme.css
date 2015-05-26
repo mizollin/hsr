@@ -1,0 +1,210 @@
+html {
+    font-family: monospace;
+    /*background: url("http://dailygenius.com/wp-content/uploads/2014/06/postitwall.jpg") no-repeat;*/
+    /*background: url('http://subtlepatterns.com/patterns/tweed.png');*/
+    /*background-color: white;*/
+}
+
+html:before {
+    content: "";
+    background: url("http://subtlepatterns.com/patterns/tweed.png") repeat;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.6;
+
+    /*content: "";*/
+    /*position: absolute;*/
+    /*background: url("http://dailygenius.com/wp-content/uploads/2014/06/postitwall.jpg") no-repeat;*/
+    /*background-size: cover;*/
+    /*top: 0;*/
+    /*bottom: 0;*/
+    /*right: 0;*/
+    /*left: 0;*/
+    /*z-index: -1;*/
+    /*opacity: 0.3;*/
+}
+
+#app-header {
+    height: 60px;
+    background-color: rgba(40, 40, 40, 0.6);
+}
+
+/*#app-header:before {*/
+/*content: "";*/
+/*position: absolute;*/
+/*background: url("http://dailygenius.com/wp-content/uploads/2014/06/postitwall.jpg") no-repeat;*/
+/*background-size: cover;*/
+/*height: 60px;*/
+/*width: 100%;*/
+/*top: 0;*/
+/*left: 0;*/
+/*z-index: -1;*/
+/*opacity: 0.3;*/
+/*}*/
+
+#app-header h1 {
+    margin: 0;
+    line-height: 60px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    white-space: nowrap;
+    color: whitesmoke;
+}
+
+#toolbar-area {
+    background: linear-gradient(to bottom, gray, whitesmoke 2%, dimgray 98%, whitesmoke);
+}
+
+#app-footer {
+    background: linear-gradient(to bottom, gray, dimgray 2%, whitesmoke);
+    color: dimgray;
+}
+
+.note-list-item:nth-child(odd) {
+    background: linear-gradient(to bottom, gray 99%, antiquewhite);
+}
+
+.note-list-item {
+    background: linear-gradient(to bottom, darkgray 99%, antiquewhite);
+}
+
+.note-header,
+.note-due-by {
+    font-size: 1em;
+    font-weight: bold;
+    color: whitesmoke;
+}
+
+.note-header {
+    font-size: 1em;
+}
+
+.note-title {
+    color: white;
+    font-size: 1.5em;
+}
+
+
+.note-importance {
+    font-family: "FontAwesome";
+    color: gold;
+    text-shadow: 0px 0px 1px black, 0px 0px 1px black, 0px 0px 1px black;
+    font-size: 1em;
+}
+
+.toolbar.note-crud {
+    justify-content: flex-end;
+    font-size: 0.7em;
+}
+
+.checkbox {
+    font-size: 0.9em;
+    color: whitesmoke;
+}
+
+.checkbox input[type=checkbox] {
+    margin: 0 4px 0 0;
+    padding: 0;
+}
+
+/*NOTE DETAILS SKINS*/
+#note-details-form {
+    border-width: 0 0 thin 0;
+    border-color: black;
+}
+
+#note-details-form fieldset {
+    border-width: 0 0 thin 0;
+    /*border-color: black;*/
+}
+
+/*BUTTON SKINS*/
+.btn {
+    padding: 0.3em 0.5em;
+
+    color: darkslategray;
+    background: linear-gradient(to bottom, whitesmoke, lightblue);
+
+    border: 1px solid rgba(79, 123, 170, .4);
+
+    border-radius: 4px;
+
+    text-decoration: none;
+    text-shadow: 0 1px 0 white;
+}
+
+.btn:hover {
+    background: linear-gradient(to bottom, whitesmoke, cornflowerblue);
+    color: white;
+    text-shadow: 0 1px 0 black;
+}
+
+.btn:active {
+    background: linear-gradient(to bottom, lightblue, cornflowerblue);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .3) inset;
+    text-shadow: 0 -1px 0 black;
+}
+
+/*danger style for buttons...*/
+.btn.danger {
+    background: linear-gradient(to bottom, whitesmoke, coral);
+}
+
+.btn.danger:hover {
+    background: linear-gradient(to bottom, whitesmoke, red);
+}
+
+.btn.danger:active {
+    background: linear-gradient(to bottom, coral, red);
+}
+
+.btn.default {
+    background: linear-gradient(to bottom, palegreen, limegreen);
+}
+
+.btn.default:hover {
+    background: linear-gradient(to bottom, palegreen, green);
+}
+
+.btn.default:active {
+    background: linear-gradient(to bottom, limegreen, green);
+}
+
+.btn.non-default {
+    background: linear-gradient(to bottom, whitesmoke, lightgray);
+}
+
+.btn.non-default:hover {
+    background: linear-gradient(to bottom, whitesmoke, gray);
+}
+
+.btn.non-default:active {
+    background: linear-gradient(to bottom, lightgray, gray);
+}
+
+/*TOOLBAR SKINS*/
+.toolbar {
+    /*border: 1px solid rgba(79, 123, 170, .4);*/
+    border-radius: 4px;
+}
+
+.toolbar a {
+    border-left: none;
+    border-radius: 0;
+}
+
+.toolbar li:first-child a {
+    /*border-left: none;*/
+    border-left: 1px solid rgba(79, 123, 170, .4);
+    border-radius: 4px 0 0 4px
+}
+
+.toolbar li:last-child a {
+    /*border-right: none;*/
+    border-radius: 0 4px 4px 0
+}

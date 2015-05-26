@@ -1,24 +1,13 @@
 /**
  * Created by Stefano on 25.05.2015.
  */
-//make sure we have a local storage key...
-var STORAGE_NAME = "notes";
-console.log("storage name: " + STORAGE_NAME);
-
-console.log("getting storage...");
-var NOTES_STORAGE = getSafeStorage(STORAGE_NAME);
-console.log(NOTES_STORAGE);
-
-//console.log("creating notes from storage...");
-//var NOTES = createNotesFromStorage(NOTES_STORAGE);
-//console.log(NOTES);
-
 // fetch any data we have and fill the DOM tree...
-fillDOMTreeWithNotes(NOTES_STORAGE);
+fillDOMTreeWithNotes(getNotes());
 
 
 function fillDOMTreeWithNotes(notes) {
     console.log("fillDOMTreeWithNotes() called");
+    console.log(notes.length);
     console.log(notes);
 
     var notesElement = document.getElementById("notes");
@@ -32,6 +21,7 @@ function fillDOMTreeWithNotes(notes) {
 function createNoteListItem(parent, note) {
     var noteListItem = document.createElement("li");
     noteListItem.className = "note-list-item";
+    noteListItem.id = note.uuid;
     parent.appendChild(noteListItem);
 
     createNoteTable(noteListItem, note);
@@ -60,10 +50,10 @@ function createFirstTableRow(parent, note) {
         "<td>" +
         "<div class=\"note-header\">" +
         "<h3 class=\"note-title\">" + note.title + "</h3>" +
-        "<label class=\"note-importance\">" + note.importance + "</label>" +
+        "<label class=\"note-importance\">" + convertImportanceToString(note.importance) + "</label>" +
         "<ul class=\"toolbar note-crud\">" +
-        "<li><a class=\"button-skin\" href=\"#\"><i class=\"fa fa-pencil\"></i>&nbsp;Edit</a></li>" +
-        "<li><a class=\"button-skin danger\" href=\"#\"><i class=\"fa fa-trash-o\"></i>&nbsp;Delete</a></li>";
+        "<li><a class=\"btn\" href=\"#\"><i class=\"fa fa-pencil\"></i>&nbsp;Edit</a></li>" +
+        "<li><a class=\"btn danger\" href=\"#\" onclick=\"deleteNote('" + note.uuid + "')\"><i class=\"fa fa-trash-o\"></i>&nbsp;Delete</a>";
 
     //var dueByElement = document.createElement("td");
     //var headerElement = document.createElement("td");
@@ -75,48 +65,48 @@ function createFirstTableRow(parent, note) {
     //createNoteHeader(headerElement, note);
 }
 
-function createDueBy(parent, note) {
-    var dueBy = document.createElement("h3");
-    dueBy.className = "note-due-by";
-    parent.appendChild(dueBy);
-    dueBy.innerText = note.dueBy;
-}
-
-function createNoteHeader(parent, note) {
-    var noteHeaderElement = document.createElement("div");
-    noteHeaderElement.className = "note-header";
-    parent.appendChild(noteHeaderElement);
-
-    createNoteTitle(noteHeaderElement, note);
-    createNoteImportance(noteHeaderElement, note);
-    createCrud(noteHeaderElement, note);
-}
-
-function createNoteTitle(parent, note) {
-    var noteTitle = document.createElement("h3");
-    noteTitle.className = "note-title";
-    parent.appendChild(noteTitle);
-
-    noteTitle.innerText = note.title;
-}
-
-function createNoteImportance(parent, note) {
-    var noteImportance = document.createElement("label");
-    noteImportance.className = "note-importance";
-    parent.appendChild(noteImportance);
-
-    noteImportance.innerText = note.importance;
-}
-
-function createCrud(parent, note) {
-    var crud = document.createElement("ul");
-    crud.className = "toolbar note-crud";
-    parent.appendChild(crud);
-
-    crud.innerHTML =
-        "<li><a class=\"button-skin\" href=\"#\"><i class=\"fa fa-pencil\"></i>&nbsp;Edit</a></li>" +
-        "<li><a class=\"button-skin danger\" href=\"#\"><i class=\"fa fa-trash-o\"></i>&nbsp;Delete</a></li>";
-}
+//function createDueBy(parent, note) {
+//    var dueBy = document.createElement("h3");
+//    dueBy.className = "note-due-by";
+//    parent.appendChild(dueBy);
+//    dueBy.innerText = note.dueBy;
+//}
+//
+//function createNoteHeader(parent, note) {
+//    var noteHeaderElement = document.createElement("div");
+//    noteHeaderElement.className = "note-header";
+//    parent.appendChild(noteHeaderElement);
+//
+//    createNoteTitle(noteHeaderElement, note);
+//    createNoteImportance(noteHeaderElement, note);
+//    createCrud(noteHeaderElement, note);
+//}
+//
+//function createNoteTitle(parent, note) {
+//    var noteTitle = document.createElement("h3");
+//    noteTitle.className = "note-title";
+//    parent.appendChild(noteTitle);
+//
+//    noteTitle.innerText = note.title;
+//}
+//
+//function createNoteImportance(parent, note) {
+//    var noteImportance = document.createElement("label");
+//    noteImportance.className = "note-importance";
+//    parent.appendChild(noteImportance);
+//
+//    noteImportance.innerText = note.importance;
+//}
+//
+//function createCrud(parent, note) {
+//    var crud = document.createElement("ul");
+//    crud.className = "toolbar note-crud";
+//    parent.appendChild(crud);
+//
+//    crud.innerHTML =
+//        "<li><a class=\"btn\" href=\"#\"><i class=\"fa fa-pencil\"></i>&nbsp;Edit</a></li>" +
+//        "<li><a class=\"btn danger\" href=\"#\" onclick=\"deleteNote('" + note.uuid + "')\"><i class=\"fa fa-trash-o\"></i>&nbsp;Delete</a>";
+//}
 
 
 function createSecondTableRow(parent, note) {
@@ -128,22 +118,24 @@ function createSecondTableRow(parent, note) {
         "<td><textarea readonly class=\"note-description\">" + note.description + "</textarea></td>";
 }
 
-
-function getSafeStorage(storageName) {
-    console.log("getSafeStorage() called with name: " + storageName);
-
-    var notesStorage = JSON.parse(localStorage.getItem(storageName));
-    if (!notesStorage) {
-        console.log("no storage with name '" + storageName + "' found...creating a new one (empty)");
-        localStorage.setItem(storageName, JSON.stringify([]));
-        notesStorage = localStorage.getItem(storageName);
+function convertImportanceToString(importance) {
+    var importanceAsString = "";
+    for (var i = 0; i < importance; i++) {
+        importanceAsString += "&#xf005;" + "&nbsp;";
     }
 
-    return notesStorage;
+    importanceAsString = importanceAsString.replace(/&nbsp;$/, "");
+    return importanceAsString;
 }
 
 function addNewNote() {
     console.log("addNewNote() called");
 
     window.location = "details.html";
+}
+
+function deleteNote(uuid) {
+    deleteNoteFromStorage(uuid);
+    var e = document.getElementById(uuid);
+    e.parentNode.removeChild(e);
 }
