@@ -7,14 +7,14 @@ html {
 
 html:before {
     content: "";
-    background: url("http://dailygenius.com/wp-content/uploads/2014/06/postitwall.jpg") repeat;
+    background: url("http://subtlepatterns.com/patterns/paisley.png");
     position: absolute;
     z-index: -1;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    opacity: 0.1;
+    opacity: 0.3;
 
     /*content: "";*/
     /*position: absolute;*/
@@ -114,11 +114,27 @@ html:before {
 #note-details-form {
     border-width: 0 0 thin 0;
     border-color: black;
+    font-size: 1em;
 }
 
 #note-details-form fieldset {
     border-width: 0 0 thin 0;
     /*border-color: black;*/
+}
+
+#note-details-title {
+    font-size: 14px;
+}
+
+#note-details-description {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+#note-details-importance {
+ }
+
+#note-details-due-by {
 }
 
 /*BUTTON SKINS*/
