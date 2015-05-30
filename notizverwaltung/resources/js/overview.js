@@ -2,15 +2,13 @@
  * Created by Stefano on 25.05.2015.
  */
 // fetch any data we have and fill the DOM tree...
-fillDOMTreeWithNotes(getNotes());
-
-
-function fillDOMTreeWithNotes(notes) {
-    console.log("fillDOMTreeWithNotes() called");
+function renderNotes() {
+    var notes = getStoredNotes();
+    console.log("renderNotes() called");
     console.log(notes.length);
     console.log(notes);
 
-    var notesElement = document.getElementById("notes");
+    var notesElement = $("#notes")[0];
 
     for (var i = 0; i < notes.length; i++) {
         var noteListItem = createNoteListItem(notesElement, notes[i]);
@@ -54,60 +52,7 @@ function createFirstTableRow(parent, note) {
         "<ul class=\"toolbar note-crud\">" +
         "<li><button class=\"btn\" href=\"#\"><i class=\"fa fa-pencil\"></i>&nbsp;Edit</button></li>" +
         "<li><button class=\"btn danger\" href=\"#\" onclick=\"deleteNote('" + note.uuid + "')\"><i class=\"fa fa-trash-o\"></i>&nbsp;Delete</button>";
-
-    //var dueByElement = document.createElement("td");
-    //var headerElement = document.createElement("td");
-    //
-    //parent.appendChild(dueByElement);
-    //parent.appendChild(headerElement);
-    //
-    //createDueBy(dueByElement, note);
-    //createNoteHeader(headerElement, note);
 }
-
-//function createDueBy(parent, note) {
-//    var dueBy = document.createElement("h3");
-//    dueBy.className = "note-due-by";
-//    parent.appendChild(dueBy);
-//    dueBy.innerText = note.dueBy;
-//}
-//
-//function createNoteHeader(parent, note) {
-//    var noteHeaderElement = document.createElement("div");
-//    noteHeaderElement.className = "note-header";
-//    parent.appendChild(noteHeaderElement);
-//
-//    createNoteTitle(noteHeaderElement, note);
-//    createNoteImportance(noteHeaderElement, note);
-//    createCrud(noteHeaderElement, note);
-//}
-//
-//function createNoteTitle(parent, note) {
-//    var noteTitle = document.createElement("h3");
-//    noteTitle.className = "note-title";
-//    parent.appendChild(noteTitle);
-//
-//    noteTitle.innerText = note.title;
-//}
-//
-//function createNoteImportance(parent, note) {
-//    var noteImportance = document.createElement("label");
-//    noteImportance.className = "note-importance";
-//    parent.appendChild(noteImportance);
-//
-//    noteImportance.innerText = note.importance;
-//}
-//
-//function createCrud(parent, note) {
-//    var crud = document.createElement("ul");
-//    crud.className = "toolbar note-crud";
-//    parent.appendChild(crud);
-//
-//    crud.innerHTML =
-//        "<li><a class=\"btn\" href=\"#\"><i class=\"fa fa-pencil\"></i>&nbsp;Edit</a></li>" +
-//        "<li><a class=\"btn danger\" href=\"#\" onclick=\"deleteNote('" + note.uuid + "')\"><i class=\"fa fa-trash-o\"></i>&nbsp;Delete</a>";
-//}
-
 
 function createSecondTableRow(parent, note) {
     var tableRow = document.createElement("tr");
@@ -118,12 +63,18 @@ function createSecondTableRow(parent, note) {
         "<td><textarea readonly class=\"note-description\">" + note.description + "</textarea></td>";
 }
 
+// importance is a number in this case, we need to convert it into a string in order to display it properly in html
+// using "font-awesome"
 function convertImportanceToString(importance) {
+    console.log("convertImportanceToString() called");
+
     var importanceAsString = "";
     for (var i = 0; i < importance; i++) {
         importanceAsString += "&#xf005;" + "&nbsp;";
     }
 
+    // use a simple regex to remove the last occurrence of a non-breaking space...it was somehow "cooler" to do it this
+    // way than having a more "complex" for-loop...
     importanceAsString = importanceAsString.replace(/&nbsp;$/, "");
     return importanceAsString;
 }
@@ -131,11 +82,41 @@ function convertImportanceToString(importance) {
 function addNewNote() {
     console.log("addNewNote() called");
 
-    window.location = "details.html";
+    window.location = LOCATION_DETAILS;
 }
 
 function deleteNote(uuid) {
-    deleteNoteFromStorage(uuid);
-    var e = document.getElementById(uuid);
-    e.parentNode.removeChild(e);
+    console.log("deleteNote() called: " + uuid);
+
+    var success = deleteNoteFromStorage(uuid);
+
+    // only do this if we really removed anything from the storage...
+    if (success) {
+        $("#" + uuid).remove();
+    }
+}
+
+function lookupNoteIDByEvent(event) {
+    console.log("lookupNoteIDByEvent() called: " + event);
+
+    var noteListItem = $(event.target).parents(CLASS_NOTE_LIST_ITEM);
+    var noteID = noteListItem.attr("id");
+    return noteID;
+}
+
+function bubbledClickEventHandler(event) {
+    //takes advantage of event bubbling
+    var targetID = $(event.target).attr("id");
+    console.log(targetID);
+
+    switch (targetID) {
+        case ID_ADD_NEW_NOTE:
+            addNewNote();
+            break;
+        case ID_DELETE_NOTE:
+            deleteNote(lookupNoteIDByEvent(event));
+            break;
+        default :
+            console.log("not handled here!");
+    }
 }

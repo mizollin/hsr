@@ -2,34 +2,37 @@
  * Created by Stefano on 26.05.2015.
  */
 
-// set the initial theme based on any stored "theme" value...
-setInitialTheme();
-
-function setInitialTheme() {
-    var storedTheme = getTheme();
-    setTheme(storedTheme);
-}
-
-function setTheme(theme) {
+// this function merely replaces the stylesheet in the DOM
+function replaceStylesheet(theme) {
     if (theme.length === 0) {
         return;
     }
 
-    if (theme === "Default") {
-        document.getElementById("theme").setAttribute("href", "resources/css/default-theme.css");
+    if (theme === VAL_THEME_DEFAULT) {
+        $("#"+ID_THEME).attr("href", STYLESHEET_DEFAULT);
     }
-    else if (theme === "Black & White") {
-        document.getElementById("theme").setAttribute("href", "resources/css/bw-theme.css");
+    else if (theme === VAL_THEME_BW) {
+        $("#"+ID_THEME).attr("href", STYLESHEET_BW);
     }
-
-    var e = document.getElementById("theme-switch-cb");
-    e.value = theme;
 }
 
-function updateTheme() {
-    var e = document.getElementById("theme-switch-cb");
-    var theme = e.options[e.selectedIndex].value;
+// settings theme means three things:
+// 1st: replacing the stylesheet which contains the new theme
+// 2nd: setting the theme also into the combo-box as a visual cue to the user
+// 3rd: persisting the theme in the storage
+function setTheme(theme) {
+    // replace the stylesheet here...
+    replaceStylesheet(theme);
+
+    // don't forget to set the theme on the combo-box too...
+    $("#"+ID_THEME_SWITCH_CB).val(theme);
+
+    // and now store it for good measure...
+    storeTheme(theme);
+}
+
+function onThemeChanged() {
+    var theme = $("#"+ID_THEME_SWITCH_CB).val();
 
     setTheme(theme);
-    storeTheme(theme);
 }

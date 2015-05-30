@@ -14,53 +14,55 @@
     <link href="resources/css/styles.css" rel="stylesheet">
     <link id="theme" href="resources/css/default-theme.css" rel="stylesheet">
 
-    <!--load this script here since it is used as configuration only stuff (i.e. local storage handling, it does not do anything with DOM trees). It mus also be loaded as the first script
-    since other scripts might make use of the functions defined in that script-->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+    <!-- load this script here since it is used as configuration only stuff (i.e. local storage handling, it does not
+    do anything with DOM trees). It mus also be loaded as the first scripts
+    since other scripts might make use of the functions defined in those -->
+    <script src="resources/js/constants.js"></script>
     <script src="resources/js/storage.js"></script>
+    <script src="resources/js/theme.js"></script>
 </head>
+
+<script>
+    // we have to call this script at this specific point since the script might change the theme by replacing the current
+    // theme-css und sets the theme-cb to the stored theme...if any we must do this here, otherwise this page will first
+    // load with the default theme and then switch to the stored theme, which might cause flickering (yes, even worse than
+    // the normal reload page flickering :) of the page.
+    replaceStylesheet(getStoredTheme());
+</script>
 
 <body>
 
 <header id="app-header">
     <h1>Notes Application</h1>
     <label id="theme-switch-label">
-        <select id="theme-switch-cb" onchange="updateTheme()">
-            <option selected>Default
-            <option>Black & White
+        <select id="theme-switch-cb" onchange="onThemeChanged()">
+            <option value="theme_def">Default
+            <option value="theme_bw">Black & White
         </select>
     </label>
 </header>
-
-<!--need to load this script at this specific point since the script might change the theme by replacing the current theme-css und sets the theme-cb to the stored theme...if any
- we must do this here, otherwise this page will first load with the default theme and then switch to the stored theme. if we would load this script at the end of the body-block,
- the page will flicker because it will first render with the "default" theme which then is replaced by a potentially different theme, which will then force re-rendering of the page-->
-<script src="resources/js/theme.js"></script>
 
 <div id="wrapper">
     <div id="toolbar-area">
         <ul id="filters" class="toolbar">
             <li><i class="icon-only fa fa-sort"></i></li>
-            <li><button class="btn"><i class="fa fa-clock-o"></i>&nbsp;By Due Date</button></li>
-            <li><button class="btn"><i class="fa fa-calendar"></i>&nbsp;By Creation Date</button></li>
-            <li><button class="btn"><i class="fa fa-star"></i>&nbsp;By Importance</button></li>
-            <!--<li>-->
-            <!--<input id="radio1" class="toggle" name="toggle" value="all" checked="" type="radio">-->
-            <!--<label class="btn" for="radio1"><i class="fa fa-clock-o"></i>&nbsp;By Due Date</label>-->
-            <!--</li>-->
-            <!--<li>-->
-            <!--<input id="radio2" class="toggle" name="toggle" value="false" type="radio">-->
-            <!--<label class="btn" for="radio2">By Creation Date</label>-->
-            <!--</li>-->
-            <!--<li>-->
-            <!--<input id="radio3" class="toggle" name="toggle" value="true" type="radio">-->
-            <!--<label class="btn" for="radio3">By Importance</label>-->
-            <!--</li>-->
+            <li>
+                <button id="by_due_date" class="btn"><i class="fa fa-clock-o"></i>&nbsp;By Due Date</button>
+            </li>
+            <li>
+                <button id="by_creation_date" class="btn"><i class="fa fa-calendar"></i>&nbsp;By Creation Date</button>
+            </li>
+            <li>
+                <button id="by_importance" class="btn"><i class="fa fa-star"></i>&nbsp;By Importance</button>
+            </li>
         </ul>
 
-        <div id="other-actions" class="skin">
-            <button class="btn" href="#"><i class="fa fa-check-square-o "></i>&nbsp;Show Finished</button>
-            <!--<a class="btn default" href="#" onclick="addNewNote()"><i class="fa fa-plus"></i>&nbsp;Add Note</a>-->
-            <button class="btn default" href="#" onclick="addNewNote()"><i class="fa fa-plus"></i>&nbsp;Add Note</button>
+        <div id="other-actions">
+            <button id="show_finished" class="btn"><i class="fa fa-check-square-o "></i>&nbsp;Show Finished</button>
+            <button id="add_new_note" class="btn default"><i class="fa fa-plus"></i>&nbsp;Add Note</button>
         </div>
     </div>
 
@@ -76,11 +78,11 @@
                                 <h3 class="note-title">CAS FEE Selbststudium / Projekt Aufgabe erledigen</h3>
                                 <label class="note-importance">&#xf005;&nbsp;&#xf005;&nbsp;&#xf005;</label>
                                 <ul class="toolbar note-crud">
-                                    <li><button class="btn" href="#"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
+                                    <li>
+                                        <button class="btn"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
                                     </li>
-                                    <li><button class="btn danger" href="#"
-                                           onclick="deleteNote('3bce4931-6c75-41ab-afe0-2ec108a30860')"><i
-                                            class="fa fa-trash-o"></i>&nbsp;Delete</button>
+                                    <li>
+                                        <button id="delete_note" class="btn danger"><i class="fa fa-trash-o"></i>&nbsp;Delete</button>
                                     </li>
                                 </ul>
                             </div>
@@ -102,6 +104,14 @@
 
 <!--load script here...-->
 <script src="resources/js/overview.js"></script>
+
+<script>
+    $(function () {
+        setTheme(getStoredTheme());
+        renderNotes();
+        $("#wrapper").on("click", bubbledClickEventHandler);
+    });
+</script>
 
 </body>
 </html>

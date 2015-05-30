@@ -14,7 +14,7 @@ function save() {
     storeNote(newNote);
 
     console.log("changing window location...");
-    window.location = "overview.html";
+    window.location = LOCATION_OVERVIEW;
 
     return false;
 }
@@ -31,17 +31,15 @@ function cancel() {
 function createNewNoteObjectFromInput() {
     console.log("createNewNoteObjectFromInput() called");
 
-    var title = document.getElementById("note-details-title").value;
-    var description = document.getElementById("note-details-description").value;
-    var dueBy = document.getElementById("note-details-due-by").value;
-
-    var importanceRadios = document.getElementsByName("note-details-importance");
-    var importance = getCheckedRadioValue(importanceRadios);
-
-    var uuid = createUUID();
-    var creationDate = new Date();
-
-    return {uuid: uuid, title: title, description: description, importance: importance, dueBy: dueBy, finished: false, created: creationDate};
+    return {
+        uuid: createUUID(),
+        title: $("#" + ID_NOTE_DETAILS_TITLE).val(),
+        description: $("#" + ID_NOTE_DETAILS_DESCRIPTION).val(),
+        importance: getCheckedRadioValue($("#" + ID_NOTE_DETAILS_IMPORTANCE).val()),
+        dueBy: $("#" + ID_NOTE_DETAILS_DUE_BY).val(),
+        creationDate: new Date(),
+        finished: false
+    };
 }
 
 function getCheckedRadioValue(radios) {

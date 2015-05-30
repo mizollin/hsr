@@ -1,18 +1,11 @@
 /**
  * Created by Stefano on 26.05.2015.
  */
-//make sure we have a local storage key...
-var NOTES_KEY = "nv.notes";
-var THEME_KEY = "nv.theme";
-
-console.log("notes: " + JSON.stringify(getNotes()));
-console.log("theme: " + JSON.stringify(getTheme()));
-
-function getTheme() {
+function getStoredTheme() {
     return retrieveItem(THEME_KEY);
 }
 
-function getNotes() {
+function getStoredNotes() {
     return retrieveItem(NOTES_KEY);
 }
 
@@ -32,7 +25,7 @@ function retrieveItem(key) {
 function storeNote(note) {
     console.log("storeNote() called: " + JSON.stringify(note));
 
-    var notes = getNotes();
+    var notes = getStoredNotes();
     notes.push(note);
 
     localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
@@ -41,18 +34,26 @@ function storeNote(note) {
 function storeTheme(theme) {
     console.log("storeTheme() called: " + JSON.stringify(theme));
 
-    localStorage.setItem(THEME_KEY, JSON.stringify(theme));
+    var themeString = JSON.stringify(theme);
+
+    localStorage.setItem(THEME_KEY, themeString);
 }
 
 function deleteNoteFromStorage(uuid) {
     var index = getIndexForNoteByUUID(uuid);
-    var notes = getNotes();
-    notes.splice(index, 1);
-    localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
+    if (index === -1) {
+        return false;
+    }
+    else {
+        var notes = getStoredNotes();
+        notes.splice(index, 1);
+        localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
+        return true;
+    }
 }
 
 function getIndexForNoteByUUID(uuid) {
-    var notes = getNotes();
+    var notes = getStoredNotes();
 
     for (var i = 0; i < notes.length; i++) {
         if (uuid === notes[i].uuid) {
