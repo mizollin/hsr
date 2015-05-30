@@ -52,8 +52,8 @@ function createFirstTableRow(parent, note) {
         "<h3 class=\"note-title\">" + note.title + "</h3>" +
         "<label class=\"note-importance\">" + convertImportanceToString(note.importance) + "</label>" +
         "<ul class=\"toolbar note-crud\">" +
-        "<li><a class=\"btn\" href=\"#\"><i class=\"fa fa-pencil\"></i>&nbsp;Edit</a></li>" +
-        "<li><a class=\"btn danger\" href=\"#\" onclick=\"deleteNote('" + note.uuid + "')\"><i class=\"fa fa-trash-o\"></i>&nbsp;Delete</a>";
+        "<li><button class=\"btn\" href=\"#\"><i class=\"fa fa-pencil\"></i>&nbsp;Edit</button></li>" +
+        "<li><button class=\"btn danger\" href=\"#\" onclick=\"deleteNote('" + note.uuid + "')\"><i class=\"fa fa-trash-o\"></i>&nbsp;Delete</button>";
 
     //var dueByElement = document.createElement("td");
     //var headerElement = document.createElement("td");

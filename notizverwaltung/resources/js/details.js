@@ -19,6 +19,15 @@ function save() {
     return false;
 }
 
+function cancel() {
+    console.log("cancel() called");
+
+    // NOTE: replace does not work, but i haven't really found the exact reason for it...
+    //window.location.replace("overview.html");
+    window.location = "overview.html";
+    return false;
+}
+
 function createNewNoteObjectFromInput() {
     console.log("createNewNoteObjectFromInput() called");
 
@@ -30,8 +39,9 @@ function createNewNoteObjectFromInput() {
     var importance = getCheckedRadioValue(importanceRadios);
 
     var uuid = createUUID();
+    var creationDate = new Date();
 
-    return {uuid: uuid, title: title, description: description, importance: importance, dueBy: dueBy, finished: false};
+    return {uuid: uuid, title: title, description: description, importance: importance, dueBy: dueBy, finished: false, created: creationDate};
 }
 
 function getCheckedRadioValue(radios) {
@@ -43,13 +53,4 @@ function getCheckedRadioValue(radios) {
             return radios[i].value;
         }
     }
-}
-
-function cancel() {
-    console.log("cancel() called");
-
-    // NOTE: replace does not work, but i haven't really found the exact reason for it...
-    //window.location.replace("overview.html");
-    window.location = "overview.html";
-    return false;
 }

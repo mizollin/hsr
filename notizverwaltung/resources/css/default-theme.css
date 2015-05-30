@@ -33,19 +33,6 @@ html:before {
     background-color: rgba(200, 200, 200, 0.3);
 }
 
-/*#app-header:before {*/
-    /*content: "";*/
-    /*position: absolute;*/
-    /*background: url("http://dailygenius.com/wp-content/uploads/2014/06/postitwall.jpg") no-repeat;*/
-    /*background-size: cover;*/
-    /*height: 60px;*/
-    /*width: 100%;*/
-    /*top: 0;*/
-    /*left: 0;*/
-    /*z-index: -1;*/
-    /*opacity: 0.3;*/
-/*}*/
-
 #app-header h1 {
     margin: 0;
     line-height: 60px;
@@ -55,21 +42,73 @@ html:before {
     white-space: nowrap;
 }
 
-#toolbar-area {
-    background: linear-gradient(to bottom, gray, whitesmoke 2%, lightgray 98%, gray);
-}
-
 #app-footer {
     background: linear-gradient(to bottom, gray, lightgray 2%, whitesmoke);
     color: dimgray;
 }
 
-.note-list-item:nth-child(odd) {
-    background: linear-gradient(to bottom, whitesmoke 99%, antiquewhite);
+#footer-label {
+    color: yellow;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 1.2em;
+    text-shadow: 0px 0px 1px black, 0px 0px 1px black;
+}
+
+#toolbar-area {
+    background: linear-gradient(to bottom, gray, whitesmoke 2%, lightgray 98%, gray);
 }
 
 .note-list-item {
-    background: linear-gradient(to bottom, ghostwhite 99%, antiquewhite);
+    opacity: 0;
+    animation-name: fadein;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadein {
+    0% {
+        opacity: 1;
+        transform: translate(-100%, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+
+.note-list-item:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.note-list-item:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.note-list-item:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.note-list-item:nth-child(4) {
+    animation-delay: 0.2s;
+}
+
+.note-list-item:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+.note-list-item:nth-child(6) {
+    animation-delay: 0.3s;
+}
+
+.note-list-item:nth-child(odd) {
+    background: linear-gradient(to bottom, whitesmoke 99%, lightgray);
+}
+
+.note-list-item {
+    background: linear-gradient(to bottom, ghostwhite 99%, lightgray);
 }
 
 .note-header,
@@ -88,7 +127,6 @@ html:before {
     font-size: 1.5em;
 }
 
-
 .note-importance {
     font-family: "FontAwesome";
     color: gold;
@@ -96,9 +134,25 @@ html:before {
     font-size: 1em;
 }
 
+.note-description {
+    font-family: inherit;
+    font-size: inherit;
+    font-style: italic;
+    color: lightgray;
+    background-color: white;
+    border: 1px solid lightgray;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+}
+
 .toolbar.note-crud {
-    justify-content: flex-end;
-    font-size: 0.7em;
+    /*justify-content: flex-end;*/
+    font-size: 0.8em;
+}
+
+.toolbar.note-crud .btn {
+    padding: 0.2em 0.3em;
 }
 
 .checkbox {
@@ -119,11 +173,11 @@ html:before {
 
 #note-details-form fieldset {
     border-width: 0 0 thin 0;
-    /*border-color: black;*/
 }
 
 #note-details-title {
-    font-size: 14px;
+    font-family: inherit;
+    font-size: inherit;
 }
 
 #note-details-description {
@@ -132,14 +186,22 @@ html:before {
 }
 
 #note-details-importance {
- }
+}
 
 #note-details-due-by {
+    font-family: inherit;
+    font-size: inherit;
 }
+
+/*#note-details-due-by::-webkit-datetime-edit-text { padding: 0 0.3em; }*/
+/*#note-details-due-by::-webkit-datetime-edit-month-field { color: gray; }*/
+/*#note-details-due-by::-webkit-datetime-edit-day-field { color: gray; }*/
+/*#note-details-due-by::-webkit-datetime-edit-year-field { color: gray; }*/
 
 /*BUTTON SKINS*/
 .btn {
-    padding: 0.3em 0.5em;
+    padding: 0.5em 0.5em;
+    font-size: 1em;
 
     color: darkslategray;
     background: linear-gradient(to bottom, whitesmoke, lightblue);
@@ -203,22 +265,67 @@ html:before {
 
 /*TOOLBAR SKINS*/
 .toolbar {
-    /*border: 1px solid rgba(79, 123, 170, .4);*/
+    border: 1px solid rgba(79, 123, 170, .4);
     border-radius: 4px;
 }
 
-.toolbar a {
-    border-left: none;
+.toolbar > li > * {
+    border: none;
     border-radius: 0;
+    /*border-left: 1px solid rgba(79, 123, 170, .4);*/
 }
 
-.toolbar li:first-child a {
-    /*border-left: none;*/
-    border-left: 1px solid rgba(79, 123, 170, .4);
-    border-radius: 4px 0 0 4px
+.toolbar > li:first-child > * {
+    border-radius: 4px 0 0 4px;
 }
 
-.toolbar li:last-child a {
-    /*border-right: none;*/
-    border-radius: 0 4px 4px 0
+.toolbar > li:last-child > * {
+    border-radius: 0 4px 4px 0;
+}
+
+.toolbar > li {
+    border-right: 1px solid rgba(79, 123, 170, .4);
+    border-radius: 0px;
+}
+
+.toolbar > li:first-child {
+    border-right: 1px solid rgba(79, 123, 170, .4);
+    border-radius: 4px 0 0 4px;
+}
+
+.toolbar > li:last-child {
+    border-right: none;
+    border-radius: 0 4px 4px 0;
+}
+
+
+/*.toolbar .btn {*/
+/*border-left: none;*/
+/*border-radius: 0;*/
+/*}*/
+
+/*.toolbar li:first-child .btn {*/
+/*/!*border-left: none;*!/*/
+/*border-left: 1px solid rgba(79, 123, 170, .4);*/
+/*border-radius: 4px 0 0 4px*/
+/*}*/
+
+/*.toolbar li:last-child .btn {*/
+/*/!*border-right: none;*!/*/
+/*border-radius: 0 4px 4px 0*/
+/*}*/
+
+/*general styles*/
+.icon-only {
+    background: linear-gradient(to bottom, whitesmoke, lightgray);
+    /*background: black;*/
+    /*align-self: stretch;*/
+}
+
+::-webkit-input-placeholder {
+    font-style: italic;
+}
+
+::-moz-placeholder {
+    font-style: italic;
 }
