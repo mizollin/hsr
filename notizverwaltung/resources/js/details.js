@@ -35,20 +35,9 @@ function createNewNoteObjectFromInput() {
         uuid: createUUID(),
         title: $("#" + ID_NOTE_DETAILS_TITLE).val(),
         description: $("#" + ID_NOTE_DETAILS_DESCRIPTION).val(),
-        importance: getCheckedRadioValue($("#" + ID_NOTE_DETAILS_IMPORTANCE).val()),
+        importance: $("[name=" + ID_NOTE_DETAILS_IMPORTANCE + "]:checked").val(),
         dueBy: $("#" + ID_NOTE_DETAILS_DUE_BY).val(),
         creationDate: new Date(),
-        finished: false
+        isDone: false
     };
-}
-
-function getCheckedRadioValue(radios) {
-    console.log("getCheckedRadioValue() called");
-    console.log(radios);
-
-    for (var i = 0, length = radios.length; i < length; i++) {
-        if (radios[i].checked) {
-            return radios[i].value;
-        }
-    }
 }

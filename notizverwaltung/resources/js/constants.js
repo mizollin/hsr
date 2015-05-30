@@ -26,7 +26,7 @@ var ID_NOTE_DETAILS_DUE_BY = "note-details-due-by";
 var ID_NOTE_DETAILS_IMPORTANCE = "note-details-importance";
 
 // class constants
-var CLASS_NOTE_LIST_ITEM = ".note-list-item";
+var CLASS_NOTE_LIST_ITEM = "note-list-item";
 
 // stylesheet constants...
 var STYLESHEET_DEFAULT = "resources/css/default-theme.css";

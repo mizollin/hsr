@@ -69,31 +69,68 @@
     <!--Notes in here will be populated by js/json-->
     <section id="note-container">
         <ul id="notes">
-            <li id="3bce4931-6c75-41ab-afe0-2ec108a30860" class="note-list-item">
-                <table class="note-table">
-                    <tr>
-                        <td><h3 class="note-due-by">Due on Wednesday</h3></td>
-                        <td>
-                            <div class="note-header">
-                                <h3 class="note-title">CAS FEE Selbststudium / Projekt Aufgabe erledigen</h3>
-                                <label class="note-importance">&#xf005;&nbsp;&#xf005;&nbsp;&#xf005;</label>
-                                <ul class="toolbar note-crud">
-                                    <li>
-                                        <button class="btn"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
-                                    </li>
-                                    <li>
-                                        <button id="delete_note" class="btn danger"><i class="fa fa-trash-o"></i>&nbsp;Delete</button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label class="checkbox"><input type="checkbox" checked/> Finished (today)</label></td>
-                        <td><textarea readonly class="note-description">HTML für die Note App erstellen</textarea></td>
-                    </tr>
-                </table>
-            </li>
+            <script id="note-list-item-template" type="text/x-handlebars-template">
+                {{#each this}}
+
+                <li id={{this.uuid}} class="note-list-item">
+                    <table class="note-table">
+                        <tr>
+                            <td><h3 class="note-due-by">{{dueBy}}</h3></td>
+                            <td>
+                                <div class="note-header">
+                                    <h3 class="note-title">{{title}}</h3>
+                                    <label class="note-importance">{{#convertImportance}}{{importance}}{{/convertImportance}}</label>
+                                    <ul class="toolbar note-crud">
+                                        <li>
+                                            <button class="btn"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
+                                        </li>
+                                        <li>
+                                            <button id="delete_note" class="btn danger"><i class="fa fa-trash-o"></i>&nbsp;Delete
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>{{#if isDone}}
+                            <td><label class="checkbox"><input type="checkbox" checked/>Finished</label></td>
+                            {{else}}
+                            <td><label class="checkbox"><input type="checkbox"/>Finished</label></td>
+                            {{/if}}
+                            <td><textarea readonly class="note-description">{{description}}</textarea></td>
+                        </tr>
+                    </table>
+                </li>
+
+                {{/each}}
+            </script>
+
+
+            <!--<li id="3bce4931-6c75-41ab-afe0-2ec108a30860" class="note-list-item">-->
+            <!--<table class="note-table">-->
+            <!--<tr>-->
+            <!--<td><h3 class="note-due-by">Due on Wednesday</h3></td>-->
+            <!--<td>-->
+            <!--<div class="note-header">-->
+            <!--<h3 class="note-title">CAS FEE Selbststudium / Projekt Aufgabe erledigen</h3>-->
+            <!--<label class="note-importance">&#xf005;&nbsp;&#xf005;&nbsp;&#xf005;</label>-->
+            <!--<ul class="toolbar note-crud">-->
+            <!--<li>-->
+            <!--<button class="btn"><i class="fa fa-pencil"></i>&nbsp;Edit</button>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<button id="delete_note" class="btn danger"><i class="fa fa-trash-o"></i>&nbsp;Delete</button>-->
+            <!--</li>-->
+            <!--</ul>-->
+            <!--</div>-->
+            <!--</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+            <!--<td><label class="checkbox"><input type="checkbox" checked/> Finished (today)</label></td>-->
+            <!--<td><textarea readonly class="note-description">HTML für die Note App erstellen</textarea></td>-->
+            <!--</tr>-->
+            <!--</table>-->
+            <!--</li>-->
         </ul>
     </section>
 </div>
@@ -106,7 +143,15 @@
 <script src="resources/js/overview.js"></script>
 
 <script>
+    // handlebar helper to convert the "number" for the importance into a string. that is done wit ha js function.
+    Handlebars.registerHelper("convertImportance", function (options) {
+        var importance = options.fn(this);
+        return new Handlebars.SafeString(convertImportanceToString(importance));
+    });
+
     $(function () {
+        // we call set theme here to make sure that the actual entry in the combo-box is in sync with the value set
+        // in the store (though we could also have created a dedicated sync() function)
         setTheme(getStoredTheme());
         renderNotes();
         $("#wrapper").on("click", bubbledClickEventHandler);
