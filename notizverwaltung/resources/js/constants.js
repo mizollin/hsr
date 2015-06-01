@@ -3,8 +3,8 @@
  */
 
 // locations
-var LOCATION_OVERVIEW = "../overview/overview.html";
-var LOCATION_DETAILS = "../details/details.html";
+var PAGE_OVERVIEW = "../overview/overview.html";
+var PAGE_DETAILS = "../details/details.html";
 
 // sort constants...
 var SORT_BY_DUE_DATE = "sort_by_due_date";
@@ -12,11 +12,7 @@ var SORT_BY_CREATION_DATE = "sort_by_creation_date";
 var SORT_BY_IMPORTANCE = "sort_by_importance";
 
 // key constants for the storage...
-var STORAGE_KEY_NOTES = "nv.notes";
-var STORAGE_KEY_THEME = "nv.theme";
-var STORAGE_KEY_SORT = "nv.sort"
-var STORAGE_KEY_SHOW_DONE = "nv.showDone"
-var STORAGE_KEY_APPLICATION_CONTROLLER = "nv.applicationController";
+var STORAGE_KEY_APPLICATION_MODEL = "nv.applicationModel";
 
 // id constants...
 var ID_THEME = "theme";

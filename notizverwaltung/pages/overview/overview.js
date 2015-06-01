@@ -5,17 +5,7 @@ var compiledNoteListItemTemplate = Handlebars.compile(document.getElementById("n
 
 // fetch any data we have and fill the DOM tree...
 function renderNotes() {
-    var notes = APPLICATION_CONTROLLER.getNotes();
-
-    $("#notes").html(compiledNoteListItemTemplate(notes));
-    if (notes) {
-        console.log("renderNotes() called");
-        console.log(notes.length);
-        console.log(notes);
-    } else {
-        console.log("null");
-    }
-
+    $("#notes").html(compiledNoteListItemTemplate(APPLICATION_MODEL.notes));
 }
 
 function lookupNoteIDByEvent(event) {
@@ -47,8 +37,7 @@ function convertTimeToDateString(time) {
     var options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
 
     // for now we just set the locale hard-codedly...
-    var dateString = new Date(time).toLocaleString("de-CH", options);
-    var lang = navigator.language;
+    var dateString = new Date(time).toLocaleString("en-UK", options);
 
     return dateString;
 }
@@ -59,6 +48,7 @@ function sortNotes(notes, sortID) {
             sortByNumber(notes, function (note) {
                 return note.dueBy;
             });
+            notes.reverse();
             break;
         case SORT_BY_CREATION_DATE:
             sortByNumber(notes, function (note) {

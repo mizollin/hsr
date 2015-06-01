@@ -1,13 +1,42 @@
 /**
  * Created by Stefano on 26.05.2015.
  */
+function applicationModel(notes, theme, sort, showDone) {
+    this.notes = [];
+    this.theme = STYLESHEET_DEFAULT;
+    this.sort = null;
+    this.showDone = true;
+}
+
+applicationModel.prototype.store = function() {
+    storeItem(STORAGE_KEY_APPLICATION_MODEL, this);
+    return this;
+}
+applicationModel.prototype.initialize = function() {
+    var am = retrieveItem(STORAGE_KEY_APPLICATION_MODEL);
+    if (am === null) {
+        store();
+    }
+    else {
+        this.notes = am.notes;
+        this.sort = am.sort;
+        this.theme = am.theme;
+        this.showDone = am.showDone;
+    }
+    return this;
+}
+
+function bootstrep() {
+    var APPLICATION_MODEL = new applicationModel().initialize();
+    APPLICATION_CONTROLLER.initializeTheme();
+}
+
 function storeItem(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
 }
 
 function retrieveItem(key) {
-    var item = JSON.parse(localStorage.getItem(key));
-    return item;
+    return JSON.parse(localStorage.getItem(key));
 }
 
 function createUUID() {
@@ -17,47 +46,43 @@ function createUUID() {
     });
 }
 
-// should be a singleton really...
+
+function getApplicationModel() {
+    var am = retrieveItem(STORAGE_KEY_APPLICATION_MODEL);
+    if (am === null) {
+        am = new applicationModel([], STYLESHEET_DEFAULT, null, true);
+        storeItem(STORAGE_KEY_APPLICATION_MODEL, am);
+    }
+    return am;
+}
+
 var APPLICATION_CONTROLLER = {
-    getSort: retrieveItem(STORAGE_KEY_SORT),
-    isShowDone: retrieveItem(STORAGE_KEY_SHOW_DONE),
-
     createNewNote: function () {
-        this.setLocation(LOCATION_DETAILS);
+        this.setLocation(PAGE_DETAILS);
     },
-
-    getNotes: function () {
-        return retrieveItem(STORAGE_KEY_NOTES);
-    },
-
-    getTheme: function () {
-        return retrieveItem(STORAGE_KEY_THEME);
-    },
-
     setLocation: function (location) {
         window.location = location;
     },
-
     sortNotes: function (sortID) {
-        var notes = this.getNotes();
+        APPLICATION_MODEL.sort = sortID;
+        var notes = APPLICATION_MODEL.notes;
+
         sortNotes(notes, sortID);
-        storeItem(STORAGE_KEY_NOTES, notes);
 
-        //NOTE: we sort but don't store the result!
+        APPLICATION_MODEL.store();
 
+        //we have to rexplicitely render the notes in order to be shown in the new sort order
         renderNotes();
     },
 
     addNote: function (newNote) {
-        var notes = this.getNotes();
-        if (notes == null) {
-            notes = [];
-        }
+        var notes = APPLICATION_MODEL.notes;
         notes.push(newNote);
-        storeItem(STORAGE_KEY_NOTES, notes);
+
+        APPLICATION_MODEL.store();
 
         // this will also render the notes...
-        this.setLocation(LOCATION_OVERVIEW);
+        this.setLocation(PAGE_OVERVIEW);
     },
 
     // settings theme means three things:
@@ -68,26 +93,23 @@ var APPLICATION_CONTROLLER = {
         // replace the stylesheet here...
         this.replaceStylesheet(theme);
 
+        // and now store it for good measure...
+        APPLICATION_MODEL.theme = theme;
+        APPLICATION_MODEL.store();
+
         // don't forget to set the theme on the combo-box too, but only after the DOM has been loaded...
         $(function () {
             $("#" + ID_THEME_SWITCH_CB).val(theme);
         })
-
-        // and now store it for good measure...
-        storeItem(STORAGE_KEY_THEME, theme);
     },
 
-    initializeTheme: function() {
-      this.setTheme(this.getTheme());
+    initializeTheme: function () {
+        this.setTheme(APPLICATION_MODEL.theme);
     },
 
     // this function merely replaces the stylesheet in the DOM
     replaceStylesheet: function (theme) {
-        if (theme == null) {
-            return;
-        }
-
-        if (theme.length === 0) {
+        if (theme === null || theme.length === 0) {
             return;
         }
 
@@ -124,4 +146,7 @@ var APPLICATION_CONTROLLER = {
 
         return -1;
     }
-};
+}
+
+var APPLICATION_MODEL = new applicationModel().initialize();
+bootstrep();

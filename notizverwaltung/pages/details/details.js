@@ -1,7 +1,6 @@
 /**
  * Created by Stefano on 25.05.2015.
  */
-
 // functions...
 function save() {
     console.log("save() called");
@@ -14,7 +13,7 @@ function save() {
     APPLICATION_CONTROLLER.addNote(newNote);
 
     //console.log("changing window location...");
-    //APPLICATION_CONTROLLER.setLocation(LOCATION_OVERVIEW);
+    //APPLICATION_CONTROLLER.setLocation(PAGE_OVERVIEW);
 
     return false;
 }
@@ -22,7 +21,7 @@ function save() {
 function cancel() {
     console.log("cancel() called");
 
-    APPLICATION_CONTROLLER.setLocation(LOCATION_OVERVIEW);
+    APPLICATION_CONTROLLER.setLocation(PAGE_OVERVIEW);
 
     return false;
 }

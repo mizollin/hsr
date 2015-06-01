@@ -18,12 +18,15 @@ function bubbledEventHandler(event) {
             break;
         case ID_SORT_BY_DUE_DATE:
             APPLICATION_CONTROLLER.sortNotes(SORT_BY_DUE_DATE);
+            renderNotes();
             break;
         case ID_SORT_BY_CREATION_DATE:
             APPLICATION_CONTROLLER.sortNotes(SORT_BY_CREATION_DATE);
+            renderNotes();
             break;
         case ID_SORT_BY_IMPORTANCE:
             APPLICATION_CONTROLLER.sortNotes(SORT_BY_IMPORTANCE);
+            renderNotes();
             break;
         default :
             console.log("not handled here!");
