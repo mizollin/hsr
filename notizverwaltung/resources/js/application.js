@@ -50,6 +50,9 @@ var APPLICATION_CONTROLLER = {
 
     addNote: function (newNote) {
         var notes = this.getNotes();
+        if (notes == null) {
+            notes = [];
+        }
         notes.push(newNote);
         storeItem(STORAGE_KEY_NOTES, notes);
 
@@ -80,6 +83,10 @@ var APPLICATION_CONTROLLER = {
 
     // this function merely replaces the stylesheet in the DOM
     replaceStylesheet: function (theme) {
+        if (theme == null) {
+            return;
+        }
+
         if (theme.length === 0) {
             return;
         }

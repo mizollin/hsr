@@ -8,10 +8,13 @@ function renderNotes() {
     var notes = APPLICATION_CONTROLLER.getNotes();
 
     $("#notes").html(compiledNoteListItemTemplate(notes));
-
-    console.log("renderNotes() called");
-    console.log(notes.length);
-    console.log(notes);
+    if (notes) {
+        console.log("renderNotes() called");
+        console.log(notes.length);
+        console.log(notes);
+    } else {
+        console.log("null");
+    }
 
 }
 
