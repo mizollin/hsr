@@ -127,16 +127,18 @@ var APPLICATION_CONTROLLER = {
             return false;
         }
         else {
-            var notes = this.getNotes();
+            var notes = APPLICATION_MODEL.notes;;
             notes.splice(index, 1);
-            storeItem(STORAGE_KEY_NOTES, notes);
+
+            APPLICATION_MODEL.store();
+
             $("#" + uuid).remove();
             return true;
         }
     },
 
     getIndexForNoteByUUID: function (uuid) {
-        var notes = this.getNotes();
+        var notes = APPLICATION_MODEL.notes;
 
         for (var i = 0; i < notes.length; i++) {
             if (uuid === notes[i].uuid) {
