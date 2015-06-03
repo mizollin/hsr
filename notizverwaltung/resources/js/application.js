@@ -26,7 +26,7 @@ applicationModel.prototype.initialize = function() {
     return this;
 }
 
-function bootstrep() {
+function bootstrap() {
     var APPLICATION_MODEL = new applicationModel().initialize();
     APPLICATION_CONTROLLER.initializeTheme();
 }
@@ -151,4 +151,4 @@ var APPLICATION_CONTROLLER = {
 }
 
 var APPLICATION_MODEL = new applicationModel().initialize();
-bootstrep();
+bootstrap();
