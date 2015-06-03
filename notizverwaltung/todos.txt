@@ -1,0 +1,25 @@
+PATTERN
+=======
+- struktur? trennung von model, behaviour?
+
+
+CODING/JS
+=========
+- edit note implementieren
+- sorting as radio buttons? visual cue for the current sorting state
+- sortiertes adden von notes.
+- implementieren der "done" funktionalität (in-place editing?)
+- implementieren von show-done, inkl. CSS evtl. semi-transparentes erscheinungsbild?
+- details mit bubble-event-handler implementieren
+
+
+CSS
+===
+- BW theme implementieren.
+- Theme Combo-Box l&f verbessern, evlt. komplett andere idee? hamburger menu? slide-in transition?
+
+
+ANDERE THEMEN
+=============
+- accessibility?
+- testing? (jasmine?)
