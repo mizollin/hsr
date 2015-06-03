@@ -15,7 +15,7 @@ applicationModel.prototype.store = function() {
 applicationModel.prototype.initialize = function() {
     var am = retrieveItem(STORAGE_KEY_APPLICATION_MODEL);
     if (am === null) {
-        store();
+        this.store();
     }
     else {
         this.notes = am.notes;

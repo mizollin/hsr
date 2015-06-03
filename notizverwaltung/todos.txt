@@ -8,7 +8,7 @@ CODING/JS
 - edit note implementieren
 - sorting as radio buttons? visual cue for the current sorting state
 - sortiertes adden von notes.
-- implementieren der "done" funktionalit‰t (in-place editing?)
+- implementieren der "done" funktionalit√§t (in-place editing?)
 - implementieren von show-done, inkl. CSS evtl. semi-transparentes erscheinungsbild?
 - details mit bubble-event-handler implementieren
 
@@ -23,3 +23,4 @@ ANDERE THEMEN
 =============
 - accessibility?
 - testing? (jasmine?)
+- input validations?
