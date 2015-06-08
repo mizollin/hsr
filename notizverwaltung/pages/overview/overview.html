@@ -25,7 +25,7 @@
     <script id="note-list-item-template" type="text/x-handlebars-template">
         {{#each this}}
 
-        <li id={{this.uuid}} class="note-list-item">
+        <li id={{this.uuid}} class="note-list-item" draggable="true">
             <table class="note-table">
                 <tr>
                     <td><h3 class="note-due-by">{{#convertDate}}{{{dueBy}}}{{/convertDate}}</h3></td>
@@ -131,6 +131,11 @@
             <!--</li>-->
         </ul>
     </section>
+    <section id="note-container-done">
+        <ul id="notes_done" draggable="true">
+
+        </ul>
+    </section>
 </div>
 
 <footer id="app-footer">
@@ -158,6 +163,16 @@
         $("#wrapper").on("click", bubbledEventHandler);
         $("#theme-switch-cb").on("change", bubbledEventHandler);
     });
+
+    var notes = document.getElementById("notes");
+    notes.addEventListener("load", function(){
+        notesItem = document.getElementsByClassName('note-list-item');
+        [].forEach.call(notesItem, function(notes){
+            notes.addEventListener('dragstart', handleDragStart, false);
+        });
+    });
+
+
 </script>
 
 </body>

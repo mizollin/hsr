@@ -6,6 +6,10 @@ var compiledNoteListItemTemplate = Handlebars.compile(document.getElementById("n
 // fetch any data we have and fill the DOM tree...
 function renderNotes() {
     $("#notes").html(compiledNoteListItemTemplate(APPLICATION_MODEL.notes));
+    $( "li" ).each(function( index ) {
+        $( this).bind('dragstart', handleDragStart);
+        //this.addEventListener('dragstart', handleDragStart, false);
+    });
 }
 
 function lookupNoteIDByEvent(event) {
@@ -74,4 +78,14 @@ function sortByNumber(notes, fSupplier) {
         var result = n1 - n2;
         return result;
     });
+}
+
+function handleDragStart(e) {
+    console.log("Drag Start");
+    console.log(e);
+}
+
+function handleDragEnter(e) {
+    console.log("Drag Enter");
+    console.log(e);
 }
