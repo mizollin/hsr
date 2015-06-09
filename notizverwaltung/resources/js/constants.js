@@ -42,3 +42,5 @@ var STYLESHEET_BW = "../../resources/css/bw-theme.css";
 var VAL_THEME_DEFAULT = "theme_def";
 var VAL_THEME_BW = "theme_bw";
 
+
+

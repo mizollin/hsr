@@ -8,6 +8,7 @@ function applicationModel(notes, theme, sort, showDone) {
     this.showDone = true;
 }
 
+
 applicationModel.prototype.store = function() {
     storeItem(STORAGE_KEY_APPLICATION_MODEL, this);
     return this;
@@ -45,7 +46,6 @@ function createUUID() {
         return v.toString(16);
     });
 }
-
 
 function getApplicationModel() {
     var am = retrieveItem(STORAGE_KEY_APPLICATION_MODEL);
