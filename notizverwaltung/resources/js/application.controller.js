@@ -28,9 +28,14 @@ var applicationController = (function () {
         AppModel = model;
     }
 
+    function setLocation(location){
+        window.location = location;
+    }
+
     return {
         store: storeItem,
         model: setModell,
-        getUUID: createUUID
+        uuid: createUUID,
+        toLocation: setLocation
     }
 })();
