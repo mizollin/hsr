@@ -62,6 +62,7 @@
     do anything with DOM trees). It mus also be loaded as the first scripts
     since other scripts might make use of the functions defined in those -->
     <script src="../../resources/js/constants.js"></script>
+    <script src="../../resources/js/note.js"></script>
     <script src="../../resources/js/application.js"></script>
     <script src="../../resources/js/application.model.js"></script>
     <script src="overview.js"></script>
@@ -165,13 +166,28 @@
         $("#theme-switch-cb").on("change", bubbledEventHandler);
     });
 
-    var notes = document.getElementById("notes");
-    notes.addEventListener("load", function(){
-        notesItem = document.getElementsByClassName('note-list-item');
-        [].forEach.call(notesItem, function(notes){
-            notes.addEventListener('dragstart', handleDragStart, false);
-        });
-    });
+//    $(function () {
+//        var notesItem = document.getElementsByClassName('note-list-item');
+//        [].forEach.call(notesItem, function (notes) {
+//            notes.addEventListener('dragstart', handleDragStart, false);
+//        });
+//    });
+
+//    $("#notes").load(function () {
+//        var notesItem = document.getElementsByClassName('note-list-item');
+//
+//        [].forEach.call(notesItem, function (notes) {
+//            notes.addEventListener('dragstart', handleDragStart, false);
+//        });
+//    });
+//    var notes = document.getElementById("notes");
+//    notes.addEventListener("load", function () {
+//        var notesItem = document.getElementsByClassName('note-list-item');
+//
+//        [].forEach.call(notesItem, function (notes) {
+//            notes.addEventListener('dragstart', handleDragStart, false);
+//        });
+//    });
 
 
 </script>

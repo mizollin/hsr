@@ -32,16 +32,13 @@ function createNewNoteObjectFromInput() {
     var importance = $("[name=" + ID_NOTE_DETAILS_IMPORTANCE + "]:checked").val();
     importance = importance === undefined ? "0" : importance;
 
-    var dueBy = new Date($("#" + ID_NOTE_DETAILS_DUE_BY).val()).getTime();
-    var creationDate = new Date().getTime();
+    var dueByDate = new Date($("#" + ID_NOTE_DETAILS_DUE_BY).val());
+    var creationDate = new Date();
 
-    return {
-        uuid: createUUID(),
-        title: $("#" + ID_NOTE_DETAILS_TITLE).val(),
-        description: $("#" + ID_NOTE_DETAILS_DESCRIPTION).val(),
-        importance: importance,
-        dueBy: dueBy,
-        creationDate: creationDate,
-        isDone: false
-    };
+    var uuid = createUUID();
+    var title = $("#" + ID_NOTE_DETAILS_TITLE).val();
+    var description = $("#" + ID_NOTE_DETAILS_DESCRIPTION).val();
+    var isDone = false;
+
+    return new Note(uuid, creationDate, isDone, title, description, dueByDate, importance);
 }

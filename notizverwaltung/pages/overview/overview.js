@@ -7,7 +7,7 @@ var compiledNoteListItemTemplate = Handlebars.compile(document.getElementById("n
 function renderNotes() {
     $("#notes").html(compiledNoteListItemTemplate(APPLICATION_MODEL.notes));
     $( "li" ).each(function( index ) {
-        $( this).bind('dragstart', handleDragStart);
+        $( this).on('dragstart', handleDragStart);
         //this.addEventListener('dragstart', handleDragStart, false);
     });
 }
