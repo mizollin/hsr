@@ -44,40 +44,6 @@ function convertTimeToDateString(time) {
     return dateString;
 }
 
-function sortNotes(notes, sortID) {
-    switch (sortID) {
-        case CONSTANTS.SORT_BY_DUE_DATE:
-            sortByNumber(notes, function (note) {
-                return note.dueByDate.getTime();
-            });
-            notes.reverse();
-            break;
-        case CONSTANTS.SORT_BY_CREATION_DATE:
-            sortByNumber(notes, function (note) {
-                return note.creationDate.getTime();
-            });
-            break;
-        case CONSTANTS.SORT_BY_IMPORTANCE:
-            sortByNumber(notes, function (note) {
-                return parseInt(note.importance);
-            });
-            notes.reverse();
-            break;
-        default:
-            // do nothing...
-            return;
-    }
-}
-
-function sortByNumber(notes, fSupplier) {
-    notes.sort(function (note1, note2) {
-        var n1 = fSupplier(note1)
-        var n2 = fSupplier(note2)
-        var result = n1 - n2;
-        return result;
-    });
-}
-
 function handleDragStart(e) {
     console.log("Drag Start");
     console.log(e);
