@@ -47,7 +47,7 @@ var DETAILS_CONTROLLER = (function(applicationModel) {
         replaceStylesheet(theme);
 
         // and now store it for good measure...
-        privateApplicationModel.theme = theme;
+        privateApplicationModel.setTheme(theme);
         privateApplicationModel.store();
 
         // don't forget to set the theme on the combo-box too, but only after the DOM has been loaded...
@@ -72,6 +72,7 @@ var DETAILS_CONTROLLER = (function(applicationModel) {
 
     function publicInitialize(applicationModel) {
         privateApplicationModel = applicationModel;
+        publicSetTheme(privateApplicationModel.getTheme());
     }
 
     return {
