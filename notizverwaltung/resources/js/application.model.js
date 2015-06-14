@@ -3,7 +3,7 @@ var APPLICATION_MODEL = (function () {
 
     function Model() {
         this.notes = [];
-        this.theme = CONSTANTS.STYLESHEET_DEFAULT;
+        this.theme = CONSTANTS.THEME_DEFAULT;
         this.sortStrategy = null;
         this.isShowDone = true;
     }

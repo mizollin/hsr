@@ -60,7 +60,7 @@ var OVERVIEW_CONTROLLER = (function (applicationModel) {
 
     function publicSetTheme(theme) {
         // replace the stylesheet here...
-        replaceStylesheet(theme);
+        replaceTheme(theme);
 
         // and now store it for good measure...
         privateApplicationModel.setTheme(theme);
@@ -73,16 +73,16 @@ var OVERVIEW_CONTROLLER = (function (applicationModel) {
     }
 
     // this function merely replaces the stylesheet in the DOM
-    function replaceStylesheet(theme) {
+    function replaceTheme(theme) {
         if (theme === null || theme.length === 0) {
             return;
         }
 
         if (theme === CONSTANTS.VAL_THEME_DEFAULT) {
-            $("#" + CONSTANTS.ID_THEME).attr("href", CONSTANTS.STYLESHEET_DEFAULT);
+            $("#" + CONSTANTS.ID_THEME).attr("href", CONSTANTS.THEME_DEFAULT);
         }
         else if (theme === CONSTANTS.VAL_THEME_BW) {
-            $("#" + CONSTANTS.ID_THEME).attr("href", CONSTANTS.STYLESHEET_BW);
+            $("#" + CONSTANTS.ID_THEME).attr("href", CONSTANTS.THEME_BW);
         }
     }
 

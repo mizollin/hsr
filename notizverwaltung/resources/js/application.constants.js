@@ -36,8 +36,8 @@ var CONSTANTS = {
     CLASS_NOTE_LIST_ITEM: "note-list-item",
 
 // stylesheet constants...
-    STYLESHEET_DEFAULT: "../../resources/css/default-theme.css",
-    STYLESHEET_BW: "../../resources/css/bw-theme.css",
+    THEME_DEFAULT: "../../resources/css/default-theme.css",
+    THEME_BW: "../../resources/css/bw-theme.css",
 
 // value constants...
     VAL_THEME_DEFAULT: "theme_def",
