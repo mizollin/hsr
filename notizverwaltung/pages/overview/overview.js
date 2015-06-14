@@ -1,21 +1,20 @@
 /**
  * Created by Stefano on 25.05.2015.
  */
-var compiledNoteListItemTemplate = Handlebars.compile(document.getElementById("note-list-item-template").textContent);
-
 // fetch any data we have and fill the DOM tree...
 function renderNotes() {
-    $("#notes").html(compiledNoteListItemTemplate(APPLICATION_MODEL.notes));
+    var notes = APPLICATION_MODEL.getNotes();
+    $("#notes").html(compiledNoteListItemTemplate(notes));
+
     $( "li" ).each(function( index ) {
-        $( this).on('dragstart', handleDragStart);
-        //this.addEventListener('dragstart', handleDragStart, false);
+        $(this).on('dragstart', handleDragStart);
     });
 }
 
 function lookupNoteIDByEvent(event) {
     console.log("lookupNoteIDByEvent() called: " + event);
 
-    var noteListItem = $(event.target).parents("." + CLASS_NOTE_LIST_ITEM);
+    var noteListItem = $(event.target).parents("." + CONSTANTS.CLASS_NOTE_LIST_ITEM);
     var noteID = noteListItem.attr("id");
     return noteID;
 }
@@ -48,18 +47,18 @@ function convertTimeToDateString(time) {
 
 function sortNotes(notes, sortID) {
     switch (sortID) {
-        case SORT_BY_DUE_DATE:
+        case CONSTANTS.SORT_BY_DUE_DATE:
             sortByNumber(notes, function (note) {
                 return note.dueBy;
             });
             notes.reverse();
             break;
-        case SORT_BY_CREATION_DATE:
+        case CONSTANTS.SORT_BY_CREATION_DATE:
             sortByNumber(notes, function (note) {
                 return note.creationDate;
             });
             break;
-        case SORT_BY_IMPORTANCE:
+        case CONSTANTS.SORT_BY_IMPORTANCE:
             sortByNumber(notes, function (note) {
                 return parseInt(note.importance);
             });
@@ -89,3 +88,11 @@ function handleDragEnter(e) {
     console.log("Drag Enter");
     console.log(e);
 }
+
+$(function () {
+    APPLICATION_MODEL.initialize();
+    OVERVIEW_CONTROLLER.initialize(APPLICATION_MODEL);
+    OVERVIEW_HANDLER.initialize(OVERVIEW_CONTROLLER);
+
+    renderNotes();
+});

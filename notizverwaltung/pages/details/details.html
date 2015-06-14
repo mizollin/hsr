@@ -16,10 +16,6 @@
 
     <script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.min.js"></script>
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-
-    <script src="../../resources/js/constants.js"></script>
-    <script src="../../resources/js/note.js"></script>
-    <script src="../../resources/js/application.js"></script>
 </head>
 
 <body>
@@ -88,8 +84,8 @@
             </fieldset>
 
             <div id="note-details-form-actions">
-                <button class="btn default" onclick="return save()">Save</button>
-                <button class="btn non-default" onclick="return cancel()">Cancel</button>
+                <button id="save" class="btn default">Save</button>
+                <button id="cancel" class="btn non-default">Cancel</button>
             </div>
         </form>
     </div>
@@ -100,15 +96,15 @@
 </footer>
 
 <!--load script here...-->
+<script src="../../resources/js/array.js"></script>
+<script src="../../resources/js/note.js"></script>
+<script src="../../resources/js/application.constants.js"></script>
+<script src="../../resources/js/application.model.js"></script>
+<script src="details.controller.js"></script>
+<script src="details.handler.js"></script>
 <script src="details.js"></script>
-<script src="../../resources/js/handlers.js"></script>
 
 <script>
-    $(function () {
-        // initialize handlers...
-        $("#wrapper").on("click", bubbledEventHandler);
-        $("#theme-switch-cb").on("change", bubbledEventHandler);
-    });
 </script>
 
 </body>

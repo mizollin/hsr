@@ -28,14 +28,14 @@
         <li id={{this.uuid}} class="note-list-item" draggable="true">
             <table class="note-table">
                 <tr>
-                    <td><h3 class="note-due-by">{{#convertDate}}{{{dueBy}}}{{/convertDate}}</h3></td>
+                    <td><h3 class="note-due-by">{{#convertDate}}{{{dueByDate}}}{{/convertDate}}</h3></td>
                     <td>
                         <div class="note-header">
                             <h3 class="note-title">{{title}}</h3>
                             <label class="note-importance">{{#convertImportance}}{{{importance}}}{{/convertImportance}}</label>
                             <ul class="toolbar note-crud">
                                 <li>
-                                    <button class="btn"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
+                                    <button id="edit_note" class="btn"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
                                 </li>
                                 <li>
                                     <button id="delete_note" class="btn danger"><i class="fa fa-trash-o"></i>&nbsp;Delete
@@ -57,15 +57,6 @@
 
         {{/each}}
     </script>
-
-    <!-- load this script here since it is used as configuration only stuff (i.e. local storage handling, it does not
-    do anything with DOM trees). It mus also be loaded as the first scripts
-    since other scripts might make use of the functions defined in those -->
-    <script src="../../resources/js/constants.js"></script>
-    <script src="../../resources/js/note.js"></script>
-    <script src="../../resources/js/application.js"></script>
-    <script src="../../resources/js/application.model.js"></script>
-    <script src="overview.js"></script>
 </head>
 
 <body>
@@ -145,10 +136,17 @@
 </footer>
 
 <!--load script here...-->
-<!--<script src="resources/js/overview.js"></script>-->
-<script src="../../resources/js/handlers.js"></script>
+<script src="../../resources/js/array.js"></script>
+<script src="../../resources/js/note.js"></script>
+<script src="../../resources/js/application.constants.js"></script>
+<script src="../../resources/js/application.model.js"></script>
+<script src="overview.controller.js"></script>
+<script src="overview.handler.js"></script>
+<script src="overview.js"></script>
 
 <script>
+    var compiledNoteListItemTemplate = Handlebars.compile(document.getElementById("note-list-item-template").textContent);
+
     // handlebar helper to convert the "number" for the importance into a string. that is done wit ha js function.
     Handlebars.registerHelper("convertImportance", function (options) {
         return new Handlebars.SafeString(convertImportanceToString(options.fn(this)));
@@ -159,36 +157,12 @@
     });
 
     $(function () {
-        renderNotes();
+//        renderNotes();
 
-        // initialize handlers...
-        $("#wrapper").on("click", bubbledEventHandler);
-        $("#theme-switch-cb").on("change", bubbledEventHandler);
+//        // initialize handlers...
+//        $("#wrapper").on("click", bubbledEventHandler);
+//        $("#theme-switch-cb").on("change", bubbledEventHandler);
     });
-
-//    $(function () {
-//        var notesItem = document.getElementsByClassName('note-list-item');
-//        [].forEach.call(notesItem, function (notes) {
-//            notes.addEventListener('dragstart', handleDragStart, false);
-//        });
-//    });
-
-//    $("#notes").load(function () {
-//        var notesItem = document.getElementsByClassName('note-list-item');
-//
-//        [].forEach.call(notesItem, function (notes) {
-//            notes.addEventListener('dragstart', handleDragStart, false);
-//        });
-//    });
-//    var notes = document.getElementById("notes");
-//    notes.addEventListener("load", function () {
-//        var notesItem = document.getElementsByClassName('note-list-item');
-//
-//        [].forEach.call(notesItem, function (notes) {
-//            notes.addEventListener('dragstart', handleDragStart, false);
-//        });
-//    });
-
 
 </script>
 
