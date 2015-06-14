@@ -2,8 +2,8 @@
  * Created by mi on 09.06.2015.
  */
 var CONSTANTS = {
-    PAGE_OVERVIEW: "../overview/overview.html",
-    PAGE_DETAILS: "../details/details.html",
+    PAGE_OVERVIEW: "../../pages/overview/overview.html",
+    PAGE_DETAILS: "../../pages/details/details.html",
 
 // sort constants...
     SORT_BY_DUE_DATE: "sort_by_due_date",
