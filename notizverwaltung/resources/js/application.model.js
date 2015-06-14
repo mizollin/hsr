@@ -1,6 +1,16 @@
 var APPLICATION_MODEL = (function () {
     var privateModel;
 
+    function Note(uuid, creationDate, isDone, title, description, dueByDate, importance) {
+        this.uuid = uuid;
+        this.creationDate = creationDate;
+        this.title = title;
+        this.description = description;
+        this.dueByDate = dueByDate;
+        this.importance = importance;
+        this.isDone = isDone;
+    }
+
     function Model() {
         this.notes = [];
         this.theme = CONSTANTS.THEME_DEFAULT;
@@ -121,5 +131,6 @@ var APPLICATION_MODEL = (function () {
         getSortStrategy: publicGetSortStrategy,
         setShowDone: publicSetShowDone,
         getShowDone: publicGetShowDone,
+        Note: Note,
     };
 })();

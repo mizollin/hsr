@@ -39,7 +39,7 @@ var DETAILS_CONTROLLER = (function(applicationModel) {
         //var creationDate = new Date();
         //var isDone = false;
 
-        return new Note(null, null, null, title, description, dueByDate, importance);
+        return new APPLICATION_MODEL.Note(null, null, null, title, description, dueByDate, importance);
     }
 
     function publicSetTheme(theme) {
