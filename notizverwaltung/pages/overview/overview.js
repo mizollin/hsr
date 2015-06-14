@@ -2,8 +2,7 @@
  * Created by Stefano on 25.05.2015.
  */
 // fetch any data we have and fill the DOM tree...
-function renderNotes() {
-    var notes = APPLICATION_MODEL.getNotes();
+function renderNotes(notes) {
     $("#notes").html(compiledNoteListItemTemplate(notes));
 
     $( "li" ).each(function( index ) {
@@ -49,13 +48,13 @@ function sortNotes(notes, sortID) {
     switch (sortID) {
         case CONSTANTS.SORT_BY_DUE_DATE:
             sortByNumber(notes, function (note) {
-                return note.dueBy;
+                return note.dueByDate.getTime();
             });
             notes.reverse();
             break;
         case CONSTANTS.SORT_BY_CREATION_DATE:
             sortByNumber(notes, function (note) {
-                return note.creationDate;
+                return note.creationDate.getTime();
             });
             break;
         case CONSTANTS.SORT_BY_IMPORTANCE:
@@ -89,10 +88,9 @@ function handleDragEnter(e) {
     console.log(e);
 }
 
+// bootstrap...
 $(function () {
     APPLICATION_MODEL.initialize();
     OVERVIEW_CONTROLLER.initialize(APPLICATION_MODEL);
     OVERVIEW_HANDLER.initialize(OVERVIEW_CONTROLLER);
-
-    renderNotes();
 });

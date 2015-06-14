@@ -12,14 +12,50 @@ var OVERVIEW_CONTROLLER = (function (applicationModel) {
 
     function publicSortNotes(sortStrategy) {
         privateApplicationModel.setSortStrategy(sortStrategy);
-        var notes = privateApplicationModel.notes;
+        var notes = privateApplicationModel.getNotes();
 
         sortNotes(notes, sortStrategy);
 
         privateApplicationModel.store();
 
         //we have to explicitly render the notes in order to be shown in the new sort order
-        renderNotes();
+        renderNotes(notes);
+    }
+
+    function sortNotes(notes, sortID) {
+        switch (sortID) {
+            case CONSTANTS.SORT_BY_DUE_DATE:
+                sortByNumber(notes, function (note) {
+                    var date = new Date(note.dueByDate);
+                    console.log("note: " + note.title + " >> due-by date: " + date);
+                    return date.getTime();
+                });
+                break;
+            case CONSTANTS.SORT_BY_CREATION_DATE:
+                sortByNumber(notes, function (note) {
+                    var date = new Date(note.creationDate);
+                    console.log("note: " + note.title + " >> creation date: " + date);
+                    return date.getTime();
+                });
+                break;
+            case CONSTANTS.SORT_BY_IMPORTANCE:
+                sortByNumber(notes, function (note) {
+                    return parseInt(-note.importance);
+                });
+                break;
+            default:
+                // do nothing...
+                return;
+        }
+    }
+
+    function sortByNumber(notes, fSupplier) {
+        notes.sort(function (note1, note2) {
+            var n1 = fSupplier(note1)
+            var n2 = fSupplier(note2)
+            var result = n1 - n2;
+            return result;
+        });
     }
 
     function publicSetTheme(theme) {
@@ -61,6 +97,7 @@ var OVERVIEW_CONTROLLER = (function (applicationModel) {
     function publicInitialize(applicationModel) {
         privateApplicationModel = applicationModel;
         publicSetTheme(privateApplicationModel.getTheme());
+        renderNotes(privateApplicationModel.getNotes());
     }
 
     return {
@@ -68,5 +105,6 @@ var OVERVIEW_CONTROLLER = (function (applicationModel) {
         setTheme: publicSetTheme,
         deleteNote: publicDeleteNote,
         createNewNote: publicCreateNewNote,
+        sortNotes: publicSortNotes,
     }
 })();
