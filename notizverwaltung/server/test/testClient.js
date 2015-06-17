@@ -2,7 +2,7 @@
  * Created by Stefano on 14.06.2015.
  */
 var http = require("http");
-var notes_repo = require("../data/notes.repository");
+var notes_repo = require("../data/server.notes.repository.js");
 
 
 var req = http.request( {hostname: "localhost", port: 1337, path : "/notes", method: "GET"}, function(res){

@@ -50,7 +50,7 @@ var NOTES_REPOSITORY = (function () {
         store();
     }
 
-    function publicAddNote(note) {
+    function publicCreateNote(note) {
         var creationDate = new Date();
         var uuid = createUUID();
         var isDone = false;
@@ -88,7 +88,7 @@ var NOTES_REPOSITORY = (function () {
     return {
         initialize: publicInitialize,
         store: publicStore,
-        addNote: publicAddNote,
+        createNote: publicCreateNote,
         updateNote: publicUpdateNote,
         deleteNote: publicDeleteNote,
         getNotes: publicGetNotes,

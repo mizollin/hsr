@@ -11,7 +11,8 @@ var CONSTANTS = {
     SORT_BY_IMPORTANCE: "sort_by_importance",
 
 // key constants for the storage...
-    STORAGE_KEY_APPLICATION_MODEL: "nv.ApplicationModel",
+    STORAGE_KEY_APPLICATION_MODEL: "nv.applicationModel",
+    STORAGE_KEY_NOTES: "nv.notes",
 
 // id constants...
     ID_THEME: "theme",
@@ -36,8 +37,8 @@ var CONSTANTS = {
     CLASS_NOTE_LIST_ITEM: "note-list-item",
 
 // stylesheet constants...
-    THEME_DEFAULT: "../../resources/css/default-theme.css",
-    THEME_BW: "../../resources/css/bw-theme.css",
+    STYLESHEET_DEFAULT: "../../resources/css/default-theme.css",
+    STYLESHEET_BW: "../../resources/css/bw-theme.css",
 
 // value constants...
     VAL_THEME_DEFAULT: "theme_def",

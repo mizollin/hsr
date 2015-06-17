@@ -6,7 +6,7 @@ var stream = require('stream');
 var querystring = require("querystring");
 
 // my one...
-var notes_repo = require('./data/notes.repository');
+var notes_repo = require('./data/server.notes.repository.js');
 
 var handler = function (req, res) {
     console.log(req.url);
@@ -37,7 +37,7 @@ var handler = function (req, res) {
 
                     // parse the received body data
                     var note = JSON.parse(fullBody);
-                    notes_repo.NotesRepository.addNote(note);
+                    notes_repo.NotesRepository.createNote(note);
 
                     res.writeHead(200, "OK", {'Content-Type': 'text/plain'});
                     res.end();

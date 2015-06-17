@@ -12,7 +12,7 @@ var DETAILS_CONTROLLER = (function(applicationModel) {
         var newNote = createNewNoteObjectFromInput();
         console.log(newNote);
 
-        privateApplicationModel.addNote(newNote);
+        privateApplicationModel.getNotesRepository().createNote(newNote);
 
         // switch back to the overview page...
         window.location = CONSTANTS.PAGE_OVERVIEW;
@@ -39,7 +39,8 @@ var DETAILS_CONTROLLER = (function(applicationModel) {
         //var creationDate = new Date();
         //var isDone = false;
 
-        return new APPLICATION_MODEL.Note(null, null, null, title, description, dueByDate, importance);
+        var repository = APPLICATION_MODEL.getNotesRepository();
+        return new repository.Note(null, null, null, title, description, dueByDate, importance);
     }
 
     function publicSetTheme(theme) {
@@ -48,7 +49,6 @@ var DETAILS_CONTROLLER = (function(applicationModel) {
 
         // and now store it for good measure...
         privateApplicationModel.setTheme(theme);
-        privateApplicationModel.store();
 
         // don't forget to set the theme on the combo-box too, but only after the DOM has been loaded...
         $(function () {
@@ -63,10 +63,10 @@ var DETAILS_CONTROLLER = (function(applicationModel) {
         }
 
         if (theme === CONSTANTS.VAL_THEME_DEFAULT) {
-            $("#" + CONSTANTS.ID_THEME).attr("href", CONSTANTS.THEME_DEFAULT);
+            $("#" + CONSTANTS.ID_THEME).attr("href", CONSTANTS.STYLESHEET_DEFAULT);
         }
         else if (theme === CONSTANTS.VAL_THEME_BW) {
-            $("#" + CONSTANTS.ID_THEME).attr("href", CONSTANTS.THEME_BW);
+            $("#" + CONSTANTS.ID_THEME).attr("href", CONSTANTS.STYLESHEET_BW);
         }
     }
 

@@ -12,11 +12,9 @@ var OVERVIEW_CONTROLLER = (function (applicationModel) {
 
     function publicSortNotes(sortStrategy) {
         privateApplicationModel.setSortStrategy(sortStrategy);
-        var notes = privateApplicationModel.getNotes();
+        var notes = privateApplicationModel.getNotesRepository().getNotes();
 
         sortNotes(notes, sortStrategy);
-
-        privateApplicationModel.store();
 
         //we have to explicitly render the notes in order to be shown in the new sort order
         renderNotes(notes);
@@ -64,7 +62,6 @@ var OVERVIEW_CONTROLLER = (function (applicationModel) {
 
         // and now store it for good measure...
         privateApplicationModel.setTheme(theme);
-        privateApplicationModel.store();
 
         // don't forget to set the theme on the combo-box too, but only after the DOM has been loaded...
         $(function () {
@@ -79,15 +76,15 @@ var OVERVIEW_CONTROLLER = (function (applicationModel) {
         }
 
         if (theme === CONSTANTS.VAL_THEME_DEFAULT) {
-            $("#" + CONSTANTS.ID_THEME).attr("href", CONSTANTS.THEME_DEFAULT);
+            $("#" + CONSTANTS.ID_THEME).attr("href", CONSTANTS.STYLESHEET_DEFAULT);
         }
         else if (theme === CONSTANTS.VAL_THEME_BW) {
-            $("#" + CONSTANTS.ID_THEME).attr("href", CONSTANTS.THEME_BW);
+            $("#" + CONSTANTS.ID_THEME).attr("href", CONSTANTS.STYLESHEET_BW);
         }
     }
 
     function publicDeleteNote(uuid) {
-        var success = privateApplicationModel.deleteNote(uuid);
+        var success = privateApplicationModel.getNotesRepository().deleteNote(uuid);
 
         if (success) {
             $("#" + uuid).remove();
@@ -97,7 +94,7 @@ var OVERVIEW_CONTROLLER = (function (applicationModel) {
     function publicInitialize(applicationModel) {
         privateApplicationModel = applicationModel;
         publicSetTheme(privateApplicationModel.getTheme());
-        renderNotes(privateApplicationModel.getNotes());
+        renderNotes(privateApplicationModel.getNotesRepository().getNotes());
     }
 
     return {

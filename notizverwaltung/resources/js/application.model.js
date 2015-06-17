@@ -1,136 +1,74 @@
 var APPLICATION_MODEL = (function () {
-    var privateModel;
-
-    function Note(uuid, creationDate, isDone, title, description, dueByDate, importance) {
-        this.uuid = uuid;
-        this.creationDate = creationDate;
-        this.title = title;
-        this.description = description;
-        this.dueByDate = dueByDate;
-        this.importance = importance;
-        this.isDone = isDone;
-    }
-
-    function Model() {
-        this.notes = [];
-        this.theme = CONSTANTS.THEME_DEFAULT;
+    function ApplicationModel() {
+        this.theme = CONSTANTS.VAL_THEME_DEFAULT;
         this.sortStrategy = null;
         this.isShowDone = true;
     }
 
-    function storeItem(key, value) {
-        localStorage.setItem(key, JSON.stringify(value));
+    var privateApplicationModel = null;
+    var privateNotesRepository = null;
+
+    function store() {
+        localStorage.setItem(CONSTANTS.STORAGE_KEY_APPLICATION_MODEL, JSON.stringify(privateApplicationModel));
     }
 
-    function retrieveItem(key) {
-        return JSON.parse(localStorage.getItem(key));
+    function load() {
+        return JSON.parse(localStorage.getItem(CONSTANTS.STORAGE_KEY_APPLICATION_MODEL));
     }
 
-    function createUUID() {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-            return v.toString(16);
-        });
-    }
+    function publicInitialize(notesRepository) {
+        privateNotesRepository = notesRepository;
+        privateApplicationModel = new ApplicationModel();
 
-    function getIndexForNoteByUUID(uuid) {
-        var notes = privateModel.notes;
-        return notes.getIndexByPredicate(function (note) {
-            return note.uuid === uuid;
-        });
-    }
-
-    function publicInitialize() {
-        privateModel = new Model();
-
-        var storedModel = retrieveItem(CONSTANTS.STORAGE_KEY_APPLICATION_MODEL);
+        var storedModel = load();
         if (storedModel === null) {
-            publicStore();
+            store();
         }
         else {
-            privateModel.notes = storedModel.notes;
-            privateModel.sort = storedModel.sort;
-            privateModel.theme = storedModel.theme;
-            privateModel.isShowDone = storedModel.isShowDone;
-        }
-    }
-
-    function publicStore() {
-        storeItem(CONSTANTS.STORAGE_KEY_APPLICATION_MODEL, privateModel);
-    }
-
-    function publicAddNote(note) {
-        var creationDate = new Date();
-        var uuid = createUUID();
-        var isDone = false;
-
-        var note = new Note(uuid, creationDate, isDone, note.title, note.description, note.dueByDate, note.importance);
-
-        privateModel.notes.push(note);
-        publicStore();
-    }
-
-    function publicUpdateNote(note) {
-        // to be implemented...
-        // uuid of the note to be updated should be contained in the given note...
-    }
-
-    function publicDeleteNote(uuid) {
-        var index = getIndexForNoteByUUID(uuid);
-        if (index === -1) {
-            return false;
-        }
-        else {
-            var notes = privateModel.notes;
-            notes.splice(index, 1);
-
-            publicStore();
-
-            return true;
+            privateApplicationModel.sort = storedModel.sort;
+            privateApplicationModel.theme = storedModel.theme;
+            privateApplicationModel.isShowDone = storedModel.isShowDone;
         }
     }
 
     function publicSetTheme(theme) {
-        privateModel.theme = theme;
+        privateApplicationModel.theme = theme;
+        store();
     }
 
     function publicGetTheme() {
-        return privateModel.theme;
+        return privateApplicationModel.theme;
     }
 
     function publicSetSortStrategy(sortStrategy) {
-        privateModel.sortStrategy = sortStrategy;
+        privateApplicationModel.sortStrategy = sortStrategy;
+        store();
     }
 
     function publicGetSortStrategy() {
-        return privateModel.sortStrategy;
+        return privateApplicationModel.sortStrategy;
     }
 
     function publicSetShowDone(showDone) {
-        privateModel.isShowDone = showDone;
+        privateApplicationModel.isShowDone = showDone;
     }
 
     function publicGetShowDone() {
-        return privateModel.isShowDone;
+        return privateApplicationModel.isShowDone;
     }
 
-    function publicGetNotes() {
-        return privateModel.notes;
+    function publicGetNotesRepository() {
+        return privateNotesRepository;
     }
 
     return {
         initialize: publicInitialize,
-        store: publicStore,
-        addNote: publicAddNote,
-        updateNote: publicUpdateNote,
-        deleteNote: publicDeleteNote,
-        getNotes: publicGetNotes,
+        getNotesRepository: publicGetNotesRepository,
         setTheme: publicSetTheme,
         getTheme: publicGetTheme,
         setSortStrategy: publicSetSortStrategy,
         getSortStrategy: publicGetSortStrategy,
         setShowDone: publicSetShowDone,
         getShowDone: publicGetShowDone,
-        Note: Note,
     };
 })();
