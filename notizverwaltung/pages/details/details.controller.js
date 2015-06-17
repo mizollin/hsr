@@ -39,8 +39,8 @@ var DETAILS_CONTROLLER = (function(applicationModel) {
         //var creationDate = new Date();
         //var isDone = false;
 
-        var repository = APPLICATION_MODEL.getNotesRepository();
-        return new repository.Note(null, null, null, title, description, dueByDate, importance);
+        //var repository = APPLICATION_MODEL.getNotesRepository();
+        return new (APPLICATION_MODEL.getNotesRepository().Note)(null, null, null, title, description, dueByDate, importance);
     }
 
     function publicSetTheme(theme) {
