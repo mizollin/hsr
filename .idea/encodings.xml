@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$/notizverwaltung/pages/details/details.controller.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/notizverwaltung/pages/details/details.handler.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/notizverwaltung/pages/details/details.js" charset="UTF-8" />
@@ -12,7 +12,6 @@
     <file url="file://$PROJECT_DIR$/notizverwaltung/resources/css/styles.css" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/notizverwaltung/resources/js/application.constants.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/notizverwaltung/resources/js/application.model.js" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/notizverwaltung/resources/js/application.router.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/notizverwaltung/resources/js/array.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/notizverwaltung/todos.txt" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
