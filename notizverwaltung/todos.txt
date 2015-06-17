@@ -24,3 +24,17 @@ ANDERE THEMEN
 - accessibility?
 - testing? (jasmine?)
 - input validations?
+
+
+TASK
+============
+Stefano
+-- Server: erstellen
+-- Server: Service Notes mit CRUD-Operationen nach HATEOAS
+-- Server: Speichern Notes in DB
+
+Michi
+-- Client: Sicht Erledigtte & Status auf Modell
+-- Client: Model Note mit CRUD-Operationen nach HATEOAS
+-- Client: Style/Sortierung (User Einstellungen) speichern
+-- Client: Serverobjekt für addNotes und getNotes
