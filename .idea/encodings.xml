@@ -10,9 +10,9 @@
     <file url="file://$PROJECT_DIR$/notizverwaltung/resources/css/bw-theme.css" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/notizverwaltung/resources/css/default-theme.css" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/notizverwaltung/resources/css/styles.css" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/notizverwaltung/resources/js/application.constants.js" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/notizverwaltung/resources/js/application.model.js" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/notizverwaltung/resources/js/array.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/notizverwaltung/resources/js/model/application.model.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/notizverwaltung/resources/js/util/application.constants.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/notizverwaltung/resources/js/util/array.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/notizverwaltung/todos.txt" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>

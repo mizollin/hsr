@@ -1,4 +1,5 @@
 var NOTES_REPOSITORY = (function () {
+
     function Note(uuid, creationDate, isDone, title, description, dueByDate, importance) {
         this.uuid = uuid;
         this.creationDate = creationDate;
@@ -73,6 +74,6 @@ var NOTES_REPOSITORY = (function () {
         updateNote: publicUpdateNote,
         deleteNote: publicDeleteNote,
         getNotes: publicGetNotes,
-        Note: Note,
+        Note: Note
     };
 })();

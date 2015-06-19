@@ -42,5 +42,5 @@ var CONSTANTS = {
 
 // value constants...
     VAL_THEME_DEFAULT: "theme_def",
-    VAL_THEME_BW: "theme_bw",
+    VAL_THEME_BW: "theme_bw"
 };
