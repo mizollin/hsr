@@ -9,8 +9,12 @@ var router = express.Router();
 
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json())
-app.use("/notes", require('./routes/notesRoutes.js'));
+app.use("/", require("./routes/homeRoutes.js"));
+app.use("/notes", require("./routes/notesRoutes.js"));
+
+// nothing to serve in here...yet
 app.use(express.static(__dirname + "/public"));
+
 app.use(errorHandler);
 
 app.listen(config.port, config.host);

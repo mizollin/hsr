@@ -1,11 +1,11 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-var notes = require('../controller/notesController.js');
+var notesController = require("../controller/notesController.js");
 
-router.get("/", notes.getNotes);
-router.post("/", notes.createNote);
-router.get("/:id/", notes.getNote);
-router.delete("/:id/", notes.deleteNote);
-router.put("/:id/", notes.updateNote);
+router.get("/", notesController.getNotes);
+router.post("/", notesController.createNote);
+router.get("/:id/", notesController.getNote);
+router.delete("/:id/", notesController.deleteNote);
+router.put("/:id/", notesController.updateNote);
 
 module.exports = router;

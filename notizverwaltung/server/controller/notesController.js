@@ -1,28 +1,16 @@
 var notesStore = require("../services/notesStore.js");
 var config = require("../config/config.js");
-
-var notesRootUrl = "http://" + config.host + ":" + config.port + "/notes/";
-
-function Link(rel, url, method) {
-    this.rel = rel;
-    this.url = url;
-    this.method = method;
-}
-
-function NoteResource(note, links) {
-    this.note = note;
-    this.links = links;
-}
+var models = require("../model/models.js");
 
 function createNoteResource(note) {
-    var selfLink = new Link("self", notesRootUrl + note._id, "GET");
-    var deleteLink = new Link("delete", notesRootUrl + note._id, "DELETE");
-    var updateLink = new Link("update", notesRootUrl + note._id, "PUT");
-    var createLink = new Link("create", notesRootUrl, "POST");
+    var selfLink = new models.Link("self", config.urlNotes + note._id, "GET");
+    var deleteLink = new models.Link("delete", config.urlNotes + note._id, "DELETE");
+    var updateLink = new models.Link("update", config.urlNotes + note._id, "PUT");
+    var createLink = new models.Link("create", config.urlNotes, "POST");
 
     var links = [selfLink, deleteLink, updateLink, createLink];
 
-    return new NoteResource(note, links);
+    return new models.NoteResource(note, links);
 }
 
 function createNoteResources(notes) {
@@ -68,7 +56,7 @@ module.exports.createNote = function (req, res, next) {
             if (err) return next(err);
 
             // returning 201 with location to the created resource...
-            res.status(201).location(notesRootUrl + note._id).send();
+            res.status(201).location(config.urlNotes + note._id).send();
         });
 };
 

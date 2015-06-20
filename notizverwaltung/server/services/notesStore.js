@@ -1,22 +1,15 @@
-var Datastore = require("nedb");
+var dataStore = require("nedb");
+var utils = require("../util/utils.js");
+var models = require("../model/models.js");
 
-var db = new Datastore({filename: "./server/data/notes.db", autoload: true});
-
-// NOTE: the _id field will be automatically inserted by nedb upon inserting a new 'doc'
-function Note(id, creationDate, isDone, title, description, dueByDate, importance) {
-    this.creationDate = creationDate;
-    this.title = title;
-    this.description = description;
-    this.dueByDate = dueByDate;
-    this.importance = importance;
-    this.isDone = isDone;
-}
+var db = new dataStore({filename: "./server/data/notes.db", autoload: true});
 
 function publicAddNote(title, description, dueByDate, importance, callback) {
+    var id = utils.createUUID();
     var creationDate = new Date().toISOString();
     var isDone = false;
 
-    var note = new Note(creationDate, isDone, title, description, dueByDate, importance);
+    var note = new models.Note(id, creationDate, isDone, title, description, dueByDate, importance);
 
     db.insert(note, function (err, newNote) {
         callback(err, newNote);
