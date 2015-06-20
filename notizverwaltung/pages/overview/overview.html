@@ -138,12 +138,14 @@
 
 <!--load script here...-->
 <script src="../../resources/js/util/array.js"></script>
-<script src="../../resources/js/util/application.constants.js"></script>
 <script src="../../resources/js/repository/local.notes.repository.js"></script>
 <script src="../../resources/js/model/application.model.js"></script>
+
+<script src="../../resources/js/util/application.constants.js"></script>
 <script src="../../pages/overview/overview.controller.js"></script>
 <script src="../../pages/overview/overview.handler.js"></script>
 <script src="../../pages/overview/overview.js"></script>
+
 
 <script>
     var compiledNoteListItemTemplate = Handlebars.compile(document.getElementById("note-list-item-template").textContent);
@@ -157,6 +159,14 @@
         return new Handlebars.SafeString(convertTimeToDateString(options.fn(this)));
     });
 </script>
+<!--
+<script src="../../resources/js/controller/application.controller.js"></script>
 
+<script>
+    $(function () {
+        application_controller.initialize("detail");
+    });
+</script>
+-->
 </body>
 </html>

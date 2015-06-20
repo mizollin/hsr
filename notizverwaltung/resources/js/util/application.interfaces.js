@@ -43,6 +43,6 @@ Interface.ensureImplements = function(object) {
  * Definition off the interfaces
  */
 
-var iNotes = new Interface('Notes', []);
+var iNotes = new Interface('Notes', ['setStateDone', 'getState', 'getValuesAsObject']);
 var iRepository = new Interface('Repository', ['createNote','initialize','updateNote','deleteNote', 'getNotes']);
 
