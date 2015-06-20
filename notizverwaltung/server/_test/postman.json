@@ -1,0 +1,99 @@
+{
+  "id": "919434ac-d1f5-43c3-a98d-7b3afd91bc34",
+  "name": "notes",
+  "timestamp": 1434804763443,
+  "order": [
+    "0bc91c81-88ac-c9bf-0fab-b4fb6a290568",
+    "341bd990-ea35-5ca0-cd2f-1dad46c96888",
+    "327212c5-fc87-712b-a7f3-bb8c0c5cab21",
+    "2d5b62c3-ce44-5463-8d49-c29580e4ef80",
+    "a0cfde1e-d121-1f49-a0e7-55dd7f3a9e8b",
+    "52e68f06-2f62-4f75-2f4f-03ce0388b57c"
+  ],
+  "requests": [
+    {
+      "collectionId": "919434ac-d1f5-43c3-a98d-7b3afd91bc34",
+      "id": "0bc91c81-88ac-c9bf-0fab-b4fb6a290568",
+      "name": "Home",
+      "description": "get the home resource",
+      "url": "http://localhost:3000/",
+      "method": "GET",
+      "headers": "Accept: application/json\n",
+      "data": "{\"title\": \"my Title\",\n \"description\": \"something\",\n \"dueByDate\": \"2015-06-12T14:39:49.408Z\",\n \"importance\": \"2\",\n \"isDone\": \"true\"}",
+      "dataMode": "raw",
+      "timestamp": 0,
+      "responses": [],
+      "version": 2
+    },
+    {
+      "collectionId": "919434ac-d1f5-43c3-a98d-7b3afd91bc34",
+      "id": "2d5b62c3-ce44-5463-8d49-c29580e4ef80",
+      "name": "PutNote",
+      "description": "updating an existing note...",
+      "url": "http://localhost:3000/notes/GdFHcojPE7mtLeG9",
+      "method": "PUT",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "data": "{\"title\": \"my Title\",\n \"description\": \"something\",\n \"dueByDate\": \"2015-06-12T14:39:49.408Z\",\n \"importance\": \"2\",\n \"isDone\": \"true\"}",
+      "dataMode": "raw",
+      "timestamp": 0,
+      "version": 2,
+      "time": 1434811841716
+    },
+    {
+      "collectionId": "919434ac-d1f5-43c3-a98d-7b3afd91bc34",
+      "id": "327212c5-fc87-712b-a7f3-bb8c0c5cab21",
+      "name": "CreateNewNote",
+      "description": "creating a new note",
+      "url": "http://localhost:3000/notes",
+      "method": "POST",
+      "headers": "Accept: application/json\nContent-Type: application/json\n",
+      "data": "{\"title\" : \"my Title\", \"description\" : \"something\", \"dueByDate\":\"2015-06-12T14:39:49.408Z\", \"importance\" : \"2\"}",
+      "dataMode": "raw",
+      "timestamp": 0,
+      "version": 2,
+      "time": 1434805638930
+    },
+    {
+      "collectionId": "919434ac-d1f5-43c3-a98d-7b3afd91bc34",
+      "id": "341bd990-ea35-5ca0-cd2f-1dad46c96888",
+      "name": "GetAllNotes",
+      "description": "getting all existing notes",
+      "url": "http://localhost:3000/notes",
+      "method": "GET",
+      "headers": "Accept: application/json\n",
+      "data": "[\"title\" : \"my Title\", \"description\" : \"something\", \"dueByDate\":\"\\\"2015-06-12T14:39:49.408Z\\\"\", \"importance\" : \"2\"]",
+      "dataMode": "params",
+      "timestamp": 0,
+      "version": 2,
+      "time": 1434805040496
+    },
+    {
+      "collectionId": "919434ac-d1f5-43c3-a98d-7b3afd91bc34",
+      "id": "52e68f06-2f62-4f75-2f4f-03ce0388b57c",
+      "name": "getSingleNote",
+      "description": "get a single note by its id in path",
+      "url": "http://localhost:3000/notes/1999c5fc-84b9-45a7-a78a-a8af3b610e12",
+      "method": "GET",
+      "headers": "Accept: application/json\n",
+      "data": "{\"title\" : \"my Title\", \"description\" : \"something\", \"dueByDate\":\"2015-06-12T14:39:49.408Z\", \"importance\" : \"2\"}",
+      "dataMode": "params",
+      "timestamp": 0,
+      "responses": [],
+      "version": 2
+    },
+    {
+      "collectionId": "919434ac-d1f5-43c3-a98d-7b3afd91bc34",
+      "id": "a0cfde1e-d121-1f49-a0e7-55dd7f3a9e8b",
+      "name": "DeleteNote",
+      "description": "deletes a note",
+      "url": "http://localhost:3000/notes/GdFHcojPE7mtLeG9",
+      "method": "DELETE",
+      "headers": "",
+      "data": [],
+      "dataMode": "params",
+      "timestamp": 0,
+      "responses": [],
+      "version": 2
+    }
+  ]
+}
