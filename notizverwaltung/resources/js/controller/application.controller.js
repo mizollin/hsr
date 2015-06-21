@@ -1,9 +1,25 @@
 
+// adding a generic method to array i na fancy way, so we can operate directly on the
+// array rather than having to write an "own" method...
+Array.prototype.getIndexByPredicate = function (fPredicate) {
+    for (var i = 0; i < this.length; ++i) {
+        if (fPredicate(this[i])) {
+            return i;
+        }
+    }
+    return -1;
+};
+
+
 var application_controller = (function(){
     var self = this;
 
     //router
     self.PATH_APP_ROUTER = "../../resources/js/router/application.router.js";
+    //interface
+    self.PATH_APP_INTERFACE = "../../resources/js/util/application.interfaces.js";
+    //modell
+    self.PATH_APP_MODEL = "../../resources/js/model/application.model.js";
     //constant
     self.PATH_CONSTANT = "../../resources/js/util/application.constants.js";
     // views
@@ -27,6 +43,7 @@ var application_controller = (function(){
     }
 
     function privateAppInizialize(){
+        Interface.ensureImplements(NOTES_REPOSITORY, iRepository)
         NOTES_REPOSITORY.initialize();
         APPLICATION_MODEL.initialize(NOTES_REPOSITORY);
         page_controller.initialize(APPLICATION_MODEL);
@@ -37,6 +54,18 @@ var application_controller = (function(){
         if(self.router){
             self.router.goToPage(pageId);
         }
+    }
+
+    function privateLoadScript(path){
+
+        $.getScript( path , function( data, textStatus, jqxhr ) {
+            console.log( path );
+            console.log( textStatus );
+            console.log( jqxhr.status );
+            console.log( "Load was performed." );
+
+        });
+
     }
 
     /**
@@ -53,7 +82,8 @@ var application_controller = (function(){
 
     function publicStartLoadScript(){
         privateLoadScript(self.PATH_CONSTANT);
-        privateLoadScript(self.PATH_APP_ROUTER);
+        privateLoadScript(self.PATH_APP_INTERFACE);
+        privateLoadScript(self.PATH_APP_MODEL);
     }
 
     return {
@@ -63,3 +93,5 @@ var application_controller = (function(){
     }
 
 })();
+
+application_controller.loadStartScriptForPage();

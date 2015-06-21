@@ -137,11 +137,12 @@
 </footer>
 
 <!--load script here...-->
-<script src="../../resources/js/util/array.js"></script>
 <script src="../../resources/js/repository/local.notes.repository.js"></script>
+<!--
 <script src="../../resources/js/model/application.model.js"></script>
 
 <script src="../../resources/js/util/application.constants.js"></script>
+-->
 <script src="../../resources/js/router/application.router.js"></script>
 <script src="../../resources/js/controller/application.controller.js"></script>
 <!--
@@ -162,11 +163,7 @@
     Handlebars.registerHelper("convertDate", function (options) {
         return new Handlebars.SafeString(convertTimeToDateString(options.fn(this)));
     });
-</script>
-<!--
-<script src="../../resources/js/controller/application.controller.js"></script>
--->
-<script>
+
     $(function () {
         application_controller.initialize("overview");
     });
