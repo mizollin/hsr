@@ -5,7 +5,7 @@ var application_controller = (function(){
     //router
     self.PATH_APP_ROUTER = "../../resources/js/router/application.router.js";
     //constant
-    self.PATH_CONSTANT = "../../resources/js/util/application.constans.js";
+    self.PATH_CONSTANT = "../../resources/js/util/application.constants.js";
     // views
     self.PAGE_OVERVIEW = "../../../pages/overview/overview.html";
     self.PAGE_DETAILS = "../../../pages/details/details.html";
@@ -20,37 +20,17 @@ var application_controller = (function(){
      */
     function privateAppControllerInitialize(currentPage){
         //Controllers initializing
-        privateLoadScript(self.PATH_CONSTANT);
-        privateLoadScript(self.PATH_APP_ROUTER);
         self.router = application_router.create();
-        self.router.setPage(currentPage);
-
-        NOTES_REPOSITORY.initialize();
-        APPLICATION_MODEL.initialize(NOTES_REPOSITORY);
-        page_controller.initialize(APPLICATION_MODEL);
-        page_handler.initialize(page_controller);
+        self.router.setPage(currentPage, privateAppInizialize);
 
         //Repostirory
     }
 
-    function privateLoadScript(scriptPath) {
-        var js = document.createElement("script");
-
-        js.type = "text/javascript";
-        js.src = scriptPath;
-
-        document.body.appendChild(js);
-        /*
-        $.getScript( scriptPath, function( data, textStatus, jqxhr ) {
-            console.log( data );
-            console.log( textStatus );
-            console.log( jqxhr.status );
-            console.log( "Load was performed." );
-
-        });//.fail()(function( jqxhr, settings, exception ) {
-            //$( "div.log" ).text( "Triggered ajaxError handler." );
-        //});
-        */
+    function privateAppInizialize(){
+        NOTES_REPOSITORY.initialize();
+        APPLICATION_MODEL.initialize(NOTES_REPOSITORY);
+        page_controller.initialize(APPLICATION_MODEL);
+        page_handler.initialize(page_controller);
     }
 
     function privateGoToPage(pageId){
@@ -58,7 +38,6 @@ var application_controller = (function(){
             self.router.goToPage(pageId);
         }
     }
-
 
     /**
      * Public
@@ -72,10 +51,15 @@ var application_controller = (function(){
         privateGoToPage(pageId);
     }
 
+    function publicStartLoadScript(){
+        privateLoadScript(self.PATH_CONSTANT);
+        privateLoadScript(self.PATH_APP_ROUTER);
+    }
+
     return {
         initialize: publicInitialize,
-        goToPage: publicGoToPage
+        goToPage: publicGoToPage,
+        loadStartScriptForPage: publicStartLoadScript
     }
 
 })();
-
