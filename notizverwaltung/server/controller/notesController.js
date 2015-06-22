@@ -23,6 +23,8 @@ function createNoteResources(notes) {
 }
 
 module.exports.getNotes = function (req, res, next) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+
     notesStore.getAll(function (err, notes) {
         if (err) return next(err);
 

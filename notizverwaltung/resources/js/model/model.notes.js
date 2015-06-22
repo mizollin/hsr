@@ -26,13 +26,13 @@ var model_factory = (function(){
 
         self.getValuesAsObject = function() {
             return {
-                uuid: uuid,
-                creationDate: creationDate,
-                title: title,
-                description: description,
-                dueByDate: dueByDate,
-                importance:  importance,
-                isDone: isDone
+                uuid: self.uuid,
+                creationDate: self.creationDate,
+                title: self.title,
+                description: self.description,
+                dueByDate: self.dueByDate,
+                importance:  self.importance,
+                isDone: self.isDone
             }
         };
 

@@ -23,7 +23,7 @@ app.listen(config.port, config.host);
 // generic shitty error handler. but will do for now...
 function errorHandler(err, req, res, next) {
     res.status(500);
-    res.send(err + new Error().stack);
+    //res.send(err + new Error().stack);
 }
 
 //http.createServer(app).listen(config.port);

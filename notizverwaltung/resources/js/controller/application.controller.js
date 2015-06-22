@@ -1,6 +1,5 @@
 
-// adding a generic method to array i na fancy way, so we can operate directly on the
-// array rather than having to write an "own" method...
+
 Array.prototype.getIndexByPredicate = function (fPredicate) {
     for (var i = 0; i < this.length; ++i) {
         if (fPredicate(this[i])) {
@@ -36,18 +35,29 @@ var application_controller = (function(){
      */
     function privateAppControllerInitialize(currentPage){
         //Controllers initializing
+        console.log("privateAppControllerInitialize");
+        privateLoadScript(self.PATH_CONSTANT);
+        privateLoadScript(self.PATH_APP_INTERFACE);
+        privateLoadScript(self.PATH_APP_MODEL);
+        privateLoadScript(self.PATH_APP_ROUTER);
         self.router = application_router.create();
         self.router.setPage(currentPage, privateAppInizialize);
+        Interface.ensureImplements(NOTES_REPOSITORY, iRepository)
+        NOTES_REPOSITORY.initialize(publicInitializePage);
 
-        //Repostirory
     }
 
-    function privateAppInizialize(){
-        Interface.ensureImplements(NOTES_REPOSITORY, iRepository)
-        NOTES_REPOSITORY.initialize();
+    function privateInitialPage() {
+        console.log("privateInitialPage");
         APPLICATION_MODEL.initialize(NOTES_REPOSITORY);
         page_controller.initialize(APPLICATION_MODEL);
         page_handler.initialize(page_controller);
+    }
+
+    function privateAppInizialize(){
+        console.log("privateAppInitialize");
+        //Interface.ensureImplements(NOTES_REPOSITORY, iRepository)
+        //NOTES_REPOSITORY.initialize(publicInitializePage);
     }
 
     function privateGoToPage(pageId){
@@ -57,7 +67,19 @@ var application_controller = (function(){
     }
 
     function privateLoadScript(path){
+        console.log("App privateLpadScript");
 
+        $.ajax({
+            method: "GET",
+            url: path,
+            async: false,
+            dataType: "script",
+            success: function(data, textStatus, jqXHR){
+                console.log( path );
+            }
+        });
+
+        /*
         $.getScript( path , function( data, textStatus, jqxhr ) {
             console.log( path );
             console.log( textStatus );
@@ -65,12 +87,18 @@ var application_controller = (function(){
             console.log( "Load was performed." );
 
         });
+        */
+
 
     }
 
     /**
      * Public
      */
+    function publicInitializePage(){
+        privateInitialPage();
+    }
+
     function publicInitialize(currentPage) {
        privateAppControllerInitialize(currentPage);
 
@@ -79,19 +107,18 @@ var application_controller = (function(){
     function publicGoToPage(pageId) {
         privateGoToPage(pageId);
     }
-
+    /*
     function publicStartLoadScript(){
+        console.log("publicStartLoadScript");
         privateLoadScript(self.PATH_CONSTANT);
         privateLoadScript(self.PATH_APP_INTERFACE);
         privateLoadScript(self.PATH_APP_MODEL);
     }
+    */
 
     return {
         initialize: publicInitialize,
-        goToPage: publicGoToPage,
-        loadStartScriptForPage: publicStartLoadScript
+        goToPage: publicGoToPage
     }
 
 })();
-
-application_controller.loadStartScriptForPage();

@@ -34,6 +34,7 @@ var OVERVIEW_HANDLER = (function() {
     }
 
     function publicInitialize(applicationController) {
+        console.log("overview handler initial");
 
         privateApplicationController = applicationController;
 
