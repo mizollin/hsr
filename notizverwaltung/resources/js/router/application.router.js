@@ -18,6 +18,7 @@ var application_router = (function(){
         self.Pages.details = {page: self.PAGE_DETAILS, controller: self.PATH_CONTROLLER_DETAILS, handler: self.PATH_HANDLER_DETAILS};
 
         self.setPage = function(currentPage, callback){
+            console.log("router setpage");
             switch (currentPage) {
                 case "overview":
                     self.loadScript(self.PATH_OVERVIEW, callback);
@@ -26,9 +27,9 @@ var application_router = (function(){
 
                     break;
                 case "details":
-                    self.loadScript(self.PATH_DETAILS, callback);
-                    self.loadScript(self.PATH_CONTROLLER_DETAILS, callback);
-                    self.loadScript(self.PATH_HANDLER_DETAILS, callback);
+                    //self.loadScript(self.PATH_DETAILS, callback);
+                    //self.loadScript(self.PATH_CONTROLLER_DETAILS, callback);
+                    //self.loadScript(self.PATH_HANDLER_DETAILS, callback);
                     break;
                 default :
                     console.log("ApplicationRouter currentPage not found");
@@ -45,12 +46,13 @@ var application_router = (function(){
             js.async = false;
 
             document.body.appendChild(js);
-            */
+
             $.getScript( path , function( data, textStatus, jqxhr ) {
-                //console.log( data );
-                console.log( textStatus );
-                console.log( jqxhr.status );
-                console.log( "Load was performed." );
+                console.log("router loadscript");
+                console.log( path );
+                //console.log( textStatus );
+                //console.log( jqxhr.status );
+                //console.log( "Load was performed." );
 
                 try {
                     if(page_controller && page_handler) {
@@ -60,6 +62,17 @@ var application_router = (function(){
 
                 }
 
+            });
+            */
+
+            $.ajax({
+                method: "GET",
+                url: path,
+                async: false,
+                dataType: "script",
+                success: function(data, textStatus, jqXHR){
+                    console.log( path );
+                }
             });
 
         }

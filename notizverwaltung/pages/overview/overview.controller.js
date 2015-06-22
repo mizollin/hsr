@@ -196,6 +196,7 @@ var page_controller = (function (applicationModel) {
     }
 
     function publicInitialize(applicationModel) {
+        console.log("overview cont initial");
         privateApplicationModel = applicationModel;
         publicSetTheme(privateApplicationModel.getTheme());
         renderNotes(privateApplicationModel.getNotesRepository().getNotes());

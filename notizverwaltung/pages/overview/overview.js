@@ -55,9 +55,11 @@ function handleDragEnter(e) {
 }
 
 // bootstrap...
+/*
 $(function () {
     NOTES_REPOSITORY.initialize();
     APPLICATION_MODEL.initialize(NOTES_REPOSITORY);
     OVERVIEW_CONTROLLER.initialize(APPLICATION_MODEL);
     OVERVIEW_HANDLER.initialize(OVERVIEW_CONTROLLER);
 });
+*/

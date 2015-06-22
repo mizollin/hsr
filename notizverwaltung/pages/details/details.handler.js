@@ -50,7 +50,9 @@ var DETAILS_HANDLER = (function() {
 
 var page_handler = (function() {
 
-    var privateDetailsController;
+    var self = this;
+
+    self.privateDetailsController;
 
     function bubbledEventHandler() {
         var targetID = $(event.target).attr("id");
@@ -58,19 +60,19 @@ var page_handler = (function() {
 
         switch (targetID) {
             case CONSTANTS.ID_SAVE:
-                privateDetailsController.save();
+                self.privateDetailsController.save();
 
                 // have to return false here since it is called from within a form...apparently that requires false to be returned...
                 return false;
                 break;
             case CONSTANTS.ID_CANCEL:
-                privateDetailsController.cancel();
+                self.privateDetailsController.cancel();
 
                 // have to return false here since it is called from within a form...apparently that requires false to be returned...
                 return false;
                 break;
             case CONSTANTS.ID_THEME_SWITCH_CB:
-                privateDetailsController.setTheme($(event.target).val());
+                self.privateDetailsController.setTheme($(event.target).val());
                 break;
             default :
                 console.log("not handled here!");
@@ -79,7 +81,7 @@ var page_handler = (function() {
 
     function publicInitialize(controller) {
 
-        privateDetailsController = controller;
+        self.privateDetailsController = controller;
 
         // initialize handlers...
         $("#wrapper").on("click", bubbledEventHandler);
