@@ -28,7 +28,7 @@ module.exports.getNotes = function (req, res, next) {
 
         res.format({
             'application/json': function () {
-                res.json(createNoteResources(notes)).send();
+                res.json(createNoteResources(notes));
             },
         });
     });
@@ -40,7 +40,7 @@ module.exports.getNote = function (req, res, next) {
 
         res.format({
             'application/json': function () {
-                res.json(createNoteResource(note)).send();
+                res.json(createNoteResource(note));
             },
         });
     });
@@ -74,7 +74,7 @@ module.exports.updateNote = function (req, res, next) {
 
         res.format({
             'application/json': function () {
-                res.json(createNoteResource(note)).send();
+                res.json(createNoteResource(note));
             },
         });
     });

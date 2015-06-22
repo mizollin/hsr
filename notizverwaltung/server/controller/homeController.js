@@ -12,7 +12,7 @@ module.exports.getHome = function (req, res, next) {
 
     res.format({
         'application/json': function () {
-            res.json(homeResource).send();
+            res.json(homeResource);
         },
     });
 };

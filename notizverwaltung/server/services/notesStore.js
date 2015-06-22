@@ -2,7 +2,7 @@ var dataStore = require("nedb");
 var utils = require("../util/utils.js");
 var models = require("../model/models.js");
 
-var db = new dataStore({filename: "./server/data/notes.db", autoload: true});
+var db = new dataStore({filename: "./_runtime/notes.db", autoload: true});
 
 function publicAddNote(title, description, dueByDate, importance, callback) {
     var id = utils.createUUID();

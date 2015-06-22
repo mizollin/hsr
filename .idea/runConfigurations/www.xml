@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="www" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="C:/Program Files/nodejs/node" path-to-js-file="www.js" working-dir="$PROJECT_DIR$/notizverwaltung/server">
+    <envs>
+      <env name="DEBUG" value="notes:*" />
+    </envs>
+    <method />
+  </configuration>
+</component>
