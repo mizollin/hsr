@@ -123,7 +123,7 @@ var page_controller = (function(applicationModel) {
         //var isDone = false;
 
         //var repository = APPLICATION_MODEL.getNotesRepository();
-        return new (APPLICATION_MODEL.getNotesRepository().Note)(null, null, null, title, description, dueByDate, importance);
+        return APPLICATION_MODEL.getNotesRepository().Note(null, null, null, title, description, dueByDate, importance);
     }
 
     function publicSetTheme(theme) {

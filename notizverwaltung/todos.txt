@@ -38,3 +38,5 @@ Michi
 -- Client: Model Note mit CRUD-Operationen nach HATEOAS
 -- Client: Style/Sortierung (User Einstellungen) speichern
 -- Client: Serverobjekt für addNotes und getNotes
+-- Client: IsDone Update auf DB
+-- Client: Edit Note

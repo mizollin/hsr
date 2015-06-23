@@ -7,6 +7,7 @@ var NOTES_REPOSITORY = (function () {
 
     self.CallBackInitialFinished;
 
+    /*
     function Note(uuid, creationDate, isDone, title, description, dueByDate, importance) {
         this.uuid = uuid;
         this.creationDate = creationDate;
@@ -16,6 +17,7 @@ var NOTES_REPOSITORY = (function () {
         this.importance = importance;
         this.isDone = isDone;
     }
+    */
 
     function privateLoadScript(path, callback){
         console.log("repo load script");
@@ -137,21 +139,26 @@ var NOTES_REPOSITORY = (function () {
         });
     }
 
-    function publicInitialize(callcBackInitialFinished) {
-        console.log("repo public initial");
-        self.CallBackInitialFinished = callcBackInitialFinished;
-        privateLoadScript( self.PATH_MODEL_NOTES, privateLoadNotesFromServer);
-        privateLoadNotesFromServer();
-    }
-
-    function publicCreateNote(note) {
+    function privateCreateNoteObj(title, description, dueByDate, importance) {
         var creationDate = new Date();
         var uuid = privateCreateUUID();
         var isDone = false;
 
-       //var newNote = model_factory.create(uuid, creationDate, isDone,note.title, note.description, note.dueByDate, note.importance);
-        privatePostNote();
-       // http POST request
+        return model_factory.create(uuid, creationDate, isDone,title, description, dueByDate, importance);
+
+    }
+
+    function publicInitialize(callcBackInitialFinished) {
+        console.log("repo public initial");
+        self.CallBackInitialFinished = callcBackInitialFinished;
+        //privateLoadScript( self.PATH_MODEL_NOTES, privateLoadNotesFromServer);
+        privateLoadNotesFromServer();
+    }
+
+    function publicCreateNote(note) {
+
+        privatePostNote(note);
+
     }
 
     function publicUpdateNote(note) {
@@ -173,12 +180,16 @@ var NOTES_REPOSITORY = (function () {
         return notes;
     }
 
+    function publicCreateNoteObj(title, description, dueByDate, importance) {
+        return privateCreateNoteObj(title, description, dueByDate, importance);
+    }
+
     return {
         initialize: publicInitialize,
         createNote: publicCreateNote,
         updateNote: publicUpdateNote,
         deleteNote: publicDeleteNote,
         getNotes: publicGetNotes,
-        Note: Note
+        Note: publicCreateNoteObj
     };
 })();

@@ -19,6 +19,7 @@ var application_controller = (function(){
     self.PATH_APP_INTERFACE = "../../resources/js/util/application.interfaces.js";
     //modell
     self.PATH_APP_MODEL = "../../resources/js/model/application.model.js";
+    self.PATH_MODEL_NOTES = "../../resources/js/model/model.notes.js";
     //constant
     self.PATH_CONSTANT = "../../resources/js/util/application.constants.js";
     // views
@@ -38,6 +39,7 @@ var application_controller = (function(){
         console.log("privateAppControllerInitialize");
         privateLoadScript(self.PATH_CONSTANT);
         privateLoadScript(self.PATH_APP_INTERFACE);
+        //privateLoadScript(self.PATH_MODEL_NOTES);
         privateLoadScript(self.PATH_APP_MODEL);
         privateLoadScript(self.PATH_APP_ROUTER);
         self.router = application_router.create();
