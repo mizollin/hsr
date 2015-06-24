@@ -94,11 +94,15 @@ var page_controller = (function(applicationModel) {
         var newNote = createNewNoteObjectFromInput();
         console.log(newNote);
 
-        privateApplicationModel.getNotesRepository().createNote(newNote);
+        privateApplicationModel.getNotesRepository().createNote(newNote, goToDetail);
 
         // switch back to the overview page...
-        application_controller.goToPage(CONSTANTS.ID_OVERVIEW);
+        //application_controller.goToPage(CONSTANTS.ID_OVERVIEW);
         //window.location = CONSTANTS.PAGE_OVERVIEW;
+    }
+
+    function goToDetail() {
+        application_controller.goToPage(CONSTANTS.ID_OVERVIEW);
     }
 
     function publicCancel() {

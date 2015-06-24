@@ -36,6 +36,10 @@ var model_factory = (function(){
             }
         };
 
+        self.getValuesAsJSON = function() {
+            return JSON.stringify(self.getValuesAsObject());
+        }
+
     }
 
     privateCreateInstance = function(uuid, creationDate, isDone, title, description, dueByDate, importance) {

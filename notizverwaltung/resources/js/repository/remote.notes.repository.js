@@ -44,14 +44,17 @@ var NOTES_REPOSITORY = (function () {
         }
     }
 
-    function privatePostNote(dataNoteObj){
+    function privatePostNote(dataNoteObj, callback){
         var request = $.ajax({
             method: "POST",
             url: privateGetUrl("add note"),
-            data: dataNoteObj,
+            data: dataNoteObj.getValuesAsObject,//dataNoteObj.getValuesAsJSON(),
             error: privateErrorAjax,
             success: function(data, textStatus, jqXHR){
                 console.log("Post Note to Server");
+                if(callback){
+                    callback();
+                }
             }
         });
     }
@@ -155,9 +158,9 @@ var NOTES_REPOSITORY = (function () {
         privateLoadNotesFromServer();
     }
 
-    function publicCreateNote(note) {
+    function publicCreateNote(note, callback) {
 
-        privatePostNote(note);
+        privatePostNote(note, callback);
 
     }
 
