@@ -45,10 +45,14 @@ var NOTES_REPOSITORY = (function () {
     }
 
     function privatePostNote(dataNoteObj, callback){
+
+        console.log(dataNoteObj.getValuesAsJSON());
+
         var request = $.ajax({
             method: "POST",
             url: privateGetUrl("add note"),
-            data: dataNoteObj.getValuesAsObject,//dataNoteObj.getValuesAsJSON(),
+            data: dataNoteObj.getValuesAsJSON(),
+            contentType: "application/json",
             error: privateErrorAjax,
             success: function(data, textStatus, jqXHR){
                 console.log("Post Note to Server");

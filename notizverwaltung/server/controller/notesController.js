@@ -23,8 +23,6 @@ function createNoteResources(notes) {
 }
 
 module.exports.getNotes = function (req, res, next) {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-
     notesStore.getAll(function (err, notes) {
         if (err) return next(err);
 
@@ -49,8 +47,6 @@ module.exports.getNote = function (req, res, next) {
 };
 
 module.exports.createNote = function (req, res, next) {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-
     notesStore.add(
         req.body.title,
         req.body.description,
@@ -65,8 +61,6 @@ module.exports.createNote = function (req, res, next) {
 };
 
 module.exports.updateNote = function (req, res, next) {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-
     var noteProperties = {
         title: req.body.title,
         description: req.body.description,
@@ -87,8 +81,6 @@ module.exports.updateNote = function (req, res, next) {
 };
 
 module.exports.deleteNote = function (req, res, next) {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-
     notesStore.delete(req.params.id, function (err, count) {
         if (err) return next(err);
 
