@@ -40,11 +40,10 @@
                             <label class="note-importance">{{#convertImportance}}{{{importance}}}{{/convertImportance}}</label>
                             <ul class="toolbar note-crud">
                                 <li>
-                                    <button id="edit_note" class="btn"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
+                                    <button class="btn"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
                                 </li>
                                 <li>
-                                    <button id="delete_note" class="btn danger"><i class="fa fa-trash-o"></i>&nbsp;Delete
-                                    </button>
+                                    <button class="btn danger"><i class="fa fa-trash-o"></i>&nbsp;Delete</button>
                                 </li>
                             </ul>
                         </div>
@@ -142,23 +141,17 @@
 
 <!-- Repo local oder remote -->
 <!--
-<script src="../../resources/js/repository/local.notes.repository.js"></script>
+<script src="../../../resources/js/repository/local.notes.repository.js"></script>
 -->
-<script src="../../resources/js/model/model.notes.js"></script>
-<script src="../../resources/js/repository/remote.notes.repository.js"></script>
-
-<!--
-<script src="../../resources/js/model/application.model.js"></script>
-<script src="../../resources/js/util/application.constants.js"></script>
-<script src="../../resources/js/router/application.router.js"></script>
--->
-<script src="../../resources/js/controller/application.controller.js"></script>
-<!--
-<script src="../../pages/overview/overview.controller.js"></script>
-<script src="../../pages/overview/overview.handler.js"></script>
-<script src="../../pages/overview/overview.js"></script>
--->
-
+<script src="../../../client/model/application.model.js"></script>
+<script src="../../../client/util/application.constants.js"></script>
+<script src="../../../client/model/model.notes.js"></script>
+<script src="../../../client/repository/remote.notes.repository.js"></script>
+<script src="../../../client/router/application.router.js"></script>
+<script src="../../../client/controller/application.controller.js"></script>
+<script src="overview.controller.js"></script>
+<script src="overview.handler.js"></script>
+<script src="overview.js"></script>
 
 <script>
     var compiledNoteListItemTemplate = Handlebars.compile(document.getElementById("note-list-item-template").textContent);
@@ -175,6 +168,7 @@
     $(function () {
         application_controller.initialize("overview");
     });
+
 </script>
 
 </body>

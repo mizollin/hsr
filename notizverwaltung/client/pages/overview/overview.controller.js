@@ -110,6 +110,10 @@ var page_controller = (function (applicationModel) {
 
     var privateApplicationModel;
 
+    function privateStoreUuidForEdit(uuid) {
+        localStorage.setItem(CONSTANTS.STORAGE_KEY_EDITNOTES, JSON.stringify(uuid));
+    }
+
     function publicCreateNewNote() {
          application_controller.goToPage(CONSTANTS.ID_DETAILS);
     }
@@ -187,12 +191,20 @@ var page_controller = (function (applicationModel) {
         }
     }
 
-    function publicDeleteNote(uuid) {
-        var success = privateApplicationModel.getNotesRepository().deleteNote(uuid);
-
+    function publicDeleteNoteCallback(success, uuid) {
         if (success) {
             $("#" + uuid).remove();
         }
+    }
+
+    function publicDeleteNote(uuid) {
+        privateApplicationModel.getNotesRepository().deleteNote(uuid, publicDeleteNoteCallback);
+
+    }
+
+    function publicEditNotes(uuid) {
+        privateStoreUuidForEdit(uuid);
+        application_controller.goToPage(CONSTANTS.ID_DETAILS);
     }
 
     function publicInitialize(applicationModel) {
@@ -208,5 +220,6 @@ var page_controller = (function (applicationModel) {
         deleteNote: publicDeleteNote,
         createNewNote: publicCreateNewNote,
         sortNotes: publicSortNotes,
+        editNotes: publicEditNotes,
     }
 })();

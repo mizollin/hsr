@@ -56,9 +56,18 @@ var page_handler = (function() {
 
     var privateApplicationController;
 
-    function bubbledEventHandler() {
+    function bubbledEventHandler(e) {
         var targetID = $(event.target).attr("id");
         console.log(targetID);
+        var edit = String.fromCharCode(160) + "Edit";
+        var del = String.fromCharCode(160) + "Delete";
+        if(targetID === undefined){
+            if (e.target.innerText == edit) {
+                targetID = CONSTANTS.ID_EDIT_NOTE;
+            } else if (e.target.innerText == del) {
+                targetID = CONSTANTS.ID_DELETE_NOTE;
+            }
+        }
 
         switch (targetID) {
             case CONSTANTS.ID_ADD_NEW_NOTE:
@@ -78,6 +87,9 @@ var page_handler = (function() {
                 break;
             case CONSTANTS.ID_SORT_BY_IMPORTANCE:
                 privateApplicationController.sortNotes(CONSTANTS.SORT_BY_IMPORTANCE);
+                break;
+            case CONSTANTS.ID_EDIT_NOTE:
+                privateApplicationController.editNotes(lookupNoteIDByEvent(event));
                 break;
             default :
                 console.log("not handled here!");

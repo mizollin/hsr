@@ -50,17 +50,17 @@ var NOTES_REPOSITORY = (function () {
         // uuid of the note to be updated should be contained in the given note...
     }
 
-    function publicDeleteNote(uuid) {
+    function publicDeleteNote(uuid, callback) {
         var index = getIndexForNoteByUUID(uuid);
         if (index === -1) {
-            return false;
+            callback(false, uuid);
         }
         else {
             privateNotes.splice(index, 1);
 
             store();
 
-            return true;
+            callback(true, uuid);
         }
     }
 

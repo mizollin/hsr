@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
-    <file url="file://$PROJECT_DIR$/notizverwaltung/pages/details/details.controller.js" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/notizverwaltung/pages/details/details.handler.js" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/notizverwaltung/pages/details/details.js" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/notizverwaltung/pages/overview/overview.controller.js" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/notizverwaltung/pages/overview/overview.handler.js" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/notizverwaltung/pages/overview/overview.js" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/notizverwaltung/resources/css/bw-theme.css" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/notizverwaltung/resources/css/default-theme.css" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/notizverwaltung/resources/css/styles.css" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/notizverwaltung/resources/js/model/application.model.js" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/notizverwaltung/resources/js/util/application.constants.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/notizverwaltung/client/model/application.model.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/notizverwaltung/client/pages/details/details.controller.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/notizverwaltung/client/pages/details/details.handler.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/notizverwaltung/client/pages/details/details.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/notizverwaltung/client/pages/overview/overview.controller.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/notizverwaltung/client/pages/overview/overview.handler.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/notizverwaltung/client/pages/overview/overview.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/notizverwaltung/client/resources/css/bw-theme.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/notizverwaltung/client/resources/css/default-theme.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/notizverwaltung/client/resources/css/styles.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/notizverwaltung/client/util/application.constants.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/notizverwaltung/server/app/app.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/notizverwaltung/server/controller/notesController.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/notizverwaltung/server/routes/notesRoutes.js" charset="UTF-8" />

@@ -17,64 +17,20 @@ var application_router = (function(){
         self.Pages.overview = {page: self.PAGE_OVERVIEW, controller: self.PATH_CONTROLLER_OVERVIEW, handler: self.PATH_HANDLER_OVERVIEW};
         self.Pages.details = {page: self.PAGE_DETAILS, controller: self.PATH_CONTROLLER_DETAILS, handler: self.PATH_HANDLER_DETAILS};
 
-        self.setPage = function(currentPage, callback){
+        self.setPage = function(currentPage){
+            self.currentPage = currentPage;
+
             console.log("router setpage");
             switch (currentPage) {
                 case "overview":
-                    self.loadScript(self.PATH_OVERVIEW, callback);
-                    self.loadScript(self.PATH_CONTROLLER_OVERVIEW, callback);
-                    self.loadScript(self.PATH_HANDLER_OVERVIEW, callback);
 
                     break;
                 case "details":
-                    //self.loadScript(self.PATH_DETAILS, callback);
-                    //self.loadScript(self.PATH_CONTROLLER_DETAILS, callback);
-                    //self.loadScript(self.PATH_HANDLER_DETAILS, callback);
                     break;
                 default :
                     console.log("ApplicationRouter currentPage not found");
                     break;
             }
-        }
-
-        self.loadScript = function(path, callback){
-            /*
-            var js = document.createElement("script");
-
-            js.type = "text/javascript";
-            js.src = path;
-            js.async = false;
-
-            document.body.appendChild(js);
-
-            $.getScript( path , function( data, textStatus, jqxhr ) {
-                console.log("router loadscript");
-                console.log( path );
-                //console.log( textStatus );
-                //console.log( jqxhr.status );
-                //console.log( "Load was performed." );
-
-                try {
-                    if(page_controller && page_handler) {
-                        callback();
-                    }
-                } catch(e) {
-
-                }
-
-            });
-            */
-
-            $.ajax({
-                method: "GET",
-                url: path,
-                async: false,
-                dataType: "script",
-                success: function(data, textStatus, jqXHR){
-                    console.log( path );
-                }
-            });
-
         }
 
         self.goToPage = function(pageId){

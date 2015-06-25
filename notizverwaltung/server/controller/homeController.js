@@ -10,8 +10,6 @@ module.exports.getHome = function (req, res, next) {
 
     var homeResource = new models.Resource(null, links);
 
-    res.setHeader("Access-Control-Allow-Origin", "*");
-
     res.format({
         'application/json': function () {
             res.json(homeResource);

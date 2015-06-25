@@ -21,6 +21,7 @@ var CONSTANTS = {
     // key constants for the storage...
     STORAGE_KEY_APPLICATION_MODEL: "nv.applicationModel",
     STORAGE_KEY_NOTES: "nv.notes",
+    STORAGE_KEY_EDITNOTES: "nv.editnotes",
 
     // id constants...
     ID_THEME: "theme",

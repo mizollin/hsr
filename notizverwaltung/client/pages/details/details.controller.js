@@ -87,6 +87,21 @@ var page_controller = (function(applicationModel) {
 
     var privateApplicationModel;
 
+    function privateIsEditNote(){
+        var storedNote = JSON.parse(localStorage.getItem(CONSTANTS.STORAGE_KEY_EDITNOTES));
+        localStorage.removeItem(CONSTANTS.STORAGE_KEY_EDITNOTES);
+        if(storedNote){
+            var note = privateApplicationModel.getNotesRepository().GetNoteByUuid(storedNote);
+            if (note) {
+
+                $("#" + CONSTANTS.ID_NOTE_DETAILS_DUE_BY).text(note.dueByDate);
+                $("#" + CONSTANTS.ID_NOTE_DETAILS_TITLE).text(note.title);
+                $("#" + CONSTANTS.ID_NOTE_DETAILS_DESCRIPTION).text(note.description);
+
+            }
+        }
+    }
+
     function publicSave() {
         console.log("save() called");
 
@@ -127,7 +142,7 @@ var page_controller = (function(applicationModel) {
         //var isDone = false;
 
         //var repository = APPLICATION_MODEL.getNotesRepository();
-        return APPLICATION_MODEL.getNotesRepository().Note(null, null, null, title, description, dueByDate, importance);
+        return APPLICATION_MODEL.getNotesRepository().Note(title, description, dueByDate, importance);
     }
 
     function publicSetTheme(theme) {
@@ -159,6 +174,7 @@ var page_controller = (function(applicationModel) {
 
     function publicInitialize(applicationModel) {
         privateApplicationModel = applicationModel;
+        privateIsEditNote();
         publicSetTheme(privateApplicationModel.getTheme());
     }
 
