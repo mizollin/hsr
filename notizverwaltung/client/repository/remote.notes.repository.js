@@ -122,15 +122,22 @@ var NOTES_REPOSITORY = (function () {
         });
     }
 
-    function privatePutNote(note, url){
+    function privatePutNote(note, url, callback){
         var request = $.ajax({
             method: "PUT",
             url: url,
             contentType: 'application/json',
-            data: note.getValuesAsObject(),
-            error: privateErrorAjax,
+            data: note.getValuesAsJSON(),
+            error: function(jqXHR, extStatus, errorThrown){
+
+                privateErrorAjax(jqXHR, extStatus, errorThrown)
+
+            },
             success: function(data, textStatus, jqXHR){
                 console.log(textStatus);
+                if (callback) {
+                    callback();
+                }
             },
         });
     }
@@ -165,8 +172,8 @@ var NOTES_REPOSITORY = (function () {
 
     }
 
-    function publicUpdateNote(note) {
-        privatePutNote(note, privateGetUrlFromObjByKey("update", note));
+    function publicUpdateNote(note, callback) {
+        privatePutNote(note, privateGetUrlFromObjByKey("update", note), callback);
         // http UPDATE request
     }
 
