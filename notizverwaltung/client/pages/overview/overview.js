@@ -2,8 +2,13 @@
  * Created by Stefano on 25.05.2015.
  */
 // fetch any data we have and fill the DOM tree...
-function renderNotes(notes) {
-    $("#notes").html(compiledNoteListItemTemplate(notes));
+function renderNotes(notes, tagId, state) {
+    //$("#notes").html(compiledNoteListItemTemplate(notes));
+    if (state == "open") {
+        $(tagId).html(compiledNoteListItemTemplate(notes));
+    } else {
+        $(tagId).html(compiledNoteDoneListItemTemplate(notes));
+    }
 
     $( "li" ).each(function( index ) {
         $(this).on('dragstart', handleDragStart);

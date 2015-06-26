@@ -93,6 +93,15 @@ body {
     margin: 0;
 }
 
+#notes_done {
+    padding: 0;
+    margin: 0;
+}
+
+.note-table-coloumn {
+    width: 50%;
+}
+
 .note-list-item {
     display: flex;
     flex-direction: row;
