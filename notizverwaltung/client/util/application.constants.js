@@ -38,6 +38,8 @@ var CONSTANTS = {
     ID_CANCEL: "cancel",
     ID_DETAILS: "details",
     ID_OVERVIEW: "overview",
+    ID_DONE: "done",
+    ID_OPEN: "open",
 
     ID_NOTE_DETAILS_TITLE: "note-details-title",
     ID_NOTE_DETAILS_DESCRIPTION: "note-details-description",

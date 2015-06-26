@@ -30,7 +30,7 @@
     <script id="note-list-item-template" type="text/x-handlebars-template">
         {{#each this}}
 
-        <li id={{this.uuid}} class="note-list-item" draggable="true">
+        <li id={{uuid}} class="note-list-item" draggable="true">
             <table class="note-table">
                 <tr>
                     <td><h3 class="note-due-by">{{#convertDate}}{{{dueByDate}}}{{/convertDate}}</h3></td>
@@ -64,7 +64,7 @@
     <script id="note-done-list-item-template" type="text/x-handlebars-template">
         {{#each this}}
 
-        <li id={{this.uuid}} class="note-list-item" draggable="true">
+        <li id={{uuid}} class="note-list-item" draggable="true">
             <table class="note-table">
                 <tr>
                     <td><h3 class="note-due-by">{{#convertDate}}{{{dueByDate}}}{{/convertDate}}</h3></td>

@@ -207,6 +207,25 @@ var page_controller = (function (applicationModel) {
         application_controller.goToPage(CONSTANTS.ID_DETAILS);
     }
 
+    function publicSetOpen(uuid, event) {
+        var tag = "#" + uuid;
+        var note = APPLICATION_MODEL.getNotesRepository().GetNoteByUuid(uuid);
+        note.setStateDone(false);
+        privateApplicationModel.getNotesRepository().updateNote(note, function(){
+            $("#notes").append($(tag));
+        });
+
+    }
+
+    function publicSetDone(uuid, event) {
+        var tag = "#" + uuid;
+        var note = APPLICATION_MODEL.getNotesRepository().GetNoteByUuid(uuid);
+        note.setStateDone(true);
+        privateApplicationModel.getNotesRepository().updateNote(note, function(){
+            $("#notes_done").append($(tag));
+        });
+    }
+
     function publicInitialize(applicationModel) {
         console.log("overview cont initial");
         privateApplicationModel = applicationModel;
@@ -234,5 +253,7 @@ var page_controller = (function (applicationModel) {
         createNewNote: publicCreateNewNote,
         sortNotes: publicSortNotes,
         editNotes: publicEditNotes,
+        setDone: publicSetDone,
+        setOpen: publicSetOpen,
     }
 })();

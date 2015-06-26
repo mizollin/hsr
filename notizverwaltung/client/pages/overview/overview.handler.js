@@ -66,7 +66,14 @@ var page_handler = (function() {
                 targetID = CONSTANTS.ID_EDIT_NOTE;
             } else if (e.target.textContent == del) { //e.target.innerText
                 targetID = CONSTANTS.ID_DELETE_NOTE;
+            } else if (e.target.type == "checkbox") {
+                if ($(e.target).is(':checked')) {
+                    targetID = CONSTANTS.ID_DONE;
+                } else {
+                    targetID = CONSTANTS.ID_OPEN;
+                }
             }
+
         }
 
         switch (targetID) {
@@ -90,6 +97,12 @@ var page_handler = (function() {
                 break;
             case CONSTANTS.ID_EDIT_NOTE:
                 privateApplicationController.editNotes(lookupNoteIDByEvent(e));
+                break;
+            case CONSTANTS.ID_OPEN:
+                privateApplicationController.setOpen(lookupNoteIDByEvent(e), e);
+                break;
+            case CONSTANTS.ID_DONE:
+                privateApplicationController.setDone(lookupNoteIDByEvent(e), e);
                 break;
             default :
                 console.log("not handled here!");
