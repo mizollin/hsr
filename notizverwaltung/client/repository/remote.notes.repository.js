@@ -126,7 +126,7 @@ var NOTES_REPOSITORY = (function () {
         var request = $.ajax({
             method: "PUT",
             url: url,
-            contentType: 'application/json',
+            contentType: "application/json",
             data: note.getValuesAsJSON(),
             error: function(jqXHR, extStatus, errorThrown){
 
@@ -173,7 +173,7 @@ var NOTES_REPOSITORY = (function () {
     }
 
     function publicUpdateNote(note, callback) {
-        privatePutNote(note, privateGetUrlFromObjByKey("update", note), callback);
+        privatePutNote(note, privateGetUrlFromObjByKey("update", privateGetNoteFromUuid(note.uuid)), callback);
         // http UPDATE request
     }
 
