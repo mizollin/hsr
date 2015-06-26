@@ -35,8 +35,15 @@ Stefano
 
 Michi
 -- Client: Sicht Erledigtte & Status auf Modell
--- Client: Model Note mit CRUD-Operationen nach HATEOAS
--- Client: Style/Sortierung (User Einstellungen) speichern
--- Client: Serverobjekt für addNotes und getNotes
+-- Client: Model Note mit CRUD-Operationen nach HATEOAS --> erledigt!
+-- Client: Style/Sortierung (User Einstellungen) speichern --> erledigt!
+-- Client: Serverobjekt für addNotes und getNotes --> erledigt!
 -- Client: IsDone Update auf DB
--- Client: Edit Note
+-- Client: Edit Note --> erledigt!
+
+
+Issue
+=============
+- Firefox Date bei edit nicht auswahl...konvertieren
+-
+
