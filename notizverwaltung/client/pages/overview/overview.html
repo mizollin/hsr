@@ -73,9 +73,11 @@
                             <h3 class="note-title">{{title}}</h3>
                             <label class="note-importance">{{#convertImportance}}{{{importance}}}{{/convertImportance}}</label>
                             <ul class="toolbar note-crud">
+                                <!--
                                 <li>
                                     <button class="btn"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
                                 </li>
+                                -->
                                 <li>
                                     <button class="btn danger"><i class="fa fa-trash-o"></i>&nbsp;Delete</button>
                                 </li>
@@ -125,25 +127,27 @@
         </ul>
 
         <div id="other-actions">
+            <!--
             <button id="show_done" class="btn"><i class="fa fa-check-square-o "></i>&nbsp;Show Done</button>
+            -->
             <button id="add_new_note" class="btn default"><i class="fa fa-plus"></i>&nbsp;Add Note</button>
         </div>
     </div>
 
-    <table border="1" style="width:100%">
+    <table border="1" class="note-table" >
         <tr>
             <th class="note-table-coloumn">Open</th>
             <th class="note-table-coloumn">Done</th>
         </tr>
         <tr>
-            <td class="note-table-coloumn" style="vertical-align: top;">
+            <td class="note-table-coloumn note-table-coloumn-align">
                 <section id="note-container">
                     <ul id="notes">
 
                     </ul>
                 </section>
             </td>
-            <td class="note-table-coloumn" style="vertical-align: top;">
+            <td class="note-table-coloumn note-table-coloumn-align">
                 <section id="note-container-done">
                     <ul id="notes_done" draggable="true">
 
@@ -153,19 +157,6 @@
         </tr>
     </table>
 
-
-    <!--Notes in here will be populated by js/json
-    <section id="note-container">
-        <ul id="notes">
-
-        </ul>
-    </section>
-    <section id="note-container-done">
-        <ul id="notes_done" draggable="true">
-
-        </ul>
-    </section>
-    -->
 </div>
 
 <footer id="app-footer">
@@ -190,7 +181,6 @@
     var compiledNoteListItemTemplate = Handlebars.compile(document.getElementById("note-list-item-template").textContent);
     var compiledNoteDoneListItemTemplate = Handlebars.compile(document.getElementById("note-done-list-item-template").textContent);
 
-    // handlebar helper to convert the "number" for the importance into a string. that is done wit ha js function.
     Handlebars.registerHelper("convertImportance", function (options) {
         return new Handlebars.SafeString(convertImportanceToString(options.fn(this)));
     });

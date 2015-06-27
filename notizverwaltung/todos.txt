@@ -26,24 +26,18 @@ ANDERE THEMEN
 - input validations?
 
 
-TASK
-============
-Stefano
--- Server: erstellen
--- Server: Service Notes mit CRUD-Operationen nach HATEOAS
--- Server: Speichern Notes in DB
-
-Michi
--- Client: Sicht Erledigtte & Status auf Modell
--- Client: Model Note mit CRUD-Operationen nach HATEOAS --> erledigt!
--- Client: Style/Sortierung (User Einstellungen) speichern --> erledigt!
--- Client: Serverobjekt für addNotes und getNotes --> erledigt!
--- Client: IsDone Update auf DB
--- Client: Edit Note --> erledigt!
-
-
 Issue
 =============
-- Firefox Date bei edit nicht auswahl...konvertieren
--
+- Firefox/IE Date bei edit/add eingabe ohne datumsauswahl
+- Notes done/open gleich gross machen
+- Bei edit datum wird nicht angezeigt
+- Anzeige welche sortierung aktive
+- Fehler wenn open/done geändert wird und dann sortiert sind die notes noch nicht aktuallisiert
+
+
+
+feature
+=============
+ - drag and drop done variante
+ -
 
