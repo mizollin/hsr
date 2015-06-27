@@ -30,7 +30,7 @@
     <script id="note-list-item-template" type="text/x-handlebars-template">
         {{#each this}}
 
-        <li id={{uuid}} class="note-list-item" draggable="true">
+        <li id={{uuid}} class="note-list-item dropzone" draggable="true">
             <table class="note-table">
                 <tr>
                     <td><h3 class="note-due-by">{{#convertDate}}{{{dueByDate}}}{{/convertDate}}</h3></td>
@@ -64,7 +64,7 @@
     <script id="note-done-list-item-template" type="text/x-handlebars-template">
         {{#each this}}
 
-        <li id={{uuid}} class="note-list-item" draggable="true">
+        <li id={{uuid}} class="note-list-item dropzone_done" draggable="true" >
             <table class="note-table">
                 <tr>
                     <td><h3 class="note-due-by">{{#convertDate}}{{{dueByDate}}}{{/convertDate}}</h3></td>
@@ -140,16 +140,16 @@
             <th class="note-table-coloumn">Done</th>
         </tr>
         <tr>
-            <td class="note-table-coloumn note-table-coloumn-align">
-                <section id="note-container">
-                    <ul id="notes">
+            <td id="note_coloun_open" class="note-table-coloumn note-table-coloumn-align dropzone">
+                <section id="note-container" class="dropzone">
+                    <ul id="notes" class="dropzone">
 
                     </ul>
                 </section>
             </td>
-            <td class="note-table-coloumn note-table-coloumn-align">
-                <section id="note-container-done">
-                    <ul id="notes_done" draggable="true">
+            <td id="note_coloun_done" class="note-table-coloumn note-table-coloumn-align dropzone_done">
+                <section id="note-container-done" class="dropzone_done">
+                    <ul id="notes_done" class="dropzone_done" draggable="true">
 
                     </ul>
                 </section>

@@ -1,15 +1,15 @@
 
-function renderNotes(notes, tagId, state) {
-    if (state == "open") {
-        $(tagId).html(compiledNoteListItemTemplate(notes));
-    } else {
-        $(tagId).html(compiledNoteDoneListItemTemplate(notes));
-    }
-
-    $( "li" ).each(function( index ) {
-        $(this).on('dragstart', handleDragStart);
-    });
-}
+//function renderNotes(notes, tagId, state) {
+//    if (state == "open") {
+//        $(tagId).html(compiledNoteListItemTemplate(notes));
+//    } else {
+//        $(tagId).html(compiledNoteDoneListItemTemplate(notes));
+//    }
+//
+//    $( "li" ).each(function( index ) {
+//        $(this).on('dragstart', handleDragStart);
+//    });
+//}
 
 function lookupNoteIDByEvent(event) {
     console.log("lookupNoteIDByEvent() called: " + event);
@@ -40,12 +40,12 @@ function convertTimeToDateString(time) {
     return dateString;
 }
 
-function handleDragStart(e) {
-    console.log("Drag Start");
-    console.log(e);
-}
-
-function handleDragEnter(e) {
-    console.log("Drag Enter");
-    console.log(e);
-}
+//function handleDragStart(e) {
+//    console.log("Drag Start");
+//    console.log(e);
+//}
+//
+//function handleDragEnter(e) {
+//    console.log("Drag Enter");
+//    console.log(e);
+//}

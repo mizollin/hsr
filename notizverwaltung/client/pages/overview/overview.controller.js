@@ -1,18 +1,90 @@
-
 var page_controller = (function (applicationModel) {
+    var self = this;
 
     var privateApplicationModel;
+
+    function handleDragStart(e) {
+        console.log("Drag Start");
+        self.dragSrcEl = this;
+
+    }
+
+    function handleDrop(e) {
+        console.log("Drag drop");
+        if (e.stopPropagation) {
+            e.stopPropagation();
+        }
+        if (self.dragSrcEl || self.dragSrcEl != this) {
+            self.dragSrcEl.innerHTML = this.innerHTML;
+            this.innerHTML = e.dataTransfer.getData('text/html');
+        }
+
+    }
+
+    function handleDragEnd(e) {
+        console.log("Drag End");
+        console.log(self.dropzone);
+        console.log(e.target.id);
+        if (self.dropzone) {
+            var uuid = self.dragSrcEl.id;
+            var note = APPLICATION_MODEL.getNotesRepository().GetNoteByUuid(uuid);
+            if (self.dropzone == "dropzone_done") {
+                note.setStateDone(true);
+                privateApplicationModel.getNotesRepository().updateNote(note, function () {
+                    $("#notes_done").append(self.dragSrcEl);
+                });
+            } else {
+                note.setStateDone(false);
+                privateApplicationModel.getNotesRepository().updateNote(note, function () {
+                    $("#notes").append(self.dragSrcEl);
+                });
+
+            }
+        }
+
+    }
+
+    function handleDragOver(e) {
+        console.log("Drag Over");
+        var arrClassName = e.target.className.split(" ");
+        for (var i = 0; i < arrClassName.length; i++) {
+            if (arrClassName[i] == "dropzone" || arrClassName[i] == "dropzone_done") {
+                self.dropzone = arrClassName[i];
+            }
+        }
+        console.log(e.target.className);
+    }
+
+    function renderNotes(notes, tagId, state) {
+        if (state == "open") {
+            $(tagId).html(compiledNoteListItemTemplate(notes));
+        } else {
+            $(tagId).html(compiledNoteDoneListItemTemplate(notes));
+        }
+
+        for (var i = 0; i < notes.length; i++) {
+            var tagli = "#" + notes[i].uuid;
+
+            $(tagli).on('dragstart', handleDragStart);
+            $(tagli).on('dragend', handleDragEnd);
+
+        }
+
+        $('#note_coloun_open').on('dragover', handleDragOver);
+        $('#note_coloun_done').on('dragover', handleDragOver);
+
+    }
 
     function privateStoreUuidForEdit(uuid) {
         localStorage.setItem(CONSTANTS.STORAGE_KEY_EDITNOTES, JSON.stringify(uuid));
     }
 
-    function privateSplitOpenDoneInArray(notes){
+    function privateSplitOpenDoneInArray(notes) {
         var notesOpen = [];
         var notesDone = [];
 
-        for(var i = 0; i < notes.length; i++) {
-            if(notes[i].isDone == true) {
+        for (var i = 0; i < notes.length; i++) {
+            if (notes[i].isDone == true) {
                 notesDone.push(notes[i])
             } else {
                 notesOpen.push(notes[i]);
@@ -26,7 +98,7 @@ var page_controller = (function (applicationModel) {
     }
 
     function publicCreateNewNote() {
-         application_controller.goToPage(CONSTANTS.ID_DETAILS);
+        application_controller.goToPage(CONSTANTS.ID_DETAILS);
     }
 
     function publicSortNotes(sortStrategy) {
@@ -35,7 +107,7 @@ var page_controller = (function (applicationModel) {
 
         sortNotes(notes, sortStrategy);
 
-        var objNotes =  privateSplitOpenDoneInArray(notes);
+        var objNotes = privateSplitOpenDoneInArray(notes);
 
         renderNotes(objNotes.open, "#notes", "open");
         renderNotes(objNotes.done, "#notes_done", "done");
@@ -77,7 +149,7 @@ var page_controller = (function (applicationModel) {
         });
     }
 
-    function publicSetComboxTheme(theme){
+    function publicSetComboxTheme(theme) {
         $(function () {
             $("#" + CONSTANTS.ID_THEME_SWITCH_CB).val(theme);
         })
@@ -132,8 +204,8 @@ var page_controller = (function (applicationModel) {
             note.setStateDone(false);
         }
 
-        privateApplicationModel.getNotesRepository().updateNote(note, function(){
-            if(state == "done") {
+        privateApplicationModel.getNotesRepository().updateNote(note, function () {
+            if (state == "done") {
                 $("#notes_done").append($(tag));
             } else {
                 $("#notes").append($(tag));
@@ -147,7 +219,7 @@ var page_controller = (function (applicationModel) {
         privateApplicationModel = applicationModel;
         publicSetTheme(privateApplicationModel.getTheme());
         var notes = privateApplicationModel.getNotesRepository().getNotes();
-        var objNotes =  privateSplitOpenDoneInArray(notes);
+        var objNotes = privateSplitOpenDoneInArray(notes);
 
         renderNotes(objNotes.open, "#notes", "open");
         renderNotes(objNotes.done, "#notes_done", "done");

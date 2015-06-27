@@ -7,18 +7,6 @@ var NOTES_REPOSITORY = (function () {
 
     self.CallBackInitialFinished;
 
-    /*
-    function Note(uuid, creationDate, isDone, title, description, dueByDate, importance) {
-        this.uuid = uuid;
-        this.creationDate = creationDate;
-        this.title = title;
-        this.description = description;
-        this.dueByDate = dueByDate;
-        this.importance = importance;
-        this.isDone = isDone;
-    }
-    */
-
     function privateGetUrl(id){
         var links = self.server_service.links;
         for(var i = 0; i < links.length; i++) {
@@ -72,15 +60,6 @@ var NOTES_REPOSITORY = (function () {
     function privateGetNoteFromUuid(uuid) {
         for(var i = 0; i < self.server_notes.length; i++) {
             if(self.server_notes[i].id == uuid){
-                /*
-                var creationDate = self.server_notes[i].creationDate;
-                var isDone = self.server_notes[i].isDone;
-                var title = self.server_notes[i]. title;
-                var description = self.server_notes[i].description;
-                var dueByDate = self.server_notes[i].dueByDate;
-                var importance = self.server_notes[i].importance;
-                return model_factory.create(uuid, creationDate, isDone,title, description, dueByDate, importance);
-                */
                 return self.server_notes[i];
             }
         }
@@ -174,21 +153,18 @@ var NOTES_REPOSITORY = (function () {
 
     function publicUpdateNote(note, callback) {
         privatePutNote(note, privateGetUrlFromObjByKey("update", privateGetNoteFromUuid(note.uuid)), callback);
-        // http UPDATE request
     }
 
     function publicDeleteNote(uuid, callback) {
         var note = privateGetNoteFromUuid(uuid);
         privateDeleteNote(note, privateGetUrlFromObjByKey("delete", note), callback);
-        // http DELETE request...
     }
 
     function publicGetNotes() {
-        // http GET request...
         var notes = [];
         for(var i = 0; i < self.server_notes.length; i++){
             notes.push(model_factory.create(self.server_notes[i].id, self.server_notes[i].creationDate, self.server_notes[i].isDone, self.server_notes[i].title, self.server_notes[i].description, self.server_notes[i].dueByDate, self.server_notes[i].importance))
-            //notes.push(self.server_notes[i]);
+
         }
         return notes;
     }

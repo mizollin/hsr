@@ -98,6 +98,14 @@ body {
     margin: 0;
 }
 
+.dropzone {
+
+}
+
+.dropzone_done {
+
+}
+
 .note-table-coloumn-align {
     vertical-align: top;
 }
