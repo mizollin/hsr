@@ -5,8 +5,40 @@ var page_controller = (function (applicationModel) {
 
     var noteEditUuid;
 
+    function getFromDateObjFormatYYYYMMDD(date){
+        var dateString;
+        try {
+            var month = "" + (date.getMonth() + 1);
+            if(month.length == 1){
+                month = "0" + month;
+            }
+            var day = "" + date.getDate();
+            if(day.length == 1){
+                day = "0" + day;
+            }
+
+            dateString = date.getFullYear() + "-" + month + "-" + day;
+
+        } catch(e) {
+
+        }
+
+        return dateString;
+    }
+
     function privateSetViewToEdit(note) {
-        $("#" + CONSTANTS.ID_NOTE_DETAILS_DUE_BY).val(new Date(note.dueByDate));
+        var date = new Date(note.dueByDate);
+        //var month = "" + (date.getMonth() + 1);
+        //if(month.length == 1){
+        //    month = "0" + month;
+        //}
+        //var day = "" + date.getDate();
+        //if(day.length == 1){
+        //    day = "0" + day;
+        //}
+        //var dateString = date.getFullYear() + "-" + month + "-" + day;
+        var dateString = getFromDateObjFormatYYYYMMDD(date);
+        $("#" + CONSTANTS.ID_NOTE_DETAILS_DUE_BY).val(dateString);//new Date(note.dueByDate));
         $("#" + CONSTANTS.ID_NOTE_DETAILS_TITLE).val(note.title);
         $("#" + CONSTANTS.ID_NOTE_DETAILS_DESCRIPTION).text(note.description);
 
@@ -39,6 +71,8 @@ var page_controller = (function (applicationModel) {
             if (note) {
                 privateSetViewToEdit(note);
             }
+        } else {
+            $("#" + CONSTANTS.ID_NOTE_DETAILS_DUE_BY).val(getFromDateObjFormatYYYYMMDD(new Date()));
         }
     }
 

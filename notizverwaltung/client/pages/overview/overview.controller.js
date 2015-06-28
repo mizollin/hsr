@@ -31,11 +31,13 @@ var page_controller = (function (applicationModel) {
             if (self.dropzone == "dropzone_done") {
                 note.setStateDone(true);
                 privateApplicationModel.getNotesRepository().updateNote(note, function () {
+                    updateLocalNotesState(note);
                     $("#notes_done").append(self.dragSrcEl);
                 });
             } else {
                 note.setStateDone(false);
                 privateApplicationModel.getNotesRepository().updateNote(note, function () {
+                    updateLocalNotesState(note);
                     $("#notes").append(self.dragSrcEl);
                 });
 
@@ -53,6 +55,14 @@ var page_controller = (function (applicationModel) {
             }
         }
         console.log(e.target.className);
+    }
+
+    function updateLocalNotesState(note) {
+        for(var i = 0; i < self.server_notes.length; i++){
+            if(self.server_notes[i].id == note.uuid) {
+                self.server_notes[i].isDone = note.isDone;
+            }
+        }
     }
 
     function renderNotes(notes, tagId, state) {
@@ -205,6 +215,7 @@ var page_controller = (function (applicationModel) {
         }
 
         privateApplicationModel.getNotesRepository().updateNote(note, function () {
+            updateLocalNotesState(note);
             if (state == "done") {
                 $("#notes_done").append($(tag));
             } else {

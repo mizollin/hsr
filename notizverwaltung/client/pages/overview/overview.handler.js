@@ -60,7 +60,6 @@ var page_handler = (function() {
 
         privateApplicationController = applicationController;
 
-        // initialize handlers...
         $("#wrapper").on("click", bubbledEventHandler);
         $("#theme-switch-cb").on("change", bubbledEventHandler);
     }
